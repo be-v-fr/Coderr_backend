@@ -39,7 +39,7 @@ class CustomerProfileSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['user', 'type', 'created_at', 'file', 'uploaded_at']
         
     def get_type(self, obj):
-        return 'customer'
+        return CustomerProfile.TYPE
         
         
 class BusinessProfileSerializer(serializers.HyperlinkedModelSerializer):
@@ -54,4 +54,4 @@ class BusinessProfileSerializer(serializers.HyperlinkedModelSerializer):
         fields = CustomerProfileSerializer.Meta.fields + ['location', 'description', 'working_hours', 'tel']
         
     def get_type(self, obj):
-        return 'business'
+        return BusinessProfile.TYPE

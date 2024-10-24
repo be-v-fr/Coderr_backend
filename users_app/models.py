@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import datetime
     
 class AbstractUserProfile(models.Model):
+    BUSINESS = 'business'
     class Meta:
         abstract = True
     
@@ -19,9 +20,11 @@ class AbstractUserProfile(models.Model):
         return f"({self.id}) {self.user.username}"
     
 class CustomerProfile(AbstractUserProfile):
+    TYPE = 'customer'
     pass # if you add anything here make sure to update the BusinessProfileSerializer accordingly
     
 class BusinessProfile(AbstractUserProfile):
+    TYPE = 'business'
     location = models.CharField(max_length=32, default=None, blank=True, null=True)
     description = models.CharField(max_length=1024, default=None, blank=True, null=True)
     working_hours = models.CharField(max_length=32, default=None, blank=True, null=True)
