@@ -14,17 +14,26 @@ class ProfileTests(APITestCase):
         self.business_profile = BusinessProfile.objects.create(user=self.business_user, location="businesslocation", description="businessdescription")
         self.client = APIClient()
         
-    def test_get_profile_detail_customer(self):
+    def test_get_profile_detail_customer_ok(self):
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
         response = self.client.get(url)
         expected_data = CustomerProfileSerializer(self.customer_profile).data
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
-    def test_get_profile_detail_business(self):
+    def test_get_profile_detail_business_ok(self):
         url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
         response = self.client.get(url)
-        expected_data =BusinessProfileSerializer(self.business_profile).data
+        expected_data = BusinessProfileSerializer(self.business_profile).data
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
+    def test_get_customer_profile_list_ok(self):
+        url = reverse('customer-list')
+        response = self.client.get(url)    
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+    def test_get_business_profile_list_ok(self):
+        url = reverse('business-list')
+        response = self.client.get(url)    
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
