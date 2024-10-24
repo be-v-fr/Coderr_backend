@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from users_app.models import UserProfile, BusinessUserProfile
+from users_app.models import CustomerProfile, BusinessProfile
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -26,49 +26,32 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ['pk', 'username', 'first_name', 'last_name', 'email', 'password']
 
-  
-class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
+
+class CustomerProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for the UserProfile model, linking to the related User model.
     """
     user = UserSerializer(read_only=True)
-        
+    type = serializers.SerializerMethodField()
     
     class Meta:
-        model = UserProfile
+        model = CustomerProfile
         fields = ['user', 'type', 'created_at', 'file', 'uploaded_at']
         
+    def get_type(self, obj):
+        return 'customer'
         
-class BusinessUserProfileSerializer(serializers.HyperlinkedModelSerializer):
+        
+class BusinessProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for the UserProfile model, linking to the related User model.
     """
     user = UserSerializer(read_only=True)
+    type = serializers.SerializerMethodField()
         
-    
     class Meta:
-        model = BusinessUserProfile
-        fields = UserProfileSerializer.Meta.fields + ['location', 'description', 'working_hours', 'tel']
-
-
-
-
-# UserProfileSerializer
-# falls type = BUSINESS: BusinessInfo-Objekt abfragen und, falls vorhanden, ohne Verschachtelung dem Serializer hinzufügen
-# {
-# "user": {
-# "pk": 1,
-# "username": "max_mustermann",
-# "first_name": "Max",
-# "last_name": "Mustermann"
-# },
-# "file": "profile_picture.jpg",
-# "location": "Berlin",
-# "tel": "123456789",
-# "description": "Business description",
-# Dokumentation für die Backend-Endpunkte: Coderr 2024
-# "working_hours": "9-17",
-# "type": "business",
-# "email": "max@business.de",
-# "created_at": "2023-01-01T12:00:00"
-# }
+        model = BusinessProfile
+        fields = CustomerProfileSerializer.Meta.fields + ['location', 'description', 'working_hours', 'tel']
+        
+    def get_type(self, obj):
+        return 'business'
