@@ -3,7 +3,7 @@ from rest_framework import status, viewsets, generics, permissions, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from users_app.models import CustomerProfile, BusinessProfile
-from users_app.utils import get_profile_or_none, get_serializer
+from users_app.utils import get_profile, get_serializer
 from .serializers import CustomerProfileSerializer, BusinessProfileSerializer
 
 class ProfileView(APIView):
@@ -11,13 +11,11 @@ class ProfileView(APIView):
     def get(self, request, *args, **kwargs):
         try:
             user = User.objects.get(pk=kwargs.get('pk'))
+            profile = get_profile(user)
         except:
-            return Response({'id': 'Benutzer wurde nicht gefunden.'}, status=status.HTTP_404_NOT_FOUND)
-        profile = get_profile_or_none(user)
-        if not profile:
-            return Response({'database': 'Datenbank-Fehler.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'user': 'Benutzer oder Profil wurde nicht gefunden.'}, status=status.HTTP_404_NOT_FOUND)
         serializer = get_serializer(request, profile)
-        return Response(serializer.data, status=status.HTTP_200_OK)      
+        return Response(serializer.data, status=status.HTTP_200_OK)       
         
 class CustomerProfileViewSet(generics.ListAPIView):
     queryset = CustomerProfile.objects.all()

@@ -2,14 +2,11 @@ from .models import CustomerProfile, BusinessProfile
 from .api.serializers import CustomerProfileSerializer, BusinessProfileSerializer
 
 
-def get_profile_or_none(user):
+def get_profile(user):
     try:
         profile = CustomerProfile.objects.get(user=user)
     except CustomerProfile.DoesNotExist:
-        try:
-            profile = BusinessProfile.objects.get(user=user)
-        except BusinessProfile.DoesNotExist:
-            profile = None
+        profile = BusinessProfile.objects.get(user=user)
     finally:
         return profile
     

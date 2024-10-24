@@ -29,17 +29,17 @@ class ProfileTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
-    def test_get_profile_detail_not_found(self):
+    def test_get_profile_detail_user_not_found(self):
         pk = User.objects.count() + 1
         url = reverse('profile-detail', kwargs={"pk": pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         
-    def test_get_profile_detail_internal_server_error(self):
+    def test_get_profile_detail_user_profile_not_found(self):
         no_profile_user = User.objects.create_user(username="noprofileuser", password="noprofilepassword")
         url = reverse('profile-detail', kwargs={"pk": no_profile_user.id})
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         
     def test_get_customer_profile_list_ok(self):
         url = reverse('customer-list')
