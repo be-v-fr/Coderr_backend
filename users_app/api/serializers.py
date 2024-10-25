@@ -42,17 +42,18 @@ class CustomerProfileSerializer(serializers.HyperlinkedModelSerializer):
         return CustomerProfile.TYPE
     
     def update(self, instance, validated_data):
-        user_data = validated_data.pop('user')
-        user_serializer = UserSerializer(instance.user, user_data, partial=True)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            super().update(instance, validated_data)
-            instance.save()
-            return instance
-        else:
-            raise serializers.ValidationError({
-                'user': user_serializer.errors
-            })
+        if 'user' in validated_data:
+            user_data = validated_data.pop('user')
+            user_serializer = UserSerializer(instance.user, user_data, partial=True)
+            if user_serializer.is_valid():
+                user_serializer.save()
+            else:
+                raise serializers.ValidationError({
+                    'user': user_serializer.errors
+                })
+        super().update(instance, validated_data)
+        instance.save()
+        return instance
         
 class BusinessProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
@@ -69,14 +70,15 @@ class BusinessProfileSerializer(serializers.HyperlinkedModelSerializer):
         return BusinessProfile.TYPE
     
     def update(self, instance, validated_data):
-        user_data = validated_data.pop('user')
-        user_serializer = UserSerializer(instance.user, user_data, partial=True)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            super().update(instance, validated_data)
-            instance.save()
-            return instance
-        else:
-            raise serializers.ValidationError({
-                'user': user_serializer.errors
-            })
+        if 'user' in validated_data:
+            user_data = validated_data.pop('user')
+            user_serializer = UserSerializer(instance.user, user_data, partial=True)
+            if user_serializer.is_valid():
+                user_serializer.save()
+            else:
+                raise serializers.ValidationError({
+                    'user': user_serializer.errors
+                })
+        super().update(instance, validated_data)
+        instance.save()
+        return instance
