@@ -2,15 +2,7 @@ from rest_framework import serializers
 from users_app.api.serializers import BusinessProfileSerializer
 from content_app.models import Offer, OfferDetails
 
-class OfferSerializer(serializers.HyperlinkedModelSerializer):
-    business_user = BusinessProfileSerializer()
-    
-    class Meta:
-        model = Offer
-        fields = ['business_user', 'description', 'image', 'created_at', 'created_at', 'min_price', 'min_delivery_time']
-        
 class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
-    offer = OfferSerializer()
     features = serializers.ListField(
         child=serializers.CharField(max_length=63),
         source='get_features_list',
@@ -18,7 +10,7 @@ class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = OfferDetails
-        fields = ['offer_type', 'offer', 'price', 'features', 'revisions', 'delivery_time_in_days']
+        fields = ['offer_type', 'price', 'features', 'revisions', 'delivery_time_in_days']
         
     def validate_features(self, value):
         if any(',,' in feature for feature in value):
@@ -36,3 +28,11 @@ class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
         instance.set_features_list(features)
         instance.save()
         return instance
+
+class OfferSerializer(serializers.HyperlinkedModelSerializer):
+    business_user = BusinessProfileSerializer()
+    # OfferDetails sollen bei GET als Hyperlinks und bei POST vollständig ausgegeben werden!
+        
+    class Meta:
+        model = Offer
+        fields = ['business_user', 'description', 'image', 'created_at', 'created_at', 'min_price', 'min_delivery_time']
