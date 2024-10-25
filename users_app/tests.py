@@ -41,6 +41,51 @@ class ProfileTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         
+    def test_patch_customer_profile_detail_ok(self):
+        new_username = 'customerpatch'
+        data = {
+            'user': {'username': new_username},
+        }
+        url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
+        response = self.client.patch(url, data, format="json")
+        expected_data = CustomerProfileSerializer(self.customer_profile).data
+        expected_data['user']['username'] = new_username
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, expected_data)
+        
+    def test_patch_business_profile_detail_ok(self):
+        new_username = 'businesspatch'
+        new_location = 'patchcity'
+        data = {
+            'user': {'username': new_username},
+            'location' : new_location,
+        }
+        url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
+        response = self.client.patch(url, data, format="json")
+        expected_data = BusinessProfileSerializer(self.business_profile).data
+        expected_data['user']['username'] = new_username
+        expected_data['location'] = new_location
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, expected_data)
+        
+    def test_patch_customer_profile_detail_bad_request(self):
+        new_username = 'customerpatch'
+        data = {
+            'user': new_username,
+        }
+        url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
+        response = self.client.patch(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_patch_business_profile_detail_bad_request(self):
+        new_username = 'businesspatch'
+        data = {
+            'user': new_username,
+        }
+        url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
+        response = self.client.patch(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
     def test_get_customer_profile_list_ok(self):
         url = reverse('customer-list')
         response = self.client.get(url)    

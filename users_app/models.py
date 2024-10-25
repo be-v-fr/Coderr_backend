@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import datetime
     
 class AbstractUserProfile(models.Model):
-    BUSINESS = 'business'
+    TYPE = None
     class Meta:
         abstract = True
     

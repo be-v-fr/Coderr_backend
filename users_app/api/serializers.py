@@ -22,6 +22,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         )
         return user
     
+    # def update(self, instance, validated_data):
+    #     print('########## UPDATING USER SERIALIZER...', validated_data)
+    #     instance.username = validated_data.get('username', instance.username)
+    #     instance.first_name = validated_data.get('first_name', instance.first_name)
+    #     instance.last_name = validated_data.get('last_name', instance.last_name)
+    #     print('############# USER SERIALIZER INSTANCE AFTER UPDATE:', instance)
+    #     instance.save()
+    #     return instance
+        
     class Meta:
         model = User
         fields = ['pk', 'username', 'first_name', 'last_name', 'email', 'password']
@@ -31,7 +40,7 @@ class CustomerProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for the UserProfile model, linking to the related User model.
     """
-    user = UserSerializer(read_only=True)
+    user = UserSerializer()
     type = serializers.SerializerMethodField()
     
     class Meta:
@@ -40,13 +49,25 @@ class CustomerProfileSerializer(serializers.HyperlinkedModelSerializer):
         
     def get_type(self, obj):
         return CustomerProfile.TYPE
-        
+    
+    def update(self, instance, validated_data):
+        user_data = validated_data.pop('user')
+        user_serializer = UserSerializer(instance.user, user_data, partial=True)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            super().update(instance, validated_data)
+            instance.save()
+            return instance
+        else:
+            raise serializers.ValidationError({
+                'user': user_serializer.errors
+            })
         
 class BusinessProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for the UserProfile model, linking to the related User model.
     """
-    user = UserSerializer(read_only=True)
+    user = UserSerializer()
     type = serializers.SerializerMethodField()
         
     class Meta:
@@ -55,3 +76,16 @@ class BusinessProfileSerializer(serializers.HyperlinkedModelSerializer):
         
     def get_type(self, obj):
         return BusinessProfile.TYPE
+    
+    def update(self, instance, validated_data):
+        user_data = validated_data.pop('user')
+        user_serializer = UserSerializer(instance.user, user_data, partial=True)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            super().update(instance, validated_data)
+            instance.save()
+            return instance
+        else:
+            raise serializers.ValidationError({
+                'user': user_serializer.errors
+            })
