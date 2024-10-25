@@ -63,11 +63,6 @@ class CustomerProfileSerializer(BaseProfileSerializer):
         fields = BaseProfileSerializer.Meta.fields
         
 class BusinessProfileSerializer(BaseProfileSerializer):
-    """
-    Serializer for the UserProfile model, linking to the related User model.
-    """
-    user = UserSerializer()
-    type = serializers.SerializerMethodField()
         
     class Meta:
         model = BusinessProfile
