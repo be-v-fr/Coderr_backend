@@ -21,15 +21,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             password=validated_data['password'],
         )
         return user
-    
-    # def update(self, instance, validated_data):
-    #     print('########## UPDATING USER SERIALIZER...', validated_data)
-    #     instance.username = validated_data.get('username', instance.username)
-    #     instance.first_name = validated_data.get('first_name', instance.first_name)
-    #     instance.last_name = validated_data.get('last_name', instance.last_name)
-    #     print('############# USER SERIALIZER INSTANCE AFTER UPDATE:', instance)
-    #     instance.save()
-    #     return instance
         
     class Meta:
         model = User
