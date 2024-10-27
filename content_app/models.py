@@ -5,13 +5,16 @@ from users_app.models import BusinessProfile, CustomerProfile
 from datetime import date
 
 class Offer(models.Model):
-    business_user = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='business_profile_set')
+    business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='business_profile_set')
     description = models.CharField(max_length=1024, default=None, blank=True, null=True)
     image = models.CharField(max_length=64, default=None, blank=True, null=True)
     created_at = models.DateField(default=date.today)
-    created_at = models.DateField(default=date.today)
+    updated_at = models.DateField(default=date.today)
     min_price = models.PositiveIntegerField(default=None, blank=True, null=True)
     min_delivery_time = models.PositiveIntegerField(default=None, blank=True, null=True)
+    
+    def get_details(self):
+        return OfferDetails.objects.filter(offer=self)
     
 class OfferDetails(models.Model):
     BASIC, STANDARD, PREMIUM = 'basic', 'standard', 'premium'
