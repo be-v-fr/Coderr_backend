@@ -86,7 +86,7 @@ class OfferTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(len(response.data['details']), 3)
         
-    def test_post_offer_list_unqique_constraint_bad_request(self):
+    def test_post_offer_list_unique_constraint_bad_request(self):
         url = reverse('offer-list')
         data = self.EXAMPLE_DATA.copy()
         data['details'][0]['offer_type'] = OfferDetails.STANDARD
