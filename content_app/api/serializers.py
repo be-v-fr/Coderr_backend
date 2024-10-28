@@ -3,7 +3,7 @@ from rest_framework import serializers
 from users_app.models import BusinessProfile
 from users_app.api.serializers import BusinessProfileSerializer
 from content_app.models import Offer, OfferDetails
-from content_app.utils import features_list_to_str
+from content_app.utils import features_list_to_str, merge_features_keys
 
 class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.SerializerMethodField(read_only=True)
@@ -12,6 +12,7 @@ class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
         source='get_features_list'
     )
     offer_id = serializers.IntegerField(write_only=True, required=False)
+    offer_type = serializers.CharField(max_length=16, required=True)
 
     class Meta:
         model = OfferDetails
@@ -38,23 +39,17 @@ class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
         return f"/offerdetails/{obj.pk}/"
 
     def create(self, validated_data):
-        if ('features' not in validated_data) and ('get_features_list' in validated_data):
-            validated_data['features'] = validated_data.pop('get_features_list')
+        validated_data = merge_features_keys(validated_data)
         validated_data['features'] = features_list_to_str(validated_data['features'])
         offer_id = validated_data.pop('offer_id')
         offer = Offer.objects.get(pk=offer_id)
-        object = OfferDetails.objects.create(offer=offer, **validated_data)
-        return object
-
-    def update(self, instance, validated_data):
-        if ('features' not in validated_data) and ('get_features_list' in validated_data):
-            validated_data['features'] = validated_data.pop('get_features_list')
-        features_list = validated_data.pop('features', '')
-        instance = super().update(instance, validated_data)
-        if len(features_list) > 0:
-            instance.set_features_str(features_list)
-        instance.save()
+        instance = OfferDetails.objects.create(offer=offer, **validated_data)
         return instance
+    
+    def update(self, instance, validated_data):
+        validated_data = merge_features_keys(validated_data)
+        validated_data['features'] = features_list_to_str(validated_data['features'])
+        return super().update(instance, validated_data)
 
 class OfferSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.SerializerMethodField()
@@ -85,11 +80,23 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         profile = BusinessProfile.objects.get(user=user)
         new_offer = Offer.objects.create(business_profile=profile, **validated_data)
         for single_details_data in many_details_data:
-            if ('features' not in single_details_data) and ('get_features_list' in single_details_data):
-                single_details_data['features'] = single_details_data.pop('get_features_list')
+            single_details_data = merge_features_keys(single_details_data)
             single_details_data['offer_id'] = new_offer.pk
             details_serializer = OfferDetailsSerializer(data=single_details_data, context=self.context)
             if details_serializer.is_valid(raise_exception=True):
                 details_serializer.save()
         return new_offer
         
+    def update(self, instance, validated_data):
+        many_details_data = validated_data.pop('details', {})
+        updated_offer = super().update(instance, validated_data)
+        for single_details_data in many_details_data:
+            single_details_data = merge_features_keys(single_details_data)
+            details_instance = instance.details.get(offer_type=single_details_data['offer_type'] or None)
+            if details_instance:
+                details_serializer = OfferDetailsSerializer(data=single_details_data, instance=details_instance)
+            else:
+                details_serializer = OfferDetailsSerializer(data=single_details_data, context=self.context)
+            if details_serializer.is_valid():
+                details_serializer.save()
+        return updated_offer

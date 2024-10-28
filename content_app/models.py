@@ -45,7 +45,7 @@ class OfferDetails(models.Model):
         ]
         
     def get_features_list(self):
-        return self.features.split(",,") if self.features else []
+        return self.features.split(',,') if self.features else []
 
     def set_features_str(self, features_list):
         self.features = features_list_to_str(features_list)

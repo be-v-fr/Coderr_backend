@@ -10,21 +10,21 @@ from content_app.utils import features_list_to_str
 class General(APITestCase):
     
     def setUp(self):
-        self.business_user = User.objects.create_user(username="businessuser", password="businesspassword")
-        self.business_profile = BusinessProfile.objects.create(user=self.business_user, location="businesslocation", description="businessdescription")
-        self.offer = Offer.objects.create(business_profile=self.business_profile, title="testtitle", description="testdescription")
-        self.details_basic = OfferDetails.objects.create(offer_type=OfferDetails.BASIC, offer=self.offer, **OfferDetailsTests.EXAMPLE_DATA)
-        self.details_standard = OfferDetails.objects.create(offer_type=OfferDetails.STANDARD, offer=self.offer, **OfferDetailsTests.EXAMPLE_DATA)
-        self.details_premium = OfferDetails.objects.create(offer_type=OfferDetails.PREMIUM, offer=self.offer, **OfferDetailsTests.EXAMPLE_DATA)
+        self.business_user = User.objects.create_user(username='businessuser', password='businesspassword')
+        self.business_profile = BusinessProfile.objects.create(user=self.business_user, location='businesslocation', description='businessdescription')
+        self.offer = Offer.objects.create(business_profile=self.business_profile, title='testtitle', description='testdescription')
+        self.details_basic = OfferDetails.objects.create(offer_type=OfferDetails.BASIC, offer=self.offer, **OfferDetailsTests.CREATE_DATA)
+        self.details_standard = OfferDetails.objects.create(offer_type=OfferDetails.STANDARD, offer=self.offer, **OfferDetailsTests.CREATE_DATA)
+        self.details_premium = OfferDetails.objects.create(offer_type=OfferDetails.PREMIUM, offer=self.offer, **OfferDetailsTests.CREATE_DATA)
         self.details_basic.features = features_list_to_str(self.details_basic.features)
         self.details_standard.features = features_list_to_str(self.details_standard.features)
         self.details_premium.features = features_list_to_str(self.details_premium.features)
         self.client = APIClient()
-        self.client.login(username="businessuser", password='businesspassword')
+        self.client.login(username='businessuser', password='businesspassword')
         # change login logic after activating authentication
     
 class OfferDetailsTests(APITestCase):
-    EXAMPLE_DATA = {
+    CREATE_DATA = {
         'title': 'detailstest',
         'price': 100,
         'features': ['feature1', 'feature2'],
@@ -41,7 +41,7 @@ class OfferDetailsTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
     def test_get_offerdetails_detail_ok(self):
-        url = reverse('offerdetails-detail', kwargs={"pk": self.details_standard.pk})
+        url = reverse('offerdetails-detail', kwargs={'pk': self.details_standard.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         serializer_data = OfferDetailsSerializer(self.details_standard).data
@@ -52,24 +52,35 @@ class OfferDetailsTests(APITestCase):
         self.assertEqual(response.data, expected_data)   
         
 class OfferTests(APITestCase):
-    EXAMPLE_DATA = {
+    CREATE_DATA = {
         'title': 'Grafikdesign-Paket',
         'image': 'urlplaceholder',
         'description': 'Ein umfassendes Grafikdesign-Paket für Unternehmen.',
         'details': [
             {
                 'offer_type': OfferDetails.BASIC,
-                **OfferDetailsTests.EXAMPLE_DATA.copy(),                
+                **OfferDetailsTests.CREATE_DATA.copy(),                
             },
             {
                 'offer_type': OfferDetails.STANDARD,
-                **OfferDetailsTests.EXAMPLE_DATA.copy(),                
+                **OfferDetailsTests.CREATE_DATA.copy(),                
             },
                                     {
                 'offer_type': OfferDetails.PREMIUM,
-                **OfferDetailsTests.EXAMPLE_DATA.copy(),                
+                **OfferDetailsTests.CREATE_DATA.copy(),                
             },
         ]
+    }
+    
+    PATCH_DATA = {
+        'title': 'titlepatch',
+        'details': [
+            {
+                'offer_type': OfferDetails.BASIC,
+                'price': 768,
+                'features': ['patchfeature1', 'patchfeature2'],
+            },
+        ],
     }
     
     def setUp(self):
@@ -82,18 +93,29 @@ class OfferTests(APITestCase):
         
     def test_post_offer_list_ok(self):
         url = reverse('offer-list')
-        response = self.client.post(url, self.EXAMPLE_DATA, format="json")
+        response = self.client.post(url, self.CREATE_DATA, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(len(response.data['details']), 3)
         
     def test_post_offer_list_unique_constraint_bad_request(self):
         url = reverse('offer-list')
-        data = self.EXAMPLE_DATA.copy()
+        data = self.CREATE_DATA.copy()
         data['details'][0]['offer_type'] = OfferDetails.STANDARD
-        response = self.client.post(url, data, format="json")
+        response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         
     def test_get_offer_detail_ok(self):
-        url = reverse('offer-detail', kwargs={"pk": self.offer.pk})
+        url = reverse('offer-detail', kwargs={'pk': self.offer.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+    def test_patch_offer_detail_ok(self):
+        url = reverse('offer-detail', kwargs={'pk': self.offer.pk})
+        response = self.client.patch(url, self.PATCH_DATA, format='json')
+        self.offer.refresh_from_db()
+        self.offer.title
+        updated_features = self.offer.details.get(offer_type=OfferDetails.BASIC).features
+        expected_features = features_list_to_str(self.PATCH_DATA['details'][0]['features'])
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(self.offer.title, self.PATCH_DATA['title'])
+        self.assertEqual(updated_features, expected_features)
