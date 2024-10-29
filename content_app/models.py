@@ -65,11 +65,7 @@ class Order(models.Model):
     orderer_profile = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='orders')
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length=63, default=None, blank=True, null=True)
-    offer_type = models.CharField(
-        max_length=16,
-        choices=OfferDetails.OFFER_TYPES,
-        default=OfferDetails.STANDARD,
-    )
+    offer_details = models.ForeignKey(OfferDetails, on_delete=models.SET_NULL, related_name='orders', default=None, blank=True, null=True)
     created_at = models.DateField(default=date.today)
     updated_at = models.DateField(default=date.today)
     price = models.PositiveIntegerField(default=None, blank=True, null=True)
@@ -79,7 +75,8 @@ class Order(models.Model):
     
 class CustomerReview(models.Model):
     reviewer_profile = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='reviews')
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
+    business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
+    # order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
     rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
     created_at = models.DateField(default=date.today)

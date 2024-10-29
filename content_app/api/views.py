@@ -3,8 +3,8 @@ from rest_framework import status, viewsets, generics, permissions, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from content_app.utils import get_integrity_error_response
-from content_app.models import Offer, OfferDetails
-from .serializers import OfferSerializer, OfferDetailsSerializer
+from content_app.models import Offer, OfferDetails, Order, CustomerReview
+from .serializers import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
 
 class OfferViewSet(viewsets.ModelViewSet):
     queryset = Offer.objects.all()
@@ -33,3 +33,11 @@ class OfferViewSet(viewsets.ModelViewSet):
 class OfferDetailsViewSet(viewsets.ModelViewSet):
     queryset = OfferDetails.objects.all()
     serializer_class = OfferDetailsSerializer
+    
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    
+class CustomerReviewViewSet(viewsets.ModelViewSet):
+    queryset = CustomerReview.objects.all()
+    serializer_class = CustomerReviewSerializer

@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
-from rest_framework import serializers, status
-from users_app.models import BusinessProfile
-from users_app.api.serializers import BusinessProfileSerializer
-from content_app.models import Offer, OfferDetails
-from content_app.utils import features_list_to_str, merge_features_keys
+from rest_framework import serializers
+from users_app.models import BusinessProfile, CustomerProfile
+from users_app.api.serializers import UserSerializer
+from content_app.models import Offer, OfferDetails, Order, CustomerReview
+from content_app.utils import features_list_to_str, merge_features_keys, get_order_create_dict
+from content_app.utils import validate_attrs_has_only_selected_fields, validate_attrs_has_and_has_only_selected_fields
 
 class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.SerializerMethodField(read_only=True)
@@ -56,6 +57,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     details = OfferDetailsSerializer(many=True)
     min_price = serializers.SerializerMethodField()
     min_delivery_time = serializers.SerializerMethodField()
+
         
     class Meta:
         model = Offer
@@ -113,3 +115,67 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
             else:
                 raise serializers.ValidationError('Angebotstyp nicht spezifiziert.')
         return updated_offer
+    
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    customer_user = serializers.SerializerMethodField()
+    business_user = serializers.SerializerMethodField()
+    offer_detail_id = serializers.IntegerField(write_only=True)
+    offer_type = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Order
+        fields = ['id', 'customer_user', 'business_user', 'title', 'offer_detail_id', 'offer_type' 'created_at', 'updated_at' 'price', 'features', 'revisions', 'delivery_time_in_days']
+        
+    def get_customer_user(self, obj):
+        return obj.orderer_profile.user.pk
+    
+    def get_business_user(self, obj):
+        return obj.business_profile.user.pk
+    
+    def get_offer_type(self, obj):
+        return obj.offer_details.offer_type
+    
+    def validate(self, attrs):
+        request = self.context.get('request')     
+        if request and request.method == 'POST':
+            validate_attrs_has_and_has_only_selected_fields(['offer_detail_id'], attrs)
+        elif request and request.method == 'PATCH':
+            validate_attrs_has_and_has_only_selected_fields(['status'], attrs)
+        return attrs
+
+    def create(self, validated_data):
+        offer_details = OfferDetails.objects.get(pk=validated_data['offer_detail_id'])
+        offer = offer_details.offer
+        current_user = User.objects.get(pk=self.context['request'].user.pk)
+        order = Order.objects.create(**get_order_create_dict(current_user, offer, offer_details))
+        return order
+    
+class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):
+    reviewer = serializers.SerializerMethodField()
+    business_user = UserSerializer()
+    offer_type = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = CustomerReview
+        fields = ['id', 'reviewer', 'business_user', 'rating', 'description', 'created_at', 'updated_at']
+
+    def get_reviewer(self, obj):
+        return obj.reviewer_profile.user.pk
+    
+    def validate(self, attrs):
+        request = self.context.get('request')     
+        if request and request.method == 'POST':
+            validate_attrs_has_and_has_only_selected_fields(['business_user', 'rating', 'description'], attrs)
+        elif request and request.method == 'PATCH':
+            validate_attrs_has_only_selected_fields(['rating', 'description'], attrs)
+        return attrs
+    
+    def create(self, validated_data):
+        current_user = User.objects.get(pk=self.context['request'].user.pk)
+        business_user = validated_data.pop('business_user')
+        review = CustomerReview.objects.create(
+            reviewer=CustomerProfile.objects.get(user=current_user),
+            business_profile=BusinessProfile.objects.get(user=business_user),
+            **validated_data,
+        )
+        return review
