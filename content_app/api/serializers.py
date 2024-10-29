@@ -124,7 +124,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Order
-        fields = ['id', 'customer_user', 'business_user', 'title', 'offer_detail_id', 'offer_type' 'created_at', 'updated_at' 'price', 'features', 'revisions', 'delivery_time_in_days']
+        fields = ['id', 'customer_user', 'business_user', 'title', 'status', 'offer_detail_id', 'offer_type', 'created_at', 'updated_at', 'price', 'features', 'revisions', 'delivery_time_in_days']
         
     def get_customer_user(self, obj):
         return obj.orderer_profile.user.pk
