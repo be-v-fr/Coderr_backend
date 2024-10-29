@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework import serializers
+from rest_framework import serializers, status
 from users_app.models import BusinessProfile
 from users_app.api.serializers import BusinessProfileSerializer
 from content_app.models import Offer, OfferDetails
@@ -74,6 +74,15 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     def get_min_delivery_time(self, obj):
         return obj.details.order_by('delivery_time_in_days').first().delivery_time_in_days if obj.details.exists() else None
     
+    def validate_details(self, value):
+        offer_types = set()
+        for detail in value:
+            offer_type = detail.get('offer_type')
+            if offer_type in offer_types:
+                raise serializers.ValidationError('Jeder Angebotstyp darf nur einmal vorkommen.')
+            offer_types.add(offer_type)  
+        return value
+    
     def create(self, validated_data):
         many_details_data = validated_data.pop('details', {})
         user = User.objects.get(pk=self.context['request'].user.pk)
@@ -92,11 +101,15 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         updated_offer = super().update(instance, validated_data)
         for single_details_data in many_details_data:
             single_details_data = merge_features_keys(single_details_data)
-            details_instance = instance.details.get(offer_type=single_details_data['offer_type'] or None)
-            if details_instance:
-                details_serializer = OfferDetailsSerializer(data=single_details_data, instance=details_instance)
+            offer_type = single_details_data.get('offer_type', None)
+            if offer_type:
+                details_instance = instance.details.get(offer_type=offer_type)
+                if details_instance:
+                    details_serializer = OfferDetailsSerializer(data=single_details_data, instance=details_instance)
+                else:
+                    details_serializer = OfferDetailsSerializer(data=single_details_data, context=self.context)
+                if details_serializer.is_valid():
+                    details_serializer.save()
             else:
-                details_serializer = OfferDetailsSerializer(data=single_details_data, context=self.context)
-            if details_serializer.is_valid():
-                details_serializer.save()
+                raise serializers.ValidationError('Angebotstyp nicht spezifiziert.')
         return updated_offer

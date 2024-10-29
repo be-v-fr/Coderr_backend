@@ -6,6 +6,7 @@ from users_app.models import BusinessProfile
 from content_app.models import Offer, OfferDetails
 from content_app.api.serializers import OfferSerializer, OfferDetailsSerializer
 from content_app.utils import features_list_to_str
+import copy
 
 class General(APITestCase):
     
@@ -97,9 +98,16 @@ class OfferTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(len(response.data['details']), 3)
         
-    def test_post_offer_list_unique_constraint_bad_request(self):
+    def test_post_offer_list_double_title_unique_constraint(self):
         url = reverse('offer-list')
-        data = self.CREATE_DATA.copy()
+        response_first = self.client.post(url, self.CREATE_DATA, format='json')
+        response_second = self.client.post(url, self.CREATE_DATA, format='json')
+        self.assertEqual(response_first.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response_second.status_code, status.HTTP_409_CONFLICT)
+        
+    def test_post_offer_list_double_offer_type_validation_err(self):
+        url = reverse('offer-list')
+        data = copy.deepcopy(self.CREATE_DATA)
         data['details'][0]['offer_type'] = OfferDetails.STANDARD
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -119,3 +127,26 @@ class OfferTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(self.offer.title, self.PATCH_DATA['title'])
         self.assertEqual(updated_features, expected_features)
+        
+    def test_patch_offer_detail_double_title_unique_constraint(self):
+        data = {'title': self.CREATE_DATA['title']}
+        url_post = reverse('offer-list')
+        url_patch = reverse('offer-detail', kwargs={'pk': self.offer.pk})
+        response_post = self.client.post(url_post, self.CREATE_DATA, format='json')
+        response_patch = self.client.patch(url_patch, data, format='json')
+        self.assertEqual(response_post.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response_patch.status_code, status.HTTP_409_CONFLICT)
+        
+    def test_patch_offer_detail_missing_offer_type_validation_err(self):
+        data = copy.deepcopy(self.PATCH_DATA)
+        data['details'][0].pop('offer_type')
+        url = reverse('offer-detail', kwargs={'pk': self.offer.pk})
+        response = self.client.patch(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_patch_offer_detail_double_offer_type_validation_err(self):
+        data = copy.deepcopy(self.PATCH_DATA)
+        data['details'].append(data['details'][0])
+        url = reverse('offer-detail', kwargs={'pk': self.offer.pk})
+        response = self.client.patch(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
