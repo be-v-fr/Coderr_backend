@@ -13,17 +13,17 @@ class BaseInfoView(APIView):
     
 class OrderCountView(APIView):
     def get(self, request, pk, format=None):
-        try:
-            orders = get_business_user_orders(pk)
-        except:
-            return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
-        return Response({'order_count': orders.count()})
+        orders = get_business_user_orders(pk)
+        if orders:
+            return Response({'order_count': orders.count()})
+        return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
+
     
 class CompletedOrderCountView(APIView):
     def get(self, request, pk, format=None):
-        try:
-            orders = get_business_user_orders(pk)
-        except:
-            return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
-        orders = orders.filter(status=Order.COMPLETED)
-        return Response({'completed_order_count': orders.count()})
+        orders = get_business_user_orders(pk)
+        if orders:
+            orders = orders.filter(status=Order.COMPLETED)
+            return Response({'completed_order_count': orders.count()})
+        return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
+
