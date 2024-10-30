@@ -21,7 +21,6 @@ class AbstractUserProfile(models.Model):
     
 class CustomerProfile(AbstractUserProfile):
     TYPE = 'customer'
-    pass # if you add anything here make sure to update the BusinessProfileSerializer accordingly
     
 class BusinessProfile(AbstractUserProfile):
     TYPE = 'business'

@@ -7,17 +7,17 @@ from .serializers import CustomerProfileSerializer, BusinessProfileSerializer
 
 class ProfileView(APIView):
              
-    def get(self, request, *args, **kwargs):
+    def get(self, request, pk, format=None):
         try:
-            profile = get_profile(user_pk=kwargs.get('pk'))
+            profile = get_profile(user_pk=pk)
         except:
             return Response({'user': 'Benutzer oder Profil wurde nicht gefunden.'}, status=status.HTTP_404_NOT_FOUND)
         serializer = get_profile_serializer(request, profile)
         return Response(serializer.data, status=status.HTTP_200_OK)       
 
-    def patch(self, request, *args, **kwargs):
+    def patch(self, request, pk, format=None):
         try:
-            profile = get_profile(user_pk=kwargs.get('pk'))
+            profile = get_profile(user_pk=pk)
         except:
             return Response({'user': 'Benutzer oder Profil wurde nicht gefunden.'}, status=status.HTTP_404_NOT_FOUND)
         serializer = get_profile_serializer(request, profile)
