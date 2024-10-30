@@ -152,12 +152,16 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     
 class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):
     reviewer = serializers.SerializerMethodField()
-    business_user = UserSerializer()
-    offer_type = serializers.SerializerMethodField()
+    business_user = serializers.IntegerField(required=False)
     
     class Meta:
         model = CustomerReview
         fields = ['id', 'reviewer', 'business_user', 'rating', 'description', 'created_at', 'updated_at']
+        
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['business_user'] = instance.business_profile.user.pk if instance.business_profile else None
+        return representation
 
     def get_reviewer(self, obj):
         return obj.reviewer_profile.user.pk
@@ -174,7 +178,7 @@ class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):
         current_user = User.objects.get(pk=self.context['request'].user.pk)
         business_user = validated_data.pop('business_user')
         review = CustomerReview.objects.create(
-            reviewer=CustomerProfile.objects.get(user=current_user),
+            reviewer_profile=CustomerProfile.objects.get(user=current_user),
             business_profile=BusinessProfile.objects.get(user=business_user),
             **validated_data,
         )
