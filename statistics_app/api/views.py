@@ -27,5 +27,5 @@ class CompletedOrderCountView(APIView):
             orders = get_business_user_orders(pk)
         except:
             return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
-        count = orders.filter(status=Order.COMPLETE).count()
+        count = orders.filter(status=Order.COMPLETED).count()
         return Response({'completed_order_count': count})

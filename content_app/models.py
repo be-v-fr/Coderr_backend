@@ -51,10 +51,10 @@ class OfferDetails(models.Model):
         self.features = features_list_to_str(features_list)
         
 class Order(models.Model):
-    IN_PROGRESS, COMPLETE, CANCELLED = 'in_progress', 'complete', 'cancelled'
+    IN_PROGRESS, COMPLETED, CANCELLED = 'in_progress', 'completed', 'cancelled'
     STATUS_CHOICES = (
             (IN_PROGRESS, _(IN_PROGRESS)),
-            (COMPLETE, _(COMPLETE)),
+            (COMPLETED, _(COMPLETED)),
             (CANCELLED, _(CANCELLED)),
     )
     status = models.CharField(
