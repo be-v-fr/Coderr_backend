@@ -12,8 +12,6 @@ class Offer(models.Model):
     image = models.CharField(max_length=63, default=None, blank=True, null=True)
     created_at = models.DateField(default=date.today)
     updated_at = models.DateField(default=date.today)
-    min_price = models.PositiveIntegerField(default=0, blank=True, null=True)
-    min_delivery_time = models.PositiveIntegerField(default=0, blank=True, null=True)
     
     class Meta:
         constraints = [

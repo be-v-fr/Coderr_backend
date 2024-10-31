@@ -1,14 +1,22 @@
 from django.db import IntegrityError
+from django.db.models import Min
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets, generics, permissions, filters
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from content_app.utils import get_integrity_error_response
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
 from .serializers import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
+from .filters import OfferFilter
+from .pagination import OfferPagination
 
 class OfferViewSet(viewsets.ModelViewSet):
-    queryset = Offer.objects.all()
+    queryset = Offer.objects.all().annotate(min_price=Min('details__price'))
     serializer_class = OfferSerializer
+    pagination_class = OfferPagination
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_class = OfferFilter
+    search_fields = ['title', 'description']
+    ordering_fields = ['updated_at', 'min_price']
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

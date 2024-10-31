@@ -56,12 +56,12 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.SerializerMethodField()
     details = OfferDetailsSerializer(many=True)
     min_price = serializers.SerializerMethodField()
-    min_delivery_time = serializers.SerializerMethodField()
+    max_delivery_time = serializers.SerializerMethodField()
 
         
     class Meta:
         model = Offer
-        fields = ['id', 'user', 'title', 'description', 'image', 'created_at', 'updated_at', 'details', 'min_price', 'min_delivery_time']
+        fields = ['id', 'user', 'title', 'description', 'image', 'created_at', 'updated_at', 'details', 'min_price', 'max_delivery_time']
         
     def to_representation(self, instance):
         self.fields['details'].context.update(self.context)
@@ -73,7 +73,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     def get_min_price(self, obj):
         return obj.details.order_by('price').first().price if obj.details.exists() else None
     
-    def get_min_delivery_time(self, obj):
+    def get_max_delivery_time(self, obj):
         return obj.details.order_by('delivery_time_in_days').first().delivery_time_in_days if obj.details.exists() else None
     
     def validate_details(self, value):
