@@ -77,7 +77,7 @@ class CustomerReview(models.Model):
     reviewer_profile = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='reviews')
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
     # order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
-    rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=None, blank=True, null=True)
+    rating = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
     created_at = models.DateField(default=date.today)
     updated_at = models.DateField(default=date.today)
