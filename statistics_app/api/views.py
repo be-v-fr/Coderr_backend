@@ -15,6 +15,7 @@ class OrderCountView(APIView):
     def get(self, request, pk, format=None):
         orders = get_business_user_orders(pk)
         if orders:
+            orders = orders.filter(status=Order.IN_PROGRESS)
             return Response({'order_count': orders.count()})
         return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
 
