@@ -1,13 +1,8 @@
 from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
-from users_app.models import BusinessProfile, CustomerProfile
-from content_app.models import Offer, OfferDetails, Order, CustomerReview
-from content_app.api.serializers import CustomerReviewSerializer
+from rest_framework.test import APITestCase
 from content_app.tests.tests_reviews import General as ReviewsTests
-# from content_app.utils import get_order_create_dict
-import copy
 
 class General(APITestCase):
     
