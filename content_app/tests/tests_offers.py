@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
+from rest_framework.authtoken.models import Token
 from coderr_backend.utils import reverse_with_queryparams
 from users_app.models import BusinessProfile
 from content_app.models import Offer, OfferDetails
@@ -21,9 +22,9 @@ class General(APITestCase):
         self.details_basic.features = features_list_to_str(self.details_basic.features)
         self.details_standard.features = features_list_to_str(self.details_standard.features)
         self.details_premium.features = features_list_to_str(self.details_premium.features)
+        self.token = Token.objects.create(user=self.business_user)
         self.client = APIClient()
-        self.client.login(username='businessuser', password='businesspassword')
-        # change login logic after activating authentication
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
     
 class OfferDetailsTests(APITestCase):
     CREATE_DATA = {

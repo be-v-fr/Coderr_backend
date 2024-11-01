@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
+from rest_framework.authtoken.models import Token
 from users_app.models import CustomerProfile
 from content_app.models import Order
 from content_app.api.serializers import OfferDetailsSerializer, OrderSerializer
@@ -20,8 +21,9 @@ class General(APITestCase):
             offer=self.offer,
             offer_details=self.details_standard,
         ))
-        self.client.login(username='customeruser', password='customerpassword')
-        # change login logic after activating authentication
+        self.token = Token.objects.create(user=self.customer_user)
+        self.client = APIClient()
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         
     
 class OrderTests(APITestCase):
