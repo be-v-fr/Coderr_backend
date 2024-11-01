@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
+from coderr_backend.utils import reverse_with_queryparams
 from users_app.models import BusinessProfile
 from content_app.models import Offer, OfferDetails
 from content_app.api.serializers import OfferSerializer, OfferDetailsSerializer
@@ -53,6 +54,10 @@ class OfferDetailsTests(APITestCase):
         self.assertEqual(response.data, expected_data)   
         
 class OfferTests(APITestCase):
+    QUERY_PARAMS = {
+        'min_price': 200
+    }    
+
     CREATE_DATA = {
         'title': 'Grafikdesign-Paket',
         'image': 'urlplaceholder',
@@ -91,6 +96,16 @@ class OfferTests(APITestCase):
         url = reverse('offer-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('count', response.data) # pagination
+        self.assertIn('next', response.data)
+        self.assertIn('previous', response.data)
+        
+    def test_get_offer_list_filter_ok(self):
+        url = reverse_with_queryparams('offer-list', **self.QUERY_PARAMS)
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        for offer_data in response.data['results']:
+            self.assertLessEqual(offer_data['min_price'], self.QUERY_PARAMS['min_price'])
         
     def test_post_offer_list_ok(self):
         url = reverse('offer-list')
