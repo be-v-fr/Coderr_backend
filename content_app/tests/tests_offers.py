@@ -22,9 +22,9 @@ class General(APITestCase):
         self.details_basic.features = features_list_to_str(self.details_basic.features)
         self.details_standard.features = features_list_to_str(self.details_standard.features)
         self.details_premium.features = features_list_to_str(self.details_premium.features)
-        self.token = Token.objects.create(user=self.business_user)
+        self.business_token = Token.objects.create(user=self.business_user)
         self.client = APIClient()
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.business_token.key)
     
 class OfferDetailsTests(APITestCase):
     CREATE_DATA = {

@@ -3,15 +3,18 @@ from django.db.models import Min
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets, generics, permissions, filters
 from rest_framework.response import Response
+from users_app.api.permissions import ReadOnly, PostAsBusinessUser, PostAsCustomerUser
 from content_app.utils import get_integrity_error_response
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
 from .serializers import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
 from .filters import OfferFilter
 from .pagination import OfferPagination
+from .permissions import PatchAsCreator, PatchAsReviewer
 
 class OfferViewSet(viewsets.ModelViewSet):
     queryset = Offer.objects.all().annotate(min_price=Min('details__price'))
     serializer_class = OfferSerializer
+    permission_classes = [PostAsBusinessUser|PatchAsCreator|ReadOnly]
     pagination_class = OfferPagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_class = OfferFilter
@@ -41,11 +44,14 @@ class OfferViewSet(viewsets.ModelViewSet):
 class OfferDetailsViewSet(viewsets.ModelViewSet):
     queryset = OfferDetails.objects.all()
     serializer_class = OfferDetailsSerializer
+    permission_classes = [ReadOnly] # OfferDetails changes are communicated via OfferViewSet PATCH requests
     
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    permission_classes = [PostAsCustomerUser|PatchAsCreator|ReadOnly]
     
 class CustomerReviewViewSet(viewsets.ModelViewSet):
     queryset = CustomerReview.objects.all()
     serializer_class = CustomerReviewSerializer
+    permission_classes = [PostAsCustomerUser|PatchAsReviewer|ReadOnly]

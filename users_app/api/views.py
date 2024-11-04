@@ -4,8 +4,10 @@ from rest_framework.views import APIView
 from users_app.utils import get_profile, get_profile_serializer
 from users_app.models import CustomerProfile, BusinessProfile
 from .serializers import CustomerProfileSerializer, BusinessProfileSerializer
+from .permissions import ProfilePermission
 
 class ProfileView(APIView):
+    permission_classes = [ProfilePermission]
              
     def get(self, request, pk, format=None):
         try:

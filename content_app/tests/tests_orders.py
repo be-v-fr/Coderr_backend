@@ -21,9 +21,9 @@ class General(APITestCase):
             offer=self.offer,
             offer_details=self.details_standard,
         ))
-        self.token = Token.objects.create(user=self.customer_user)
+        self.customer_token = Token.objects.create(user=self.customer_user)
         self.client = APIClient()
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.customer_token.key)
         
     
 class OrderTests(APITestCase):
@@ -63,6 +63,7 @@ class OrderTests(APITestCase):
         self.assertNotIn('offer_details', response.data)
         
     def test_patch_order_detail_ok(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.business_token.key)
         data = {'status': Order.CANCELLED}
         url = reverse('order-detail', kwargs={'pk': self.order.pk})
         response = self.client.patch(url, data, format='json')
@@ -73,6 +74,7 @@ class OrderTests(APITestCase):
         self.assertNotIn('offer_details', response.data)
         
     def test_patch_order_detail_bad_request(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.business_token.key)
         data = {'title': 'newtitle'}
         url = reverse('order-detail', kwargs={'pk': self.order.pk})
         response = self.client.patch(url, data, format='json')
