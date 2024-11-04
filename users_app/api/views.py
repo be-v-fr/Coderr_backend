@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from users_app.utils import get_profile, get_profile_serializer
 from users_app.models import CustomerProfile, BusinessProfile
 from .serializers import CustomerProfileSerializer, BusinessProfileSerializer
-from .permissions import ProfilePermission
+from .permissions import ProfilePermission, ReadOnly
 
 class ProfileView(APIView):
     permission_classes = [ProfilePermission]
@@ -31,7 +31,9 @@ class ProfileView(APIView):
 class CustomerProfileViewSet(generics.ListAPIView):
     queryset = CustomerProfile.objects.all()
     serializer_class = CustomerProfileSerializer
+    permission_classes = [ReadOnly]
     
 class BusinessProfileViewSet(generics.ListAPIView):
     queryset = BusinessProfile.objects.all()
     serializer_class = BusinessProfileSerializer
+    permission_classes = [ReadOnly]
