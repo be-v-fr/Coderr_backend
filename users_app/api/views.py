@@ -1,4 +1,4 @@
-from rest_framework import status, generics, permissions, filters
+from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from users_app.utils import get_profile, get_profile_serializer

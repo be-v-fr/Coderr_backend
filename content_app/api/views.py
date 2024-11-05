@@ -1,7 +1,7 @@
 from django.db import IntegrityError
 from django.db.models import Min
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import status, viewsets, generics, permissions, filters
+from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 from users_app.api.permissions import ReadOnly, PostAsBusinessUser, PostAsCustomerUser
 from content_app.utils import get_integrity_error_response
