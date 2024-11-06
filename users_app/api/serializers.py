@@ -27,12 +27,9 @@ class RegistrationSerializer(LoginSerializer):
     def validate(self, attrs):
         if User.objects.filter(username=attrs['username']).exists():
             raise serializers.ValidationError('Username already taken')
+        validate_password(attrs['password'])
         if attrs['repeated_password'] != attrs['password']:
             raise serializers.ValidationError('Passwords do not match.')
-        try:
-            validate_password(attrs['password'])
-        except:
-            raise serializers.ValidationError("Password not strong enough.")
         attrs.pop('repeated_password')
         return attrs
     

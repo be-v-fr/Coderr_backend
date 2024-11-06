@@ -61,6 +61,15 @@ class AuthTests(APITestCase):
         self.assertIn('email', response.data)
         self.assertIn('user_id', response.data)
         
+    def test_registration_weak_password_bad_request(self):
+        data = copy.deepcopy(self.AUTH_DATA)
+        password = 'newpassword'
+        data['password'] = password
+        data['repeated_password'] = password
+        url = reverse('registration')
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
     def test_registration_passwords_not_matching_bad_request(self):
         data = copy.deepcopy(self.AUTH_DATA)
         data['repeated_password'] += 'a'
