@@ -48,23 +48,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     Serializer for the Django User model, handling user creation and password protection.
     """
     password = serializers.CharField(write_only=True)
-
-    def create(self, validated_data):
-        """
-        Custom create method to handle user creation with hashed password.
-        """
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            email=validated_data['email'],
-            password=validated_data['password'],
-        )
-        return user
         
     class Meta:
         model = User
-        fields = ['pk', 'username', 'first_name', 'last_name', 'email', 'password']
+        fields = ['pk', 'username', 'email', 'password']
         
 class BaseProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
