@@ -39,7 +39,7 @@ class RegistrationSerializer(LoginSerializer):
         created_user = User.objects.create_user(first_name=first_name, last_name=last_name, **validated_data)
         if type == CustomerProfile.TYPE:
             CustomerProfile.objects.create(user=created_user)
-        else:
+        elif type == BusinessProfile.TYPE:
             BusinessProfile.objects.create(user=created_user)
         token = Token.objects.create(user=created_user)
         return get_auth_response_data(user=created_user, token=token)
