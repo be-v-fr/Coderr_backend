@@ -56,10 +56,10 @@ class AuthTests(APITestCase):
         url = reverse('registration')
         response = self.client.post(url, self.AUTH_DATA, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['user_id'], CustomerProfile.objects.get(user=response.data['user_id']).user.pk)
         self.assertIn('token', response.data)
         self.assertIn('username', response.data)
         self.assertIn('email', response.data)
-        self.assertIn('user_id', response.data)
         
     def test_registration_weak_password_bad_request(self):
         data = copy.deepcopy(self.AUTH_DATA)
