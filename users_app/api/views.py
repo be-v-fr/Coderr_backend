@@ -1,10 +1,32 @@
-from rest_framework import status, generics
+from django.contrib.auth.models import User
+
+from rest_framework import status, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from users_app.utils import get_profile, get_profile_serializer
+from users_app.utils_profiles import get_profile, get_profile_serializer
 from users_app.models import CustomerProfile, BusinessProfile
-from .serializers import CustomerProfileSerializer, BusinessProfileSerializer
+from .serializers import LoginSerializer, RegistrationSerializer, CustomerProfileSerializer, BusinessProfileSerializer
 from .permissions import ProfilePermission, ReadOnly
+
+class LoginView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            response_data = serializer.save()
+            return Response(response_data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class RegistrationView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = RegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            response_data = serializer.save()
+            return Response(response_data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
 
 class ProfileView(APIView):
     permission_classes = [ProfilePermission]

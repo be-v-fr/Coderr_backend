@@ -1,7 +1,51 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
+from users_app.utils_auth import get_auth_response_data
 
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=63)
+    password = serializers.CharField(max_length=63, write_only=True)
+    
+    def create(self, validated_data):
+        user = authenticate(**validated_data)
+        if user:
+            token, created = Token.objects.get_or_create(user=user)
+            return get_auth_response_data(user=user, token=token)              
+        else:
+            raise serializers.ValidationError('Invalid credentials.')
+
+
+class RegistrationSerializer(LoginSerializer):
+    repeated_password = serializers.CharField(max_length=63, write_only=True)
+    email = serializers.EmailField(max_length=63)
+    type = serializers.ChoiceField((BusinessProfile.TYPE, CustomerProfile.TYPE))
+    
+    def validate(self, attrs):
+        if User.objects.filter(username=attrs['username']).exists():
+            raise serializers.ValidationError('Username already taken')
+        if attrs['repeated_password'] != attrs['password']:
+            raise serializers.ValidationError('Passwords do not match.')
+        try:
+            validate_password(attrs['password'])
+        except:
+            raise serializers.ValidationError("Password not strong enough.")
+        attrs.pop('repeated_password')
+        return attrs
+    
+    def create(self, validated_data):
+        type = validated_data.pop('type')
+        created_user = User.objects.create_user(**validated_data)
+        if type == CustomerProfile.TYPE:
+            CustomerProfile.objects.create(user=created_user)
+        else:
+            BusinessProfile.objects.create(user=created_user)
+        token = Token.objects.create(user=created_user)
+        return get_auth_response_data(user=created_user, token=token)
+    
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for the Django User model, handling user creation and password protection.

@@ -5,8 +5,9 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.authtoken.models import Token
 from .models import CustomerProfile, BusinessProfile
 from .api.serializers import CustomerProfileSerializer, BusinessProfileSerializer
+import copy
 
-class ProfileTests(APITestCase):
+class General(APITestCase):
     
     def setUp(self):
         self.customer_user = User.objects.create_user(username="customeruser", password="customerpassword")
@@ -16,7 +17,75 @@ class ProfileTests(APITestCase):
         self.business_profile = BusinessProfile.objects.create(user=self.business_user, location="businesslocation", description="businessdescription")
         self.business_token = Token.objects.create(user=self.business_user)
         self.client = APIClient()
-        # add login logic after activating authentication
+        
+class AuthTests(APITestCase):
+    AUTH_DATA = {
+        'username': 'newuser',
+        'password': 'newPassw0rd',
+        'repeated_password': 'newPassw0rd',
+        'email': 'new@email.com',
+        'type': CustomerProfile.TYPE,
+    }
+    
+    def setUp(self):
+        General.setUp(self)
+        
+    def test_login_ok(self):
+        data = {
+            'username': self.customer_user.username,
+            'password': 'customerpassword',
+        }
+        url = reverse('login')
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('token', response.data)
+        self.assertIn('username', response.data)
+        self.assertIn('email', response.data)
+        self.assertIn('user_id', response.data)
+        
+    def test_login_false_password_bad_request(self):
+        data = {
+            'username': self.customer_user.username,
+            'password': 'password',
+        }
+        url = reverse('login')
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_registration_ok(self):
+        url = reverse('registration')
+        response = self.client.post(url, self.AUTH_DATA, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertIn('token', response.data)
+        self.assertIn('username', response.data)
+        self.assertIn('email', response.data)
+        self.assertIn('user_id', response.data)
+        
+    def test_registration_passwords_not_matching_bad_request(self):
+        data = copy.deepcopy(self.AUTH_DATA)
+        data['repeated_password'] += 'a'
+        url = reverse('registration')
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_registration_email_missing_bad_request(self):
+        data = copy.deepcopy(self.AUTH_DATA)
+        data['email'] = ''
+        url = reverse('registration')
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_registration_username_taken_bad_request(self):
+        data = copy.deepcopy(self.AUTH_DATA)
+        data['username'] = self.customer_user.username
+        url = reverse('registration')
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+class ProfileTests(APITestCase):
+    
+    def setUp(self):
+        General.setUp(self)
         
     def test_get_profile_detail_customer_ok(self):
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
