@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
 from users_app.utils_auth import split_username, set_first_and_last_name, get_auth_response_data
 
-USER_FIELDS = ['pk', 'username', 'first_name', 'last_name', 'email']
+USER_FIELDS = ['username', 'first_name', 'last_name', 'email']
 PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file', 'uploaded_at']
 BUSINESS_EXTRA_FIELDS = ['location', 'description', 'working_hours', 'tel']
 
@@ -52,7 +52,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         
     class Meta:
         model = User
-        fields = USER_FIELDS
+        fields = ['pk'] + USER_FIELDS
         
     def update(self, instance, validated_data):
         super().update(instance, validated_data)
@@ -70,22 +70,10 @@ class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = AbstractUserProfile
-        fields = USER_FIELDS + PROFILE_EXTRA_FIELDS
+        fields = ['user'] + USER_FIELDS + PROFILE_EXTRA_FIELDS
     
     def get_type(self, obj):
-        return None
-    
-    # def update(self, instance, validated_data):
-    #     user = instance.user
-    #     username = validated_data.pop('username', None)
-    #     email = validated_data.pop('email', None)
-    #     if username:
-    #         user.username = username
-    #         set_first_and_last_name(user)
-    #     if email:
-    #         user.email = email
-    #     user.save()
-    #     return super().update(instance, validated_data)       
+        return None      
     
 class CustomerProfileDetailSerializer(AbstractProfileDetailSerializer):
     
