@@ -4,7 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
-from users_app.utils_auth import get_auth_response_data
+from users_app.utils_auth import split_username, get_auth_response_data
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=63)
@@ -35,7 +35,8 @@ class RegistrationSerializer(LoginSerializer):
     
     def create(self, validated_data):
         type = validated_data.pop('type')
-        created_user = User.objects.create_user(**validated_data)
+        first_name, last_name = split_username(validated_data['username'])
+        created_user = User.objects.create_user(first_name=first_name, last_name=last_name, **validated_data)
         if type == CustomerProfile.TYPE:
             CustomerProfile.objects.create(user=created_user)
         else:
