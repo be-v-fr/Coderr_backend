@@ -4,16 +4,30 @@ from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.authtoken.models import Token
 from .models import CustomerProfile, BusinessProfile
-from .api.serializers import CustomerProfileSerializer, BusinessProfileSerializer
+from .api.serializers import CustomerProfileDetailSerializer, BusinessProfileDetailSerializer
 import copy
+
+CUSTOMER_USER_DATA = {
+    'username': 'customer_user',
+    'first_name': 'customer',
+    'last_name': 'user',
+    'password': 'customerpassword',        
+}
+    
+BUSINESS_USER_DATA = {
+    'username': 'business_user',
+    'first_name': 'business',
+    'last_name': 'user',
+    'password': 'businesspassword',        
+}
 
 class General(APITestCase):
     
     def setUp(self):
-        self.customer_user = User.objects.create_user(username="customeruser", password="customerpassword")
+        self.customer_user = User.objects.create_user(**CUSTOMER_USER_DATA)
         self.customer_profile = CustomerProfile.objects.create(user=self.customer_user)
         self.customer_token = Token.objects.create(user=self.customer_user)
-        self.business_user = User.objects.create_user(username="businessuser", password="businesspassword")
+        self.business_user = User.objects.create_user(**BUSINESS_USER_DATA)
         self.business_profile = BusinessProfile.objects.create(user=self.business_user, location="businesslocation", description="businessdescription")
         self.business_token = Token.objects.create(user=self.business_user)
         self.client = APIClient()
@@ -99,14 +113,14 @@ class ProfileTests(APITestCase):
     def test_get_profile_detail_customer_ok(self):
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
         response = self.client.get(url)
-        expected_data = CustomerProfileSerializer(self.customer_profile).data
+        expected_data = CustomerProfileDetailSerializer(self.customer_profile).data
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
     def test_get_profile_detail_business_ok(self):
         url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
         response = self.client.get(url)
-        expected_data = BusinessProfileSerializer(self.business_profile).data
+        expected_data = BusinessProfileDetailSerializer(self.business_profile).data
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
@@ -125,13 +139,18 @@ class ProfileTests(APITestCase):
     def test_patch_customer_profile_detail_ok(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.customer_token.key)
         new_username = 'customerpatch'
+        new_file = 'dummyfilename'
         data = {
-            'user': {'username': new_username},
+            'username': new_username,
+            'file': new_file,
         }
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
         response = self.client.patch(url, data, format="json")
-        expected_data = CustomerProfileSerializer(self.customer_profile).data
-        expected_data['user']['username'] = new_username
+        expected_data = CustomerProfileDetailSerializer(self.customer_profile).data
+        expected_data['username'] = new_username
+        expected_data['first_name'] = new_username
+        expected_data['last_name'] = ''
+        expected_data['file'] = new_file
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
@@ -140,36 +159,18 @@ class ProfileTests(APITestCase):
         new_username = 'businesspatch'
         new_location = 'patchcity'
         data = {
-            'user': {'username': new_username},
+            'username': new_username,
             'location' : new_location,
         }
         url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
         response = self.client.patch(url, data, format="json")
-        expected_data = BusinessProfileSerializer(self.business_profile).data
-        expected_data['user']['username'] = new_username
+        expected_data = BusinessProfileDetailSerializer(self.business_profile).data
+        expected_data['username'] = new_username
+        expected_data['first_name'] = new_username
+        expected_data['last_name'] = ''
         expected_data['location'] = new_location
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
-        
-    def test_patch_customer_profile_detail_bad_request(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.customer_token.key)
-        new_username = 'customerpatch'
-        data = {
-            'user': new_username,
-        }
-        url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
-        response = self.client.patch(url, data, format="json")
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        
-    def test_patch_business_profile_detail_bad_request(self):
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.business_token.key)
-        new_username = 'businesspatch'
-        data = {
-            'user': new_username,
-        }
-        url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
-        response = self.client.patch(url, data, format="json")
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         
     def test_get_customer_profile_list_ok(self):
         url = reverse('customer-list')

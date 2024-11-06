@@ -4,7 +4,11 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
-from users_app.utils_auth import split_username, get_auth_response_data
+from users_app.utils_auth import split_username, set_first_and_last_name, get_auth_response_data
+
+USER_FIELDS = ['pk', 'username', 'first_name', 'last_name', 'email']
+PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file', 'uploaded_at']
+BUSINESS_EXTRA_FIELDS = ['location', 'description', 'working_hours', 'tel']
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=63)
@@ -45,57 +49,88 @@ class RegistrationSerializer(LoginSerializer):
         return get_auth_response_data(user=created_user, token=token)
     
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    Serializer for the Django User model, handling user creation and password protection.
-    """
-    password = serializers.CharField(write_only=True)
         
     class Meta:
         model = User
-        fields = ['pk', 'username', 'email', 'password']
+        fields = USER_FIELDS
         
-class BaseProfileSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    Serializer for the UserProfile model, linking to the related User model.
-    """
+    def update(self, instance, validated_data):
+        super().update(instance, validated_data)
+        set_first_and_last_name(instance)
+        instance.save()
+        return instance
+        
+class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    username = serializers.CharField(source='user.username', read_only=True)
+    first_name = serializers.CharField(source='user.first_name', read_only=True)
+    last_name = serializers.CharField(source='user.last_name', read_only=True)
+    email = serializers.EmailField(source='user.email', read_only=True)
+    type = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = AbstractUserProfile
+        fields = USER_FIELDS + PROFILE_EXTRA_FIELDS
+    
+    def get_type(self, obj):
+        return None
+    
+    # def update(self, instance, validated_data):
+    #     user = instance.user
+    #     username = validated_data.pop('username', None)
+    #     email = validated_data.pop('email', None)
+    #     if username:
+    #         user.username = username
+    #         set_first_and_last_name(user)
+    #     if email:
+    #         user.email = email
+    #     user.save()
+    #     return super().update(instance, validated_data)       
+    
+class CustomerProfileDetailSerializer(AbstractProfileDetailSerializer):
+    
+    class Meta:
+        model = CustomerProfile
+        fields = AbstractProfileDetailSerializer.Meta.fields
+    
+    def get_type(self, obj):
+        return CustomerProfile.TYPE
+    
+class BusinessProfileDetailSerializer(AbstractProfileDetailSerializer):
+    
+    class Meta:
+        model = BusinessProfile
+        fields = AbstractProfileDetailSerializer.Meta.fields + BUSINESS_EXTRA_FIELDS
+    
+    def get_type(self, obj):
+        return BusinessProfile.TYPE
+
+class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
+
     user = UserSerializer()
     type = serializers.SerializerMethodField()
     
     class Meta:
         model = AbstractUserProfile
-        fields = ['user', 'type', 'created_at', 'file', 'uploaded_at']
-        
-    def update(self, instance, validated_data):
-        if 'user' in validated_data:
-            user_data = validated_data.pop('user')
-            user_serializer = UserSerializer(instance.user, user_data, partial=True)
-            if user_serializer.is_valid():
-                user_serializer.save()
-            else:
-                raise serializers.ValidationError({
-                    'user': user_serializer.errors
-                })
-        super().update(instance, validated_data)
-        instance.save()
-        return instance
+        fields = ['user'] + PROFILE_EXTRA_FIELDS
     
     def get_type(self, obj):
         return None
 
-class CustomerProfileSerializer(BaseProfileSerializer):
+class CustomerProfileListSerializer(BaseProfileListSerializer):
         
     def get_type(self, obj):
         return CustomerProfile.TYPE
     
     class Meta:
         model = CustomerProfile
-        fields = BaseProfileSerializer.Meta.fields
+        fields = BaseProfileListSerializer.Meta.fields
         
-class BusinessProfileSerializer(BaseProfileSerializer):
+class BusinessProfileListSerializer(BaseProfileListSerializer):
         
     class Meta:
         model = BusinessProfile
-        fields = BaseProfileSerializer.Meta.fields + ['location', 'description', 'working_hours', 'tel']
+        fields = BaseProfileListSerializer.Meta.fields + BUSINESS_EXTRA_FIELDS
         
     def get_type(self, obj):
         return BusinessProfile.TYPE

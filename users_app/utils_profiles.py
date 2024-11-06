@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from .models import CustomerProfile, BusinessProfile
-from .api.serializers import CustomerProfileSerializer, BusinessProfileSerializer
-
+from .api.serializers import CustomerProfileDetailSerializer, BusinessProfileDetailSerializer
 
 def get_profile(user_pk):
     user = User.objects.get(pk=user_pk)
@@ -15,16 +14,16 @@ def get_profile(user_pk):
     
 def get_profile_serializer_plain(profile):
     if isinstance(profile, CustomerProfile):
-        return CustomerProfileSerializer(profile)
+        return CustomerProfileDetailSerializer(profile)
     elif isinstance(profile, BusinessProfile):
-        return BusinessProfileSerializer(profile)
+        return BusinessProfileDetailSerializer(profile)
         
         
 def get_profile_serializer_with_data(profile, data):
     if isinstance(profile, CustomerProfile):
-        return CustomerProfileSerializer(profile, data=data, partial=True)
+        return CustomerProfileDetailSerializer(profile, data=data, partial=True)
     elif isinstance(profile, BusinessProfile):
-        return BusinessProfileSerializer(profile, data=data, partial=True)
+        return BusinessProfileDetailSerializer(profile, data=data, partial=True)
     
 
 def get_profile_serializer(request, profile):
