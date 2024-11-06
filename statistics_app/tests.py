@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.test import APITestCase
 from content_app.tests.tests_reviews import General as ReviewsTests
+from content_app.models import CustomerReview
 
 class General(APITestCase):
     
@@ -13,11 +14,19 @@ class BaseInfoTests(APITestCase):
     
     def setUp(self):
         General.setUp(self)
+        self.second_review = CustomerReview.objects.create(
+            reviewer_profile=self.customer_profile,
+            business_profile=self.business_profile,
+            rating=3,
+            description='testdescription'
+        )
         
     def test_get_review_list_ok(self):
         url = reverse('base-info-list')
         response = self.client.get(url)
+        average_rating = (self.review.rating + self.second_review.rating) / 2
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['average_rating'], average_rating)
         
 class OrderCountTests(APITestCase):
     

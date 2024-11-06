@@ -8,7 +8,8 @@ from statistics_app.utils import get_business_user_orders
 class BaseInfoView(APIView):
              
     def get(self, request, *args, **kwargs):
-        serializer = BaseInfoSerializer()
+        serializer = BaseInfoSerializer({})
+        print('################# BASE INFO SERIALIZER:', serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class OrderCountView(APIView):

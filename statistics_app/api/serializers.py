@@ -13,7 +13,7 @@ class BaseInfoSerializer(serializers.Serializer):
         return CustomerReview.objects.count()
 
     def get_average_rating(self, obj):
-        average = CustomerReview.objects.aggregate(Avg('rating'))['value__rating']
+        average = CustomerReview.objects.aggregate(Avg('rating'))['rating__avg']
         return round(float(average), 1) if average is not None else 0.0
 
     def get_business_profile_count(self, obj):
