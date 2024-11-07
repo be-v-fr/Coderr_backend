@@ -18,6 +18,12 @@ def fill_database():
         User.objects.create_user(username='Anna Krause', password='passwort456', email='anna.krause@beispiel.de'),
         User.objects.create_user(username='Tim Jansen', password='passwort789', email='tim.jansen@beispiel.de'),
         User.objects.create_user(username='Elisabeth Neumann', password='passwort789', email='elisabeth.neumann@beispiel.de'),
+        User.objects.create_user(username='Carlos García', password='password123', email='carlos.garcia@example.com'),
+        User.objects.create_user(username='Sophia Rossi', password='password123', email='sophia.rossi@example.com'),
+        User.objects.create_user(username='John Doe', password='password456', email='john.doe@example.com'),
+        User.objects.create_user(username='Marie Dubois', password='password456', email='marie.dubois@example.com'),
+        User.objects.create_user(username='Yuki Sato', password='password789', email='yuki.sato@example.com'),
+        User.objects.create_user(username='Amina Hassan', password='password789', email='amina.hassan@example.com'),
     ]
 
     c_profs = [
@@ -30,6 +36,12 @@ def fill_database():
         BusinessProfile.objects.create(user=users[1], location='Berlin', description='Ein großartiges Unternehmen', working_hours='9-18', tel='0123456789'),
         BusinessProfile.objects.create(user=users[3], location='Hamburg', description='Ein spezialisiertes Unternehmen', working_hours='10-20', tel='0987654321'),
         BusinessProfile.objects.create(user=users[5], location='München', description='Ein modernes Unternehmen', working_hours='8-17', tel='1122334455'),
+        BusinessProfile.objects.create(user=users[6], location='Köln', description='Ein modernes Unternehmen', working_hours='8-17', tel='1122334455'),
+        BusinessProfile.objects.create(user=users[7], location='Oldenburg (Oldb)', description='Ein großartiges Unternehmen', working_hours='8-17', tel='1122334455'),
+        BusinessProfile.objects.create(user=users[8], location='Mainz', description='Ein modernes Unternehmen', working_hours='8-17', tel='1122334455'),
+        BusinessProfile.objects.create(user=users[9], location='Chemnitz', description='Ein spezialisiertes Unternehmen', working_hours='8-17', tel='1122334455'),
+        BusinessProfile.objects.create(user=users[10], location='Flensburg', description='Ein modernes Unternehmen', working_hours='8-17', tel='1122334455'),
+        BusinessProfile.objects.create(user=users[11], location='Frankfurt a.M.', description='Ein modernes Unternehmen', working_hours='8-17', tel='1122334455'),
     ]
 
     comm_feat = {
@@ -57,7 +69,13 @@ def fill_database():
         Offer.objects.create(business_profile=b_profs[0], title='Online Shop Design', description='Erstellen Sie einen funktionalen und ansprechenden Online-Shop.'),
         Offer.objects.create(business_profile=b_profs[1], title='SEO-Content-Erstellung', description='Erstellen Sie SEO-optimierten Content für Ihre Website.'),
         Offer.objects.create(business_profile=b_profs[2], title='Social Media Ads', description='Schalten Sie gezielte Social Media-Anzeigen zur Kundenakquise.'),
-        Offer.objects.create(business_profile=b_profs[0], title='Website Redesign', description='Modernisieren Sie Ihre bestehende Website für eine bessere Benutzererfahrung.')
+        Offer.objects.create(business_profile=b_profs[0], title='Website Redesign', description='Modernisieren Sie Ihre bestehende Website für eine bessere Benutzererfahrung.'),
+        Offer.objects.create(business_profile=b_profs[3], title='Webdesign für lokale Unternehmen', description='Kreative Lösungen für kleine Unternehmen.'),
+        Offer.objects.create(business_profile=b_profs[4], title='SEO-Paket für regionale Auffindbarkeit', description='Optimiert für lokale Suchmaschinenpräsenz.'),
+        Offer.objects.create(business_profile=b_profs[5], title='Social Media Management', description='Effiziente Betreuung Ihrer Social Media Kanäle.'),
+        Offer.objects.create(business_profile=b_profs[6], title='E-Commerce-Webdesign', description='E-Commerce-Lösungen für Online-Shops.'),
+        Offer.objects.create(business_profile=b_profs[7], title='Advanced SEO für nationale Reichweite', description='Fortgeschrittene SEO-Strategien.'),
+        Offer.objects.create(business_profile=b_profs[8], title='Premium Social Media Marketing', description='Für die Erweiterung Ihrer Social Media Reichweite.'),
     ]
 
     offer_details = [
@@ -100,18 +118,46 @@ def fill_database():
         OfferDetails.objects.create(offer=offers[12], offer_type='basic', price_cents=2499, features=comm_feat['web_design']),
         OfferDetails.objects.create(offer=offers[12], offer_type='standard', price_cents=3799, features=comm_feat['web_design_standard']),
         OfferDetails.objects.create(offer=offers[12], offer_type='premium', price_cents=5999, features=comm_feat['web_design_premium']),
+        OfferDetails.objects.create(offer=offers[13], offer_type='basic', price_cents=25000, features=comm_feat['web_design']),
+        OfferDetails.objects.create(offer=offers[13], offer_type='standard', price_cents=45000, features=comm_feat['web_design_standard']),
+        OfferDetails.objects.create(offer=offers[13], offer_type='premium', price_cents=75000, features=comm_feat['web_design_premium']),
+        OfferDetails.objects.create(offer=offers[14], offer_type='basic', price_cents=20000, features=comm_feat['seo_basic']),
+        OfferDetails.objects.create(offer=offers[14], offer_type='standard', price_cents=40000, features=comm_feat['seo_standard']),
+        OfferDetails.objects.create(offer=offers[14], offer_type='premium', price_cents=60000, features=comm_feat['seo_premium']),
+        OfferDetails.objects.create(offer=offers[15], offer_type='basic', price_cents=15000, features=comm_feat['social_media_basic']),
+        OfferDetails.objects.create(offer=offers[15], offer_type='standard', price_cents=35000, features=comm_feat['social_media_standard']),
+        OfferDetails.objects.create(offer=offers[15], offer_type='premium', price_cents=55000, features=comm_feat['social_media_premium']),
+        OfferDetails.objects.create(offer=offers[16], offer_type='basic', price_cents=30000, features=comm_feat['web_design']),
+        OfferDetails.objects.create(offer=offers[16], offer_type='standard', price_cents=50000, features=comm_feat['web_design_standard']),
+        OfferDetails.objects.create(offer=offers[16], offer_type='premium', price_cents=80000, features=comm_feat['web_design_premium']),
+        OfferDetails.objects.create(offer=offers[17], offer_type='basic', price_cents=25000, features=comm_feat['seo_basic']),
+        OfferDetails.objects.create(offer=offers[17], offer_type='standard', price_cents=50000, features=comm_feat['seo_standard']),
+        OfferDetails.objects.create(offer=offers[17], offer_type='premium', price_cents=75000, features=comm_feat['seo_premium']),
+        OfferDetails.objects.create(offer=offers[18], offer_type='basic', price_cents=20000, features=comm_feat['social_media_basic']),
+        OfferDetails.objects.create(offer=offers[18], offer_type='standard', price_cents=40000, features=comm_feat['social_media_standard']),
+        OfferDetails.objects.create(offer=offers[18], offer_type='premium', price_cents=60000, features=comm_feat['social_media_premium'])
     ]
 
     orders = [
-        Order.objects.create(status='completed', **get_order_create_dict(users[0], offer_details[0])),
-        Order.objects.create(status='completed', **get_order_create_dict(users[2], offer_details[3])),
-        Order.objects.create(status='completed', **get_order_create_dict(users[4], offer_details[6])),
-        Order.objects.create(status='completed', **get_order_create_dict(users[0], offer_details[1])),
-        Order.objects.create(status='completed', **get_order_create_dict(users[2], offer_details[7])),
+        Order.objects.create(**get_order_create_dict(users[0], offer_details[0]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[2], offer_details[3]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[4], offer_details[6]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[0], offer_details[1]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[2], offer_details[7]), status='completed'),
         Order.objects.create(**get_order_create_dict(users[0], offer_details[8])),
         Order.objects.create(**get_order_create_dict(users[4], offer_details[2])),
         Order.objects.create(**get_order_create_dict(users[2], offer_details[4])),
-        Order.objects.create(status='cancelled', **get_order_create_dict(users[0], offer_details[5])),
+        Order.objects.create(**get_order_create_dict(users[0], offer_details[5]), status='cancelled'),
+        Order.objects.create(**get_order_create_dict(users[0], offer_details[0]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[2], offer_details[13]), status='cancelled'),
+        Order.objects.create(**get_order_create_dict(users[4], offer_details[26]), status='cancelled'),
+        Order.objects.create(**get_order_create_dict(users[0], offer_details[35])),
+        Order.objects.create(**get_order_create_dict(users[2], offer_details[42]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[4], offer_details[47])),
+        Order.objects.create(**get_order_create_dict(users[2], offer_details[40]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[0], offer_details[46]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[2], offer_details[37]), status='completed'),
+        Order.objects.create(**get_order_create_dict(users[4], offer_details[41]), status='completed'),
     ]
 
     reviews = [
@@ -120,6 +166,11 @@ def fill_database():
         CustomerReview.objects.create(reviewer_profile=c_profs[2], business_profile=b_profs[2], rating=5, description='Toller Service! Sehr professionell und zuverlässig.', created_at=date.today() - timedelta(days=5)),
         CustomerReview.objects.create(reviewer_profile=c_profs[0], business_profile=b_profs[1], rating=5, description='Sehr zufrieden mit der SEO-Optimierung. Die Ergebnisse waren schnell sichtbar.', created_at=date.today() - timedelta(days=3)),
         CustomerReview.objects.create(reviewer_profile=c_profs[1], business_profile=b_profs[2], rating=4, description='Die Social Media-Kampagne war insgesamt gut, aber die Anzahl der Beiträge könnte höher sein.', created_at=date.today() - timedelta(days=10)),
+        CustomerReview.objects.create(reviewer_profile=c_profs[0], business_profile=b_profs[2], rating=4, description='Professionelle Betreuung und schnelle Reaktionszeit.', created_at=date.today() - timedelta(days=15)),
+        CustomerReview.objects.create(reviewer_profile=c_profs[1], business_profile=b_profs[0], rating=5, description='Sehr ansprechendes Webdesign und klare Kommunikation.', created_at=date.today() - timedelta(days=7)),
+        CustomerReview.objects.create(reviewer_profile=c_profs[2], business_profile=b_profs[3], rating=5, description='Hervorragender SEO-Service, die Sichtbarkeit hat sich stark verbessert.', created_at=date.today() - timedelta(days=8)),
+        CustomerReview.objects.create(reviewer_profile=c_profs[0], business_profile=b_profs[5], rating=4, description='Die Webdesign-Lösung war gut, aber es gab kleine Verzögerungen.', created_at=date.today() - timedelta(days=12)),
+        CustomerReview.objects.create(reviewer_profile=c_profs[2], business_profile=b_profs[0], rating=5, description='Effektiver Service, hat meine Erwartungen übertroffen.', created_at=date.today() - timedelta(days=14))
     ]
 
     print('Data added successfully.')
