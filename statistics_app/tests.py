@@ -14,9 +14,9 @@ class BaseInfoTests(APITestCase):
     
     def setUp(self):
         General.setUp(self)
-        self.second_review = CustomerReview.objects.create(
+        self.scnd_review = CustomerReview.objects.create(
             reviewer_profile=self.customer_profile,
-            business_profile=self.business_profile,
+            business_profile=self.scnd_business_profile,
             rating=3,
             description='testdescription'
         )
@@ -24,7 +24,7 @@ class BaseInfoTests(APITestCase):
     def test_get_review_list_ok(self):
         url = reverse('base-info-list')
         response = self.client.get(url)
-        average_rating = (self.review.rating + self.second_review.rating) / 2
+        average_rating = (self.review.rating + self.scnd_review.rating) / 2
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['average_rating'], f"{average_rating:.1f}")
         

@@ -106,7 +106,8 @@ class OfferTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         for offer_data in response.data['results']:
-            self.assertLessEqual(offer_data['min_price'], self.QUERY_PARAMS['min_price'])
+            min_price_int = int(float(offer_data['min_price']))
+            self.assertLessEqual(min_price_int, self.QUERY_PARAMS['min_price'])
         
     def test_post_offer_list_ok(self):
         url = reverse('offer-list')

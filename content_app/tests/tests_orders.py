@@ -8,7 +8,6 @@ from content_app.models import Order
 from content_app.api.serializers import OfferDetailsSerializer, OrderSerializer
 from content_app.tests.tests_offers import General as OffersTests
 from content_app.utils import get_order_create_dict
-import copy
 
 class General(APITestCase):
     
