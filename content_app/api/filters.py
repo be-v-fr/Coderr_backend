@@ -1,5 +1,5 @@
 from django_filters import rest_framework as filters
-from content_app.models import Offer
+from content_app.models import Offer, CustomerReview
 
 class OfferFilter(filters.FilterSet):
     creator_id = filters.NumberFilter(method='filter_by_creator_id')
@@ -18,3 +18,12 @@ class OfferFilter(filters.FilterSet):
 
     def filter_by_max_delivery_time(self, queryset, name, value):
         return queryset.filter(details__delivery_time_in_days__lte=value)
+    
+
+class CustomerReviewFilter(filters.FilterSet):
+    business_user_id = filters.NumberFilter(field_name='business_profile__user__id')
+    reviewer_id = filters.NumberFilter(field_name='reviewer_profile__user__id')
+
+    class Meta:
+        model = CustomerReview
+        fields = ['business_user_id', 'reviewer_id']

@@ -1,6 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
+from coderr_backend.utils import reverse_with_queryparams
 from content_app.models import CustomerReview
 from content_app.api.serializers import CustomerReviewSerializer
 from content_app.tests.tests_orders import General as OrdersTests
@@ -26,6 +27,18 @@ class ReviewTests(APITestCase):
         url = reverse('review-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+    def test_get_review_list_filter_ok(self):
+        params = {
+        'business_user_id': self.business_user.id,
+        'reviewer_id': self.customer_user.id,
+        }
+        url = reverse_with_queryparams('review-list', **params)
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        for review_data in response.data:
+            self.assertEqual(review_data['business_user'], params['business_user_id'])
+            self.assertEqual(review_data['reviewer'], params['reviewer_id'])
         
     def test_post_review_list_ok(self):
         data = {

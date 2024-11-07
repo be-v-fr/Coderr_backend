@@ -7,7 +7,7 @@ from users_app.api.permissions import ReadOnly, PostAsBusinessUser, PostAsCustom
 from content_app.utils import get_integrity_error_response
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
 from .serializers import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
-from .filters import OfferFilter
+from .filters import OfferFilter, CustomerReviewFilter
 from .pagination import OfferPagination
 from .permissions import PatchAsCreator, PatchAsReviewer
 
@@ -55,3 +55,6 @@ class CustomerReviewViewSet(viewsets.ModelViewSet):
     queryset = CustomerReview.objects.all()
     serializer_class = CustomerReviewSerializer
     permission_classes = [PostAsCustomerUser|PatchAsReviewer|ReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_class = CustomerReviewFilter
+    ordering_fields = ['updated_at', 'rating']
