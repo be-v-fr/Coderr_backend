@@ -4,15 +4,14 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from users_app.models import BusinessProfile, CustomerProfile
 from content_app.utils import features_list_to_str
-from datetime import date
 
 class Offer(models.Model):
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='business_profile')
     title = models.CharField(max_length=63, default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
     image = models.CharField(max_length=63, default=None, blank=True, null=True)
-    created_at = models.DateField(default=date.today)
-    updated_at = models.DateField(default=date.today)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         constraints = [
@@ -73,8 +72,8 @@ class Order(models.Model):
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length=63, default=None, blank=True, null=True)
     offer_details = models.ForeignKey(OfferDetails, on_delete=models.SET_NULL, related_name='orders', default=None, blank=True, null=True)
-    created_at = models.DateField(default=date.today)
-    updated_at = models.DateField(default=date.today)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     price = models.CharField(max_length=8, default=None, blank=True, null=True)
     features = models.CharField(max_length=255, blank=True, default='')
     revisions = models.PositiveIntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
@@ -85,8 +84,8 @@ class CustomerReview(models.Model):
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
     rating = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
-    created_at = models.DateField(default=date.today)
-    updated_at = models.DateField(default=date.today)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         constraints = [
