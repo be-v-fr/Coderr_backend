@@ -15,18 +15,20 @@ class OrderCountView(APIView):
     def get(self, request, pk, format=None):
         try:
             orders = get_business_user_orders(pk)
-            orders = orders.filter(status=Order.IN_PROGRESS)
-            return Response({'order_count': orders.count()})
         except:
             return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
+        orders = orders.filter(status=Order.IN_PROGRESS)
+        return Response({'order_count': orders.count()})
+
 
     
 class CompletedOrderCountView(APIView):
     def get(self, request, pk, format=None):
         try:
             orders = get_business_user_orders(pk)
-            orders = orders.filter(status=Order.COMPLETED)
-            return Response({'completed_order_count': orders.count()})
         except:
             return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
+        orders = orders.filter(status=Order.COMPLETED)
+        return Response({'completed_order_count': orders.count()})
+
 
