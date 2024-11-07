@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from users_app.models import BusinessProfile, CustomerProfile
 from content_app.utils import features_list_to_str
@@ -74,8 +75,25 @@ class Order(models.Model):
 class CustomerReview(models.Model):
     reviewer_profile = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='reviews')
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
-    # order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='reviews', default=None, blank=True, null=True)
     rating = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
     created_at = models.DateField(default=date.today)
     updated_at = models.DateField(default=date.today)
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['reviewer_profile', 'business_profile'], name='unique_reviewer_business'),
+        ]
+        
+    def clean(self):
+        if not Order.objects.filter(
+            business_profile=self.business_profile, 
+            orderer_profile=self.reviewer_profile,
+        ).exists():
+            raise ValidationError(
+                'A review can only be created if a corresponding order exists.'
+            )
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
