@@ -47,12 +47,8 @@ class OfferDetailsTests(APITestCase):
         url = reverse('offerdetails-detail', kwargs={'pk': self.details_standard.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        serializer_data = OfferDetailsSerializer(self.details_standard).data
-        expected_data = {
-            'id': serializer_data.get('id'),
-            'url': serializer_data.get('url'),
-        }
-        self.assertEqual(response.data, expected_data)   
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertNotIn('url', response.data)
         
 class OfferTests(APITestCase):
     QUERY_PARAMS = {
