@@ -33,10 +33,18 @@ class OfferDetails(models.Model):
     )
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='details')
     title = models.CharField(max_length=31, default=None, blank=True, null=True)
-    price = models.PositiveIntegerField(default=None, blank=True, null=True)
+    price_cents = models.PositiveIntegerField(default=None, blank=True, null=True)
     features = models.CharField(max_length=255, blank=True, default='')
     revisions = models.PositiveIntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
     delivery_time_in_days = models.PositiveIntegerField(default=None, blank=True, null=True)
+    
+    @property
+    def price(self):
+        return f"{self.price_cents / 100:.2f}"
+
+    @price.setter
+    def price(self, value):
+        self.price_cents = int(float(value) * 100)
     
     class Meta:
         constraints = [
@@ -67,7 +75,7 @@ class Order(models.Model):
     offer_details = models.ForeignKey(OfferDetails, on_delete=models.SET_NULL, related_name='orders', default=None, blank=True, null=True)
     created_at = models.DateField(default=date.today)
     updated_at = models.DateField(default=date.today)
-    price = models.PositiveIntegerField(default=None, blank=True, null=True)
+    price = models.CharField(max_length=8, default=None, blank=True, null=True)
     features = models.CharField(max_length=255, blank=True, default='')
     revisions = models.PositiveIntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
     delivery_time_in_days = models.PositiveIntegerField(default=None, blank=True, null=True)

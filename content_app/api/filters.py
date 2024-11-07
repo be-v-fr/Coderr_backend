@@ -14,7 +14,8 @@ class OfferFilter(filters.FilterSet):
         return queryset.filter(business_profile__user__pk=value)
     
     def filter_by_min_price(self, queryset, name, value):
-        return queryset.filter(details__price__lte=value)
+        cents = value * 100
+        return queryset.filter(details__price_cents__lte=cents)
 
     def filter_by_max_delivery_time(self, queryset, name, value):
         return queryset.filter(details__delivery_time_in_days__lte=value)

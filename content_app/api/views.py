@@ -12,7 +12,7 @@ from .pagination import OfferPagination
 from .permissions import PatchAsCreator, PatchAsReviewer
 
 class OfferViewSet(viewsets.ModelViewSet):
-    queryset = Offer.objects.all().annotate(min_price=Min('details__price'))
+    queryset = Offer.objects.all().annotate(min_price=Min('details__price_cents'))
     serializer_class = OfferSerializer
     permission_classes = [PostAsBusinessUser|PatchAsCreator|ReadOnly]
     pagination_class = OfferPagination

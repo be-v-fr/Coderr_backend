@@ -29,7 +29,7 @@ class General(APITestCase):
 class OfferDetailsTests(APITestCase):
     CREATE_DATA = {
         'title': 'detailstest',
-        'price': 100,
+        'price': '100.00',
         'features': ['feature1', 'feature2'],
         'revisions': 4,
         'delivery_time_in_days': 6,                
@@ -84,7 +84,7 @@ class OfferTests(APITestCase):
         'details': [
             {
                 'offer_type': OfferDetails.BASIC,
-                'price': 768,
+                'price': '768.00',
                 'features': ['patchfeature1', 'patchfeature2'],
             },
         ],

@@ -14,6 +14,7 @@ class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
     )
     offer_id = serializers.IntegerField(write_only=True, required=False)
     offer_type = serializers.CharField(max_length=16, required=True)
+    price = serializers.CharField(max_length=8, required=True)
 
     class Meta:
         model = OfferDetails
@@ -71,7 +72,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         return obj.business_profile.user.pk
     
     def get_min_price(self, obj):
-        return obj.details.order_by('price').first().price if obj.details.exists() else None
+        return obj.details.order_by('price_cents').first().price if obj.details.exists() else None
     
     def get_max_delivery_time(self, obj):
         return obj.details.order_by('delivery_time_in_days').first().delivery_time_in_days if obj.details.exists() else None
