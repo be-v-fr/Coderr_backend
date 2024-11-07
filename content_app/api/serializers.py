@@ -23,12 +23,12 @@ class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
     def to_representation(self, instance):
         request = self.context.get('request', None)
         if request:
-            if request.method == 'GET':
+            if 'offers' in request.path and request.method == 'GET':
                 allowed_fields = {'id', 'url'}
                 existing_fields = set(self.fields.keys())
                 for field_name in existing_fields - allowed_fields:
                     self.fields.pop(field_name)
-            elif request.method == 'POST':
+            else:
                 self.fields.pop('url', None)
         return super().to_representation(instance)
         
