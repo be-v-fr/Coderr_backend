@@ -34,7 +34,7 @@ class OfferDetails(models.Model):
     title = models.CharField(max_length=31, default=None, blank=True, null=True)
     price_cents = models.PositiveIntegerField(default=None, blank=True, null=True)
     features = models.CharField(max_length=255, blank=True, default='')
-    revisions = models.PositiveIntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
+    revisions = models.IntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
     delivery_time_in_days = models.PositiveIntegerField(default=None, blank=True, null=True)
     
     @property
@@ -76,7 +76,7 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     price = models.CharField(max_length=8, default=None, blank=True, null=True)
     features = models.CharField(max_length=255, blank=True, default='')
-    revisions = models.PositiveIntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
+    revisions = models.IntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
     delivery_time_in_days = models.PositiveIntegerField(default=None, blank=True, null=True)
     
 class CustomerReview(models.Model):
