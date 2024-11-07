@@ -58,7 +58,6 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     details = OfferDetailsSerializer(many=True)
     min_price = serializers.SerializerMethodField()
     max_delivery_time = serializers.SerializerMethodField()
-
         
     class Meta:
         model = Offer
@@ -148,7 +147,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         offer_details = OfferDetails.objects.get(pk=validated_data['offer_detail_id'])
         offer = offer_details.offer
         current_user = User.objects.get(pk=self.context['request'].user.pk)
-        order = Order.objects.create(**get_order_create_dict(current_user, offer, offer_details))
+        order = Order.objects.create(**get_order_create_dict(current_user, offer_details))
         return order
     
 class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):

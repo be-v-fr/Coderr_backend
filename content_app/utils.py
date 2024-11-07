@@ -42,11 +42,11 @@ def validate_attrs_has_and_has_only_selected_fields(fields, attrs):
         if field not in attrs:
             raise serializers.ValidationError({field: "Dieses Feld ist für diese Anfrage nicht erlaubt."})
         
-def get_order_create_dict(current_user, offer, offer_details):
+def get_order_create_dict(current_user, offer_details):
     return {
-        'orderer_profile': CustomerProfile.objects.get(user=current_user),
-        'business_profile': offer.business_profile,
-        'title': offer.title,
+        'orderer_profile': current_user.customer_profile,
+        'business_profile': offer_details.offer.business_profile,
+        'title': offer_details.offer.title,
         'offer_details': offer_details,
         'price': offer_details.price,
         'features': offer_details.features,

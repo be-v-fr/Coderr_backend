@@ -17,7 +17,6 @@ class General(APITestCase):
         self.customer_profile = CustomerProfile.objects.create(user=self.customer_user)
         self.order = Order.objects.create(**get_order_create_dict(
             current_user=self.customer_user,
-            offer=self.offer,
             offer_details=self.details_standard,
         ))
         self.customer_token = Token.objects.create(user=self.customer_user)

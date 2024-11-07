@@ -7,7 +7,7 @@ from content_app.utils import features_list_to_str
 from datetime import date
 
 class Offer(models.Model):
-    business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='business_profile_set')
+    business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='business_profile')
     title = models.CharField(max_length=63, default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
     image = models.CharField(max_length=63, default=None, blank=True, null=True)

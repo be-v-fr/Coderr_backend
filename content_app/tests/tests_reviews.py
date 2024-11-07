@@ -26,7 +26,6 @@ class General(APITestCase):
         self.scnd_details_standard = OfferDetails.objects.create(offer_type=OfferDetails.STANDARD, offer=self.scnd_offer, **OfferDetailsTests.CREATE_DATA)
         self.scnd_order = Order.objects.create(**get_order_create_dict(
             current_user=self.customer_user,
-            offer=self.scnd_offer,
             offer_details=self.scnd_details_standard,
         ))
         
