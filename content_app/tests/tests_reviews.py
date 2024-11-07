@@ -30,8 +30,8 @@ class ReviewTests(APITestCase):
         
     def test_get_review_list_filter_ok(self):
         params = {
-        'business_user_id': self.business_user.id,
-        'reviewer_id': self.customer_user.id,
+            'business_user_id': self.business_user.id,
+            'reviewer_id': self.customer_user.id,
         }
         url = reverse_with_queryparams('review-list', **params)
         response = self.client.get(url)
