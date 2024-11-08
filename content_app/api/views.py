@@ -1,5 +1,5 @@
 from django.db import IntegrityError
-from django.db.models import Min
+from django.db.models import Min, Q
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
@@ -47,9 +47,16 @@ class OfferDetailsViewSet(viewsets.ModelViewSet):
     permission_classes = [ReadOnly] # OfferDetails changes are communicated via OfferViewSet PATCH requests
     
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [PostAsCustomerUser|PatchAsCreator|ReadOnly]
+    
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            return Order.objects.none()
+        return Order.objects.filter(
+            Q(business_profile__user=user) | Q(orderer_profile__user=user)
+        )
     
 class CustomerReviewViewSet(viewsets.ModelViewSet):
     queryset = CustomerReview.objects.all()

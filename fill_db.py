@@ -62,8 +62,6 @@ def fill_database():
         Offer.objects.create(business_profile=b_profs[4], title='SEO-Paket für regionale Auffindbarkeit', description='Optimiert für lokale Suchmaschinenpräsenz.'),
         Offer.objects.create(business_profile=b_profs[5], title='Social Media Management', description='Effiziente Betreuung Ihrer Social Media Kanäle.'),
         Offer.objects.create(business_profile=b_profs[6], title='E-Commerce-Webdesign', description='E-Commerce-Lösungen für Online-Shops.'),
-        Offer.objects.create(business_profile=b_profs[7], title='Advanced SEO für nationale Reichweite', description='Fortgeschrittene SEO-Strategien.'),
-        Offer.objects.create(business_profile=b_profs[8], title='Premium Social Media Marketing', description='Für die Erweiterung Ihrer Social Media Reichweite.'),
     ]
     
     OFFER_DETAILS_DATA = [
