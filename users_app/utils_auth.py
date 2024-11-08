@@ -8,12 +8,6 @@ def split_username(username):
         return first_name, last_name
     else:
         return username, ''
-    
-def set_first_and_last_name(user):
-    new_first_name, new_last_name = split_username(user.username)
-    user.first_name = new_first_name
-    user.last_name = new_last_name
-    user.save()
 
 def get_auth_response_data(user, token):
     return {

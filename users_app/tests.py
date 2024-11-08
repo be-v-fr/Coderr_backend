@@ -148,8 +148,6 @@ class ProfileTests(APITestCase):
         response = self.client.patch(url, data, format="json")
         expected_data = CustomerProfileDetailSerializer(self.customer_profile).data
         expected_data['username'] = new_username
-        expected_data['first_name'] = new_username
-        expected_data['last_name'] = ''
         expected_data['file'] = new_file
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
@@ -166,8 +164,6 @@ class ProfileTests(APITestCase):
         response = self.client.patch(url, data, format="json")
         expected_data = BusinessProfileDetailSerializer(self.business_profile).data
         expected_data['username'] = new_username
-        expected_data['first_name'] = new_username
-        expected_data['last_name'] = ''
         expected_data['location'] = new_location
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)

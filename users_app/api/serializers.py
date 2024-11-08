@@ -4,7 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
-from users_app.utils_auth import split_username, set_first_and_last_name, get_auth_response_data
+from users_app.utils_auth import split_username, get_auth_response_data
 
 USER_FIELDS = ['username', 'first_name', 'last_name', 'email']
 PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file', 'uploaded_at']
@@ -53,12 +53,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['pk'] + USER_FIELDS
-        
-    def update(self, instance, validated_data):
-        super().update(instance, validated_data)
-        set_first_and_last_name(instance)
-        instance.save()
-        return instance
         
 class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
