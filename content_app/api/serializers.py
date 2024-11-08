@@ -7,7 +7,7 @@ from content_app.utils import features_list_to_str, merge_features_keys, get_ord
 from content_app.utils import validate_attrs_has_only_selected_fields, validate_attrs_has_and_has_only_selected_fields
 
 class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.SerializerMethodField(read_only=True)
+    url = serializers.SerializerMethodField()
     features = serializers.ListField(
         child=serializers.CharField(max_length=31),
         source='get_features_list'
@@ -121,6 +121,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     business_user = serializers.SerializerMethodField()
     offer_detail_id = serializers.IntegerField(write_only=True)
     offer_type = serializers.SerializerMethodField()
+    features = serializers.SerializerMethodField()
     
     class Meta:
         model = Order
@@ -134,6 +135,9 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     
     def get_offer_type(self, obj):
         return obj.offer_details.offer_type
+    
+    def get_features(self, obj):
+        return obj.get_features_list()
     
     def validate(self, attrs):
         request = self.context.get('request')     

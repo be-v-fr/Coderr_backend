@@ -5,6 +5,9 @@ from users_app.models import BusinessProfile, CustomerProfile
 def features_list_to_str(features_list):
     return ',,'.join(features_list)
 
+def get_features_list_from_str(features_str):
+    return features_str.split(',,') if features_str else []
+
 def merge_features_keys(details_data):
     """
     By default, the DRF ListField serializer replaces the data key name with the source method name.

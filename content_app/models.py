@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from users_app.models import BusinessProfile, CustomerProfile
-from content_app.utils import features_list_to_str
+from content_app.utils import features_list_to_str, get_features_list_from_str
 
 class Offer(models.Model):
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='business_profile')
@@ -51,7 +51,7 @@ class OfferDetails(models.Model):
         ]
         
     def get_features_list(self):
-        return self.features.split(',,') if self.features else []
+        return get_features_list_from_str(self.features)
 
     def set_features_str(self, features_list):
         self.features = features_list_to_str(features_list)
@@ -78,6 +78,9 @@ class Order(models.Model):
     features = models.CharField(max_length=255, blank=True, default='')
     revisions = models.IntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
     delivery_time_in_days = models.PositiveIntegerField(default=None, blank=True, null=True)
+    
+    def get_features_list(self):
+        return get_features_list_from_str(self.features)
     
 class CustomerReview(models.Model):
     reviewer_profile = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='reviews')
