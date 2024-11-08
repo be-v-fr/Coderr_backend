@@ -44,7 +44,7 @@ class OfferViewSet(viewsets.ModelViewSet):
 class OfferDetailsViewSet(viewsets.ModelViewSet):
     queryset = OfferDetails.objects.all()
     serializer_class = OfferDetailsSerializer
-    permission_classes = [ReadOnly] # OfferDetails changes are communicated via OfferViewSet PATCH requests
+    permission_classes = [ReadOnly] # OfferDetails are written via OfferViewSet PATCH requests
     
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
