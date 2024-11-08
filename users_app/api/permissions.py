@@ -24,7 +24,7 @@ class PostAsBusinessUser(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method == 'POST':
             try:
-                profile = BusinessProfile.objects.get(user=request.user)
+                profile = BusinessProfile.objects.get(user=request.user.pk)
                 return True
             except BusinessProfile.DoesNotExist:
                 return False
@@ -36,7 +36,7 @@ class PostAsCustomerUser(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method == 'POST':
             try:
-                profile = CustomerProfile.objects.get(user=request.user)
+                profile = CustomerProfile.objects.get(user=request.user.pk)
                 return True
             except BusinessProfile.DoesNotExist:
                 return False
