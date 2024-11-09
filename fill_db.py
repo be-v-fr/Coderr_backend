@@ -12,18 +12,18 @@ from content_app.utils import get_order_create_dict
 
 def fill_database():
     users = [
-        User.objects.create_user(username='Max Mueller', password='passwort123', email='max.mueller@beispiel.de'),
-        User.objects.create_user(username='Andreas Bauer', password='passwort123', email='andreas.bauer@beispiel.de'),
-        User.objects.create_user(username='Lucia Schmidt', password='passwort456', email='lucia.schmidt@beispiel.de'),
-        User.objects.create_user(username='Anna Krause', password='passwort456', email='anna.krause@beispiel.de'),
-        User.objects.create_user(username='Tim Jansen', password='passwort789', email='tim.jansen@beispiel.de'),
-        User.objects.create_user(username='Elisabeth Neumann', password='passwort789', email='elisabeth.neumann@beispiel.de'),
-        User.objects.create_user(username='Carlos García', password='password123', email='carlos.garcia@example.com'),
-        User.objects.create_user(username='Sophia Rossi', password='password123', email='sophia.rossi@example.com'),
-        User.objects.create_user(username='John Doe', password='password456', email='john.doe@example.com'),
-        User.objects.create_user(username='Marie Dubois', password='password456', email='marie.dubois@example.com'),
-        User.objects.create_user(username='Yuki Sato', password='password789', email='yuki.sato@example.com'),
-        User.objects.create_user(username='Amina Hassan', password='password789', email='amina.hassan@example.com'),
+        User.objects.create_user(username='Max Mueller', password='passwort123', email='max.mueller@beispiel.de', first_name='Max', last_name='Mueller'),
+        User.objects.create_user(username='Andreas Bauer', password='passwort123', email='andreas.bauer@beispiel.de', first_name='Andreas', last_name='Bauer'),
+        User.objects.create_user(username='Lucia Schmidt', password='passwort456', email='lucia.schmidt@beispiel.de', first_name='Lucia', last_name='Schmidt'),
+        User.objects.create_user(username='Anna Krause', password='passwort456', email='anna.krause@beispiel.de', first_name='Anna', last_name='Krause'),
+        User.objects.create_user(username='Tim Jansen', password='passwort789', email='tim.jansen@beispiel.de', first_name='Tim', last_name='Jansen'),
+        User.objects.create_user(username='Elisabeth Neumann', password='passwort789', email='elisabeth.neumann@beispiel.de', first_name='Elisabeth', last_name='Neumann'),
+        User.objects.create_user(username='Carlos García', password='password123', email='carlos.garcia@example.com', first_name='Carlos', last_name='García'),
+        User.objects.create_user(username='Sophia Rossi', password='password123', email='sophia.rossi@example.com', first_name='Sophia', last_name='Rossi'),
+        User.objects.create_user(username='John Doe', password='password456', email='john.doe@example.com', first_name='John', last_name='Doe'),
+        User.objects.create_user(username='Marie Dubois', password='password456', email='marie.dubois@example.com', first_name='Marie', last_name='Dubois'),
+        User.objects.create_user(username='Yuki Sato', password='password789', email='yuki.sato@example.com', first_name='Yuki', last_name='Sato'),
+        User.objects.create_user(username='Amina Hassan', password='password789', email='amina.hassan@example.com', first_name='Amina', last_name='Hassan'),
     ]
 
     c_profs = [
