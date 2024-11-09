@@ -26,8 +26,8 @@ def get_profile_serializer_with_data(profile, data):
         return BusinessProfileDetailSerializer(profile, data=data, partial=True)
     
 
-def get_profile_serializer(request, profile):
+def get_profile_serializer(request, profile, data):
     if request.method == 'PATCH':
-        return get_profile_serializer_with_data(profile, data=request.data)
+        return get_profile_serializer_with_data(profile, data=data)
     else:
         return get_profile_serializer_plain(profile)

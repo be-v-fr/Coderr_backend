@@ -39,6 +39,7 @@ class RegistrationSerializer(LoginSerializer):
     
     def create(self, validated_data):
         type = validated_data.pop('type')
+        validated_data['username'] = validated_data['username'].replace(" ", "_")
         first_name, last_name = split_username(validated_data['username'])
         created_user = User.objects.create_user(first_name=first_name, last_name=last_name, **validated_data)
         if type == CustomerProfile.TYPE:
