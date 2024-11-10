@@ -57,7 +57,6 @@ class OfferTests(APITestCase):
 
     CREATE_DATA = {
         'title': 'Grafikdesign-Paket',
-        'image': 'urlplaceholder',
         'description': 'Ein umfassendes Grafikdesign-Paket für Unternehmen.',
         'details': [
             {
@@ -93,7 +92,7 @@ class OfferTests(APITestCase):
         url = reverse('offer-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('count', response.data) # pagination
+        self.assertIn('count', response.data)
         self.assertIn('next', response.data)
         self.assertIn('previous', response.data)
         
@@ -134,7 +133,6 @@ class OfferTests(APITestCase):
         url = reverse('offer-detail', kwargs={'pk': self.offer.pk})
         response = self.client.patch(url, self.PATCH_DATA, format='json')
         self.offer.refresh_from_db()
-        self.offer.title
         updated_features = self.offer.details.get(offer_type=OfferDetails.BASIC).features
         expected_features = features_list_to_str(self.PATCH_DATA['details'][0]['features'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)

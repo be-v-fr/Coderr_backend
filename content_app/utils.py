@@ -1,6 +1,5 @@
 from rest_framework import status, serializers
 from rest_framework.response import Response
-from users_app.models import BusinessProfile, CustomerProfile
 
 def features_list_to_str(features_list):
     return ',,'.join(features_list)

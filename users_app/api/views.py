@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import status, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from uploads_app.serializers import FileUploadSerializer
 from users_app.utils_profiles import get_profile, get_profile_serializer
 from users_app.models import CustomerProfile, BusinessProfile
 from .serializers import USER_FIELDS
@@ -44,6 +45,16 @@ class ProfileView(APIView):
             profile = get_profile(user_pk=pk)
         except:
             return Response({'user': 'Benutzer oder Profil wurde nicht gefunden.'}, status=status.HTTP_404_NOT_FOUND)
+        if 'file' in request.data:
+            file_serializer = FileUploadSerializer(data=request.data)
+            if file_serializer.is_valid():
+                new_image = file_serializer.save()
+                if profile.file:
+                    profile.file.delete()
+                profile.file = new_image
+                profile.save()
+            else:
+                return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         data = {'username': profile.user.username}
         data.update({key: value for key, value in request.data.items()})
         user_serializer = UserSerializer(profile.user, data=data)

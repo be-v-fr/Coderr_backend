@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 from users_app.api.permissions import ReadOnly, PostAsBusinessUser, PostAsCustomerUser
+from uploads_app.serializers import FileUploadSerializer
 from content_app.utils import get_integrity_error_response
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
 from .serializers import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
@@ -33,13 +34,25 @@ class OfferViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if 'image' in request.data:
+            image_serializer = FileUploadSerializer(data={'file': request.data['image']})
+            if image_serializer.is_valid():
+                new_image = image_serializer.save()
+                if instance.image:
+                    instance.image.delete()
+                instance.image = new_image
+                instance.save()
+            else:
+                return Response(image_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        offer_serializer = self.get_serializer(instance, data=request.data, partial=partial)
         try:
-            serializer.is_valid(raise_exception=True)
-            self.perform_update(serializer)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            offer_serializer.is_valid(raise_exception=True)
+            self.perform_update(offer_serializer)
+            return Response(offer_serializer.data, status=status.HTTP_200_OK)
         except IntegrityError as e:
             return get_integrity_error_response(e)
+        except:
+            return Response(offer_serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
     
 class OfferDetailsViewSet(viewsets.ModelViewSet):
     queryset = OfferDetails.objects.all()

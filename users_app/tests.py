@@ -139,16 +139,13 @@ class ProfileTests(APITestCase):
     def test_patch_customer_profile_detail_ok(self):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.customer_token.key)
         new_username = 'customerpatch'
-        new_file = 'dummyfilename'
         data = {
             'username': new_username,
-            'file': new_file,
         }
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
         response = self.client.patch(url, data, format="json")
         expected_data = CustomerProfileDetailSerializer(self.customer_profile).data
         expected_data['username'] = new_username
-        expected_data['file'] = new_file
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         

@@ -15,6 +15,7 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=63, write_only=True)
     
     def create(self, validated_data):
+        validated_data['username'] = validated_data['username'].replace(" ", "_")
         user = authenticate(**validated_data)
         if user:
             token, created = Token.objects.get_or_create(user=user)
@@ -61,14 +62,16 @@ class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
     first_name = serializers.CharField(source='user.first_name', read_only=True)
     last_name = serializers.CharField(source='user.last_name', read_only=True)
     email = serializers.EmailField(source='user.email', read_only=True)
-    type = serializers.SerializerMethodField()
+    type = serializers.CharField(source='TYPE', read_only=True)
+    file = serializers.FileField(source='file.file', read_only=True)
+    uploaded_at = serializers.SerializerMethodField()
     
     class Meta:
         model = AbstractUserProfile
         fields = ['user'] + USER_FIELDS + PROFILE_EXTRA_FIELDS
     
-    def get_type(self, obj):
-        return None      
+    def get_uploaded_at(self, obj):
+        return obj.file.uploaded_at if obj.file else None
     
 class CustomerProfileDetailSerializer(AbstractProfileDetailSerializer):
     
@@ -76,34 +79,26 @@ class CustomerProfileDetailSerializer(AbstractProfileDetailSerializer):
         model = CustomerProfile
         fields = AbstractProfileDetailSerializer.Meta.fields
     
-    def get_type(self, obj):
-        return CustomerProfile.TYPE
-    
 class BusinessProfileDetailSerializer(AbstractProfileDetailSerializer):
     
     class Meta:
         model = BusinessProfile
         fields = AbstractProfileDetailSerializer.Meta.fields + BUSINESS_EXTRA_FIELDS
-    
-    def get_type(self, obj):
-        return BusinessProfile.TYPE
 
 class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
-
     user = UserSerializer()
-    type = serializers.SerializerMethodField()
+    type = serializers.CharField(source='TYPE', read_only=True)
+    file = serializers.FileField(source='file.file', read_only=True)
+    uploaded_at = serializers.SerializerMethodField()
     
     class Meta:
         model = AbstractUserProfile
         fields = ['user'] + PROFILE_EXTRA_FIELDS
     
-    def get_type(self, obj):
-        return None
+    def get_uploaded_at(self, obj):
+        return obj.file.uploaded_at if obj.file else None
 
 class CustomerProfileListSerializer(BaseProfileListSerializer):
-        
-    def get_type(self, obj):
-        return CustomerProfile.TYPE
     
     class Meta:
         model = CustomerProfile
@@ -114,6 +109,3 @@ class BusinessProfileListSerializer(BaseProfileListSerializer):
     class Meta:
         model = BusinessProfile
         fields = BaseProfileListSerializer.Meta.fields + BUSINESS_EXTRA_FIELDS
-        
-    def get_type(self, obj):
-        return BusinessProfile.TYPE

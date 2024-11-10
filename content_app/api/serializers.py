@@ -58,6 +58,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     details = OfferDetailsSerializer(many=True)
     min_price = serializers.SerializerMethodField()
     min_delivery_time = serializers.SerializerMethodField()
+    image = serializers.FileField(source='image.file', read_only=True)
         
     class Meta:
         model = Offer
@@ -97,23 +98,24 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
             if details_serializer.is_valid(raise_exception=True):
                 details_serializer.save()
         return new_offer
-        
+    
     def update(self, instance, validated_data):
-        many_details_data = validated_data.pop('details', {})
+        details_data = validated_data.pop('details', [])
         updated_offer = super().update(instance, validated_data)
-        for single_details_data in many_details_data:
+        for single_details_data in details_data:
             single_details_data = merge_features_keys(single_details_data)
-            offer_type = single_details_data.get('offer_type', None)
-            if offer_type:
-                details_instance = instance.details.get(offer_type=offer_type)
-                if details_instance:
-                    details_serializer = OfferDetailsSerializer(data=single_details_data, instance=details_instance)
-                else:
-                    details_serializer = OfferDetailsSerializer(data=single_details_data, context=self.context)
-                if details_serializer.is_valid():
-                    details_serializer.save()
+            offer_type = single_details_data.get('offer_type')
+            if not offer_type:
+                raise serializers.ValidationError('Offer details are missing an offer type.')
+            details_instance = instance.details.filter(offer_type=offer_type).first()          
+            if details_instance:
+                for attr, value in single_details_data.items():
+                    if attr == 'features':
+                        value = features_list_to_str(value)
+                    setattr(details_instance, attr, value)
+                details_instance.save()
             else:
-                raise serializers.ValidationError('Angebotstyp nicht spezifiziert.')
+                new_details = OfferDetails.objects.create(offer=instance, **single_details_data)
         return updated_offer
     
 class OrderSerializer(serializers.HyperlinkedModelSerializer):

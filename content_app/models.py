@@ -3,13 +3,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from users_app.models import BusinessProfile, CustomerProfile
+from uploads_app.models import FileUpload
 from content_app.utils import features_list_to_str, get_features_list_from_str
 
 class Offer(models.Model):
-    business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='business_profile')
+    business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='offers')
     title = models.CharField(max_length=63, default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
-    image = models.CharField(max_length=63, default=None, blank=True, null=True)
+    image = models.OneToOneField(FileUpload, on_delete=models.SET_NULL, default=None, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
