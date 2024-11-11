@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
-from .api.serializers import UserSerializer
-from .utils_profiles import get_profile_serializer
+from ..api.serializers import UserSerializer
+from .profiles import get_profile_serializer
 
 def get_profile_update_data(profile, request_data):
     data = {'username': profile.user.username}

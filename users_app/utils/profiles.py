@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from .models import CustomerProfile, BusinessProfile
-from .api.serializers import CustomerProfileDetailSerializer, BusinessProfileDetailSerializer
+from ..models import CustomerProfile, BusinessProfile
+from ..api.serializers import CustomerProfileDetailSerializer, BusinessProfileDetailSerializer
 
 def get_profile(user_pk):
     user = User.objects.get(pk=user_pk)

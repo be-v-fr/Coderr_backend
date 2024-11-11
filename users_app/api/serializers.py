@@ -4,7 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
-from users_app.utils_auth import split_username, get_auth_response_data
+from users_app.utils.auth import split_username, get_auth_response_data
 
 USER_FIELDS = ['username', 'first_name', 'last_name', 'email']
 PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file', 'uploaded_at']

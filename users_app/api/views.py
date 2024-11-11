@@ -1,13 +1,11 @@
-from django.contrib.auth.models import User
 from rest_framework import status, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from uploads_app.utils import handle_file_update
-from users_app.utils_views import update_profile_w_user
-from users_app.utils_profiles import get_profile, get_profile_serializer
+from users_app.utils.views import update_profile_w_user
+from users_app.utils.profiles import get_profile, get_profile_serializer
 from users_app.models import CustomerProfile, BusinessProfile
-from .serializers import USER_FIELDS
-from .serializers import LoginSerializer, RegistrationSerializer, UserSerializer, CustomerProfileListSerializer, BusinessProfileListSerializer
+from .serializers import LoginSerializer, RegistrationSerializer, CustomerProfileListSerializer, BusinessProfileListSerializer
 from .permissions import ProfilePermission, ReadOnly
 
 class LoginView(APIView):
