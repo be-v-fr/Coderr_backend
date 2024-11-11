@@ -8,7 +8,7 @@ django.setup()
 from users_app.models import CustomerProfile, BusinessProfile
 from django.contrib.auth.models import User
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
-from content_app.utils import get_order_create_dict
+from content_app.utils.general import get_order_create_dict
 
 def fill_database():
     users = [

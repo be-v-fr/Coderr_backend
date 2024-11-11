@@ -5,9 +5,9 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.authtoken.models import Token
 from users_app.models import CustomerProfile
 from content_app.models import Order
-from content_app.api.serializers import OfferDetailsSerializer, OrderSerializer
+from content_app.api.serializers.general import OfferDetailsSerializer, OrderSerializer
 from content_app.tests.tests_offers import General as OffersTests
-from content_app.utils import get_order_create_dict
+from content_app.utils.general import get_order_create_dict
 
 class General(APITestCase):
     

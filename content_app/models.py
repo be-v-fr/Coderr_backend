@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from users_app.models import BusinessProfile, CustomerProfile
 from uploads_app.models import FileUpload
-from content_app.utils import features_list_to_str, get_features_list_from_str
+from content_app.utils.general import features_list_to_str, get_features_list_from_str
 
 class Offer(models.Model):
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='offers')

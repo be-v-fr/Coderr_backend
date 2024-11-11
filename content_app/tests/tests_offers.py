@@ -6,8 +6,8 @@ from rest_framework.authtoken.models import Token
 from coderr_backend.utils import reverse_with_queryparams
 from users_app.models import BusinessProfile
 from content_app.models import Offer, OfferDetails
-from content_app.api.serializers import OfferDetailsSerializer
-from content_app.utils import features_list_to_str
+from content_app.api.serializers.general import OfferDetailsSerializer
+from content_app.utils.general import features_list_to_str
 import copy
 
 class General(APITestCase):

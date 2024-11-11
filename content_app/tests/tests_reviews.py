@@ -5,10 +5,10 @@ from rest_framework.test import APITestCase, APIClient
 from coderr_backend.utils import reverse_with_queryparams
 from users_app.models import BusinessProfile
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
-from content_app.api.serializers import CustomerReviewSerializer
+from content_app.api.serializers.general import CustomerReviewSerializer
 from content_app.tests.tests_offers import OfferDetailsTests
 from content_app.tests.tests_orders import General as OrdersTests
-from content_app.utils import get_order_create_dict
+from content_app.utils.general import get_order_create_dict
 
 class General(APITestCase):
     

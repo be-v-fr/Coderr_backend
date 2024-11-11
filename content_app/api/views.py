@@ -5,9 +5,9 @@ from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 from users_app.api.permissions import ReadOnly, PostAsBusinessUser, PostAsCustomerUser
 from uploads_app.utils import handle_file_update
-from content_app.utils import get_integrity_error_response, update_offer
+from content_app.utils.general import get_integrity_error_response, update_offer
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
-from .serializers import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
+from .serializers.general import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
 from .filters import OfferFilter, CustomerReviewFilter
 from .pagination import OfferPagination
 from .permissions import IsAdmin, IsCreator, PatchAsCreator, IsReviewer
