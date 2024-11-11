@@ -77,3 +77,14 @@ class OrderTests(APITestCase):
         url = reverse('order-detail', kwargs={'pk': self.order.pk})
         response = self.client.patch(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_delete_order_detail_as_customer_forbidden(self):
+        url = reverse('order-detail', kwargs={'pk': self.order.pk})
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        
+    def test_delete_order_detail_as_creator_forbidden(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.business_token.key)
+        url = reverse('order-detail', kwargs={'pk': self.order.pk})
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

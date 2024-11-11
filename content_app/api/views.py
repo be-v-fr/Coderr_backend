@@ -4,18 +4,18 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 from users_app.api.permissions import ReadOnly, PostAsBusinessUser, PostAsCustomerUser
-from uploads_app.serializers import FileUploadSerializer
-from content_app.utils import get_integrity_error_response
+from uploads_app.utils import handle_file_update
+from content_app.utils import get_integrity_error_response, update_offer
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
 from .serializers import OfferSerializer, OfferDetailsSerializer, OrderSerializer, CustomerReviewSerializer
 from .filters import OfferFilter, CustomerReviewFilter
 from .pagination import OfferPagination
-from .permissions import PatchAsCreator, PatchAsReviewer
+from .permissions import IsAdmin, IsCreator, PatchAsCreator, IsReviewer
 
 class OfferViewSet(viewsets.ModelViewSet):
     queryset = Offer.objects.all().annotate(min_price=Min('details__price_cents'))
     serializer_class = OfferSerializer
-    permission_classes = [PostAsBusinessUser|PatchAsCreator|ReadOnly]
+    permission_classes = [PostAsBusinessUser|IsCreator|ReadOnly]
     pagination_class = OfferPagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = OfferFilter
@@ -34,25 +34,11 @@ class OfferViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
-        if 'image' in request.data:
-            image_serializer = FileUploadSerializer(data={'file': request.data['image']})
-            if image_serializer.is_valid():
-                new_image = image_serializer.save()
-                if instance.image:
-                    instance.image.delete()
-                instance.image = new_image
-                instance.save()
-            else:
-                return Response(image_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        upload_error = handle_file_update(obj=instance, data_dict=request.data, file_key='image')
+        if upload_error:
+            return Response(upload_error, status=status.HTTP_400_BAD_REQUEST)
         offer_serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        try:
-            offer_serializer.is_valid(raise_exception=True)
-            self.perform_update(offer_serializer)
-            return Response(offer_serializer.data, status=status.HTTP_200_OK)
-        except IntegrityError as e:
-            return get_integrity_error_response(e)
-        except:
-            return Response(offer_serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+        return update_offer(offer_view=self, offer_serializer=offer_serializer)
     
 class OfferDetailsViewSet(viewsets.ModelViewSet):
     queryset = OfferDetails.objects.all()
@@ -61,7 +47,7 @@ class OfferDetailsViewSet(viewsets.ModelViewSet):
     
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
-    permission_classes = [PostAsCustomerUser|PatchAsCreator|ReadOnly]
+    permission_classes = [PostAsCustomerUser|PatchAsCreator|IsAdmin|ReadOnly]
     
     def get_queryset(self):
         user = self.request.user
@@ -74,7 +60,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 class CustomerReviewViewSet(viewsets.ModelViewSet):
     queryset = CustomerReview.objects.all()
     serializer_class = CustomerReviewSerializer
-    permission_classes = [PostAsCustomerUser|PatchAsReviewer|ReadOnly]
+    permission_classes = [PostAsCustomerUser|IsReviewer|IsAdmin|ReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = CustomerReviewFilter
     ordering_fields = ['updated_at', 'rating']

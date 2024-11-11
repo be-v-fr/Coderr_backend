@@ -87,3 +87,8 @@ class ReviewTests(APITestCase):
         expected_data = CustomerReviewSerializer(self.review).data
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
+        
+    def test_delete_review_detail_no_content(self):
+        url = reverse('review-detail', kwargs={'pk': self.review.pk})
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

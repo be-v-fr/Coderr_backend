@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from rest_framework import status, serializers
 from rest_framework.response import Response
 
@@ -32,6 +33,16 @@ def get_integrity_error_response(error):
         return Response(custom_error_dict, status=status.HTTP_409_CONFLICT)
     else:
         return Response({'error': error_msg}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+def update_offer(offer_view, offer_serializer):
+    try:
+        offer_serializer.is_valid(raise_exception=True)
+        offer_view.perform_update(offer_serializer)
+        return Response(offer_serializer.data, status=status.HTTP_200_OK)
+    except IntegrityError as e:
+        return get_integrity_error_response(e)
+    except:
+        return Response(offer_serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
     
 def validate_attrs_has_only_selected_fields(fields, attrs):
     for field in fields:

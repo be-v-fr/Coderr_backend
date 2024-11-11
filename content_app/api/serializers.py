@@ -58,7 +58,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     details = OfferDetailsSerializer(many=True)
     min_price = serializers.SerializerMethodField()
     min_delivery_time = serializers.SerializerMethodField()
-    image = serializers.FileField(source='image.file', read_only=True)
+    image = serializers.FileField(source='file.file', read_only=True)
         
     class Meta:
         model = Offer

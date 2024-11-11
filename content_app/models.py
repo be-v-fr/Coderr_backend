@@ -10,7 +10,7 @@ class Offer(models.Model):
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='offers')
     title = models.CharField(max_length=63, default=None, blank=True, null=True)
     description = models.CharField(max_length=1023, default=None, blank=True, null=True)
-    image = models.OneToOneField(FileUpload, on_delete=models.SET_NULL, default=None, blank=True, null=True)
+    file = models.OneToOneField(FileUpload, on_delete=models.SET_NULL, default=None, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
