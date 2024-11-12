@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
+from rest_framework.test import APITestCase
 from coderr_backend.utils import reverse_with_queryparams
 from users_app.models import BusinessProfile
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
