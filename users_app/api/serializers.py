@@ -30,10 +30,8 @@ class RegistrationSerializer(LoginSerializer):
     type = serializers.ChoiceField((BusinessProfile.TYPE, CustomerProfile.TYPE))
     
     def validate(self, attrs):
-        if User.objects.filter(username=attrs['username']).exists():
-            raise serializers.ValidationError('Username already taken')
-        if User.objects.filter(email=attrs['email']).exists():
-            raise serializers.ValidationError('Email already taken')
+        if User.objects.filter(username=attrs['username']).exists() or User.objects.filter(email=attrs['email']).exists():
+            raise serializers.ValidationError('User already exists.')
         validate_password(attrs['password'])
         if attrs['repeated_password'] != attrs['password']:
             raise serializers.ValidationError('Passwords do not match.')
