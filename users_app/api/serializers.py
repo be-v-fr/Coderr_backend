@@ -11,6 +11,13 @@ PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file', 'uploaded_at']
 BUSINESS_EXTRA_FIELDS = ['location', 'description', 'working_hours', 'tel']
 
 class LoginSerializer(serializers.Serializer):
+    """
+    Serializer for user login, handling username and password validation.
+
+    Fields:
+        username: The user's username.
+        password: The user's password, write-only.
+    """
     username = serializers.CharField(max_length=63)
     password = serializers.CharField(max_length=63, write_only=True)
     
@@ -23,8 +30,19 @@ class LoginSerializer(serializers.Serializer):
         else:
             raise serializers.ValidationError('Invalid credentials.')
 
-
 class RegistrationSerializer(LoginSerializer):
+    """
+    Serializer for user registration, with password validation and profile type selection.
+
+    Fields:
+        repeated_password: The repeated password for confirmation, write-only.
+        email: The user's email address.
+        type: The profile type, either 'business' or 'customer'.
+    
+    Methods:
+        validate(attrs): Validates user data, ensuring uniqueness and matching passwords.
+        create(validated_data): Creates a new user and associated profile based on type.
+    """
     repeated_password = serializers.CharField(max_length=63, write_only=True)
     email = serializers.EmailField(max_length=63)
     type = serializers.ChoiceField((BusinessProfile.TYPE, CustomerProfile.TYPE))
@@ -51,12 +69,27 @@ class RegistrationSerializer(LoginSerializer):
         return get_auth_response_data(user=created_user, token=token)
     
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-        
+    """
+    Serializer for basic user information.
+    """  
     class Meta:
+        """
+        fields: The primary key and user fields.
+        """
         model = User
         fields = ['pk'] + USER_FIELDS
         
 class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Base serializer for user profile details, to be inherited by both Customer and Business profiles.
+
+    Fields:
+        user: The associated user.
+        username, first_name, last_name, email: Basic user information, read-only.
+        type: The profile type.
+        file: The associated file upload, if any.
+        uploaded_at: The upload date of the file, if any.
+    """
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     username = serializers.CharField(source='user.username', read_only=True)
     first_name = serializers.CharField(source='user.first_name', read_only=True)
@@ -67,6 +100,9 @@ class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
     uploaded_at = serializers.SerializerMethodField()
     
     class Meta:
+        """
+        fields: The primary key (named "user"), the user fields and the additional fields from the user profile model.
+        """
         model = AbstractUserProfile
         fields = ['user'] + USER_FIELDS + PROFILE_EXTRA_FIELDS
     
@@ -74,24 +110,44 @@ class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
         return obj.file.uploaded_at if obj.file else None
     
 class CustomerProfileDetailSerializer(AbstractProfileDetailSerializer):
-    
+    """
+    Serializer for detailed Customer profile information, inheriting from AbstractProfileDetailSerializer.
+    """
     class Meta:
         model = CustomerProfile
         fields = AbstractProfileDetailSerializer.Meta.fields
     
 class BusinessProfileDetailSerializer(AbstractProfileDetailSerializer):
-    
+    """
+    Serializer for detailed Business profile information, inheriting from AbstractProfileDetailSerializer, 
+    with additional business-specific fields.
+    """
     class Meta:
+        """
+        fields: Includes business-specific fields such as location, description, working_hours, and tel.
+        """
         model = BusinessProfile
         fields = AbstractProfileDetailSerializer.Meta.fields + BUSINESS_EXTRA_FIELDS
 
 class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Base serializer for listing user profiles, including user and profile details.
+
+    Fields:
+        user: The associated user.
+        type: The profile type, read-only.
+        file: The associated file upload, if any.
+        uploaded_at: The upload date of the file, if any.
+    """
     user = UserSerializer()
     type = serializers.CharField(source='TYPE', read_only=True)
     file = serializers.FileField(source='file.file', read_only=True)
     uploaded_at = serializers.SerializerMethodField()
     
     class Meta:
+        """
+        fields: Includes additional fields from the user profile model.
+        """
         model = AbstractUserProfile
         fields = ['user'] + PROFILE_EXTRA_FIELDS
     
@@ -99,13 +155,20 @@ class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
         return obj.file.uploaded_at if obj.file else None
 
 class CustomerProfileListSerializer(BaseProfileListSerializer):
-    
+    """
+    Serializer for listing Customer profiles, inheriting from BaseProfileListSerializer.
+    """
     class Meta:
         model = CustomerProfile
         fields = BaseProfileListSerializer.Meta.fields
         
 class BusinessProfileListSerializer(BaseProfileListSerializer):
-        
+    """
+    Serializer for listing Business profiles, inheriting from BaseProfileListSerializer, with additional business-specific fields.
+    """
     class Meta:
+        """
+        fields: Includes business-specific fields such as location, description, working_hours, and tel.
+        """
         model = BusinessProfile
         fields = BaseProfileListSerializer.Meta.fields + BUSINESS_EXTRA_FIELDS

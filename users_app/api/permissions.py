@@ -2,7 +2,13 @@ from rest_framework import permissions
 from users_app.models import BusinessProfile, CustomerProfile
 
 class ReadOnly(permissions.BasePermission):
-    
+    """
+    Allows read-only access for any request method classified as safe (e.g., GET, HEAD, OPTIONS).
+
+    Methods:
+        has_permission(request, view): Checks if the request method is read-only.
+        has_object_permission(request, view, obj): Checks if the object-specific request is read-only.
+    """
     def has_permission(self, request, view):
         return request.method in permissions.SAFE_METHODS
     
@@ -10,7 +16,12 @@ class ReadOnly(permissions.BasePermission):
         return request.method in permissions.SAFE_METHODS
 
 class ProfilePermission(permissions.BasePermission):
-    
+    """
+    Allows safe method access, and permits PATCH if the user is the owner or has staff status.
+
+    Methods:
+        has_object_permission(request, view, obj): Checks object-level permissions based on the request method.
+    """
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
@@ -20,7 +31,12 @@ class ProfilePermission(permissions.BasePermission):
             return False
 
 class PostAsBusinessUser(permissions.BasePermission):
-    
+    """
+    Allows POST requests only for users with a BusinessProfile.
+
+    Methods:
+        has_permission(request, view): Checks if the request user has a BusinessProfile and is making a POST request.
+    """
     def has_permission(self, request, view):
         if request.method == 'POST':
             try:

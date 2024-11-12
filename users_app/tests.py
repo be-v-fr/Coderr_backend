@@ -22,8 +22,13 @@ BUSINESS_USER_DATA = {
 }
 
 class General(APITestCase):
-    
+    """
+    Base test setup class for creating test users, profiles, and tokens.
+    """    
     def setUp(self):
+        """
+        Creates a customer and business user, with associated profiles and authentication tokens.
+        """
         self.customer_user = User.objects.create_user(**CUSTOMER_USER_DATA)
         self.customer_profile = CustomerProfile.objects.create(user=self.customer_user)
         self.customer_token = Token.objects.create(user=self.customer_user)
@@ -33,6 +38,12 @@ class General(APITestCase):
         self.client = APIClient()
         
 class AuthTests(APITestCase):
+    """
+    Tests for user authentication endpoints, including login and registration.
+
+    Attributes:
+        AUTH_DATA (dict): Test data for registration including username, password, and email.
+    """
     AUTH_DATA = {
         'username': 'newuser',
         'password': 'newPassw0rd',
@@ -42,9 +53,19 @@ class AuthTests(APITestCase):
     }
     
     def setUp(self):
+        """
+        Calls the general setup for shared test data.
+        """
         General.setUp(self)
         
     def test_login_ok(self):
+        """
+        Tests successful login with correct credentials.
+        
+        Asserts:
+            200 OK status.
+            Presence of required fields in response data.
+        """
         data = {
             'username': self.customer_user.username,
             'password': 'customerpassword',
@@ -56,6 +77,12 @@ class AuthTests(APITestCase):
             self.assertIn(key, response.data)
         
     def test_login_false_password_bad_request(self):
+        """
+        Tests login with incorrect password.
+        
+        Asserts:
+            400 Bad Request status.
+        """
         data = {
             'username': self.customer_user.username,
             'password': 'password',
@@ -65,6 +92,14 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         
     def test_registration_ok(self):
+        """
+        Tests successful user registration.
+        
+        Asserts:
+            201 Created status.
+            Valid customer profile association.
+            Presence of required fields in response data.
+        """
         url = reverse('registration')
         response = self.client.post(url, self.AUTH_DATA, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -73,6 +108,12 @@ class AuthTests(APITestCase):
             self.assertIn(key, response.data)
         
     def test_registration_weak_password_bad_request(self):
+        """
+        Tests registration with a weak password.
+
+        Asserts:
+            400 Bad Request status.
+        """
         data = copy.deepcopy(self.AUTH_DATA)
         password = 'newpassword'
         data['password'] = password
@@ -82,6 +123,12 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         
     def test_registration_passwords_not_matching_bad_request(self):
+        """
+        Tests registration when passwords do not match.
+        
+        Asserts:
+            400 Bad Request status.
+        """
         data = copy.deepcopy(self.AUTH_DATA)
         data['repeated_password'] += 'a'
         url = reverse('registration')
@@ -89,6 +136,12 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         
     def test_registration_email_missing_bad_request(self):
+        """
+        Tests registration with missing email field.
+        
+        Asserts:
+            400 Bad Request status.
+        """
         data = copy.deepcopy(self.AUTH_DATA)
         data['email'] = ''
         url = reverse('registration')
@@ -96,6 +149,12 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         
     def test_registration_username_taken_bad_request(self):
+        """
+        Tests registration when username is already taken.
+        
+        Asserts:
+            400 Bad Request status.
+        """
         data = copy.deepcopy(self.AUTH_DATA)
         data['username'] = self.customer_user.username
         url = reverse('registration')
@@ -103,6 +162,12 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         
     def test_registration_email_taken_bad_request(self):
+        """
+        Tests registration when email is already taken.
+        
+        Asserts:
+            400 Bad Request status.
+        """
         data = copy.deepcopy(self.AUTH_DATA)
         data['email'] = self.customer_user.email
         url = reverse('registration')
@@ -110,11 +175,23 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 class ProfileTests(APITestCase):
-    
+    """
+    Tests for profile-related endpoints, including retrieval and updates.
+    """
     def setUp(self):
+        """
+        Calls the general setup for shared test data.
+        """
         General.setUp(self)
         
     def test_get_profile_detail_customer_ok(self):
+        """
+        Tests retrieval of customer profile details.
+
+        Asserts:
+            200 OK status.
+            Expected profile data matches response.
+        """
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
         response = self.client.get(url)
         expected_data = CustomerProfileDetailSerializer(self.customer_profile).data
@@ -122,6 +199,13 @@ class ProfileTests(APITestCase):
         self.assertEqual(response.data, expected_data)
         
     def test_get_profile_detail_business_ok(self):
+        """
+        Tests retrieval of business profile details.
+        
+        Asserts:
+            200 OK status.
+            Expected profile data matches response.
+        """
         url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
         response = self.client.get(url)
         expected_data = BusinessProfileDetailSerializer(self.business_profile).data
@@ -129,18 +213,37 @@ class ProfileTests(APITestCase):
         self.assertEqual(response.data, expected_data)
         
     def test_get_profile_detail_user_not_found(self):
+        """
+        Tests profile retrieval for non-existent user.
+
+        Asserts:
+            404 Not Found status.
+        """
         pk = User.objects.count() + 1
         url = reverse('profile-detail', kwargs={"pk": pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         
     def test_get_profile_detail_user_profile_not_found(self):
+        """
+        Tests profile retrieval for user without a profile.
+
+        Asserts:
+            404 Not Found status.
+        """
         no_profile_user = User.objects.create_user(username="noprofileuser", password="noprofilepassword")
         url = reverse('profile-detail', kwargs={"pk": no_profile_user.id})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         
     def test_patch_customer_profile_detail_ok(self):
+        """
+        Tests updating a customer profile.
+
+        Asserts:
+            200 OK status.
+            Expected updated profile data matches response.
+        """
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.customer_token.key)
         new_username = 'customerpatch'
         data = {
@@ -154,6 +257,13 @@ class ProfileTests(APITestCase):
         self.assertEqual(response.data, expected_data)
         
     def test_patch_business_profile_detail_ok(self):
+        """
+        Tests updating a business profile.
+
+        Asserts:
+            200 OK status.
+            Expected updated profile data matches response.
+        """
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.business_token.key)
         new_username = 'businesspatch'
         new_location = 'patchcity'
@@ -169,11 +279,23 @@ class ProfileTests(APITestCase):
         self.assertEqual(response.data, expected_data)
         
     def test_get_customer_profile_list_ok(self):
+        """
+        Tests retrieval of customer profile list.
+
+        Asserts:
+            200 OK status.
+        """
         url = reverse('customer-list')
         response = self.client.get(url)    
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
     def test_get_business_profile_list_ok(self):
+        """
+        Tests retrieval of business profile list.
+
+        Asserts:
+            200 OK status.
+        """
         url = reverse('business-list')
         response = self.client.get(url)    
         self.assertEqual(response.status_code, status.HTTP_200_OK)
