@@ -1,9 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from uploads_app.models import FileUpload
-
-def get_user_field(related_name):
-    return models.OneToOneField(User, on_delete=models.CASCADE, related_name=related_name, blank=True, null=True)
+from .utils.models import get_user_field
     
 class AbstractUserProfile(models.Model):
     TYPE = None
