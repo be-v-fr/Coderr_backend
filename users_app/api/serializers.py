@@ -32,6 +32,8 @@ class RegistrationSerializer(LoginSerializer):
     def validate(self, attrs):
         if User.objects.filter(username=attrs['username']).exists():
             raise serializers.ValidationError('Username already taken')
+        if User.objects.filter(email=attrs['email']).exists():
+            raise serializers.ValidationError('Email already taken')
         validate_password(attrs['password'])
         if attrs['repeated_password'] != attrs['password']:
             raise serializers.ValidationError('Passwords do not match.')

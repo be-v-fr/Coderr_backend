@@ -101,6 +101,13 @@ class AuthTests(APITestCase):
         url = reverse('registration')
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_registration_email_taken_bad_request(self):
+        data = copy.deepcopy(self.AUTH_DATA)
+        data['email'] = self.customer_user.email
+        url = reverse('registration')
+        response = self.client.post(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 class ProfileTests(APITestCase):
     
