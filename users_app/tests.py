@@ -52,10 +52,8 @@ class AuthTests(APITestCase):
         url = reverse('login')
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('token', response.data)
-        self.assertIn('username', response.data)
-        self.assertIn('email', response.data)
-        self.assertIn('user_id', response.data)
+        for key in ('token', 'username', 'email', 'user_id'):
+            self.assertIn(key, response.data)
         
     def test_login_false_password_bad_request(self):
         data = {
@@ -71,9 +69,8 @@ class AuthTests(APITestCase):
         response = self.client.post(url, self.AUTH_DATA, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data['user_id'], CustomerProfile.objects.get(user=response.data['user_id']).user.pk)
-        self.assertIn('token', response.data)
-        self.assertIn('username', response.data)
-        self.assertIn('email', response.data)
+        for key in ('token', 'username', 'email'):
+            self.assertIn(key, response.data)
         
     def test_registration_weak_password_bad_request(self):
         data = copy.deepcopy(self.AUTH_DATA)
@@ -160,8 +157,7 @@ class ProfileTests(APITestCase):
         url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
         response = self.client.patch(url, data, format="json")
         expected_data = BusinessProfileDetailSerializer(self.business_profile).data
-        expected_data['username'] = new_username
-        expected_data['location'] = new_location
+        expected_data.update({'username': new_username, 'location': new_location})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         

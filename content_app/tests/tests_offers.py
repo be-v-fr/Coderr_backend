@@ -92,9 +92,8 @@ class OfferTests(APITestCase):
         url = reverse('offer-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('count', response.data)
-        self.assertIn('next', response.data)
-        self.assertIn('previous', response.data)
+        for key in ('count', 'next', 'previous'):
+            self.assertIn(key, response.data)
         
     def test_get_offer_list_filter_ok(self):
         url = reverse_with_queryparams('offer-list', **self.QUERY_PARAMS)

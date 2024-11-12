@@ -60,8 +60,8 @@ class ReviewTests(APITestCase):
         url = reverse('review-list')
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertIn('id', response.data)
-        self.assertIn('reviewer', response.data)
+        for key in ('id', 'reviewer'):
+            self.assertIn(key, response.data)
         
     def test_post_review_list_missing_field_bad_request(self):
         data = {
