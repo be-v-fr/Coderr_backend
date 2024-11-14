@@ -8,6 +8,16 @@ from content_app.utils.general import validate_attrs_has_only_selected_fields, v
 from content_app.utils.serializers import create_offer_details, update_offer_details
 
 class OfferSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for Offer model with custom fields and methods for related OfferDetails.
+
+    Attributes:
+        user (SerializerMethodField): Returns the Offer creator's user ID.
+        details (OfferDetailsSerializer): Serializes nested OfferDetails objects.
+        min_price (SerializerMethodField): Gets the minimum price from related OfferDetails.
+        min_delivery_time (SerializerMethodField): Gets the minimum delivery time from related OfferDetails.
+        image (FileField): The offer image file, read-only.
+    """
     user = serializers.SerializerMethodField()
     details = OfferDetailsSerializer(many=True)
     min_price = serializers.SerializerMethodField()
@@ -19,6 +29,9 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'user', 'title', 'description', 'image', 'created_at', 'updated_at', 'details', 'min_price', 'min_delivery_time']
         
     def to_representation(self, instance):
+        """
+        Updates context for details serializer with the current context.
+        """
         self.fields['details'].context.update(self.context)
         return super().to_representation(instance)
         
@@ -32,6 +45,9 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         return obj.details.order_by('delivery_time_in_days').first().delivery_time_in_days if obj.details.exists() else None
     
     def validate_details(self, value):
+        """
+        Ensures each offer type is unique within the details.
+        """
         offer_types = set()
         for detail in value:
             offer_type = detail.get('offer_type')
@@ -41,6 +57,9 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         return value
     
     def create(self, validated_data):
+        """
+        Creates a new Offer as well as its associated OfferDetails.
+        """
         many_details_data = validated_data.pop('details', {})
         user = User.objects.get(pk=self.context['request'].user.pk)
         profile = BusinessProfile.objects.get(user=user)
@@ -50,6 +69,9 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         return new_offer
     
     def update(self, instance, validated_data):
+        """
+        Updates an existing Offer as well as its associated OfferDetails.
+        """
         details_data = validated_data.pop('details', [])
         updated_offer = super().update(instance, validated_data)
         for single_details_data in details_data:
@@ -57,6 +79,16 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         return updated_offer
     
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for Order model with custom methods to retrieve user and offer detail information.
+
+    Attributes:
+        customer_user (SerializerMethodField): ID of the customer user associated with the order.
+        business_user (SerializerMethodField): ID of the business user associated with the order.
+        offer_detail_id (IntegerField): Write-only field for linking to OfferDetails on creation.
+        offer_type (SerializerMethodField): Type of the offer.
+        features (SerializerMethodField): Features of the offer in the order.
+    """
     customer_user = serializers.SerializerMethodField()
     business_user = serializers.SerializerMethodField()
     offer_detail_id = serializers.IntegerField(write_only=True)
@@ -80,6 +112,9 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         return obj.get_features_list()
     
     def validate(self, attrs):
+        """
+        Validates required fields based on request method (POST or PATCH).
+        """
         request = self.context.get('request')     
         if request and request.method == 'POST':
             validate_attrs_has_and_has_only_selected_fields(['offer_detail_id'], attrs)
@@ -88,6 +123,9 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        """
+        Creates a new Order instance based on validated data.
+        """
         offer_details = OfferDetails.objects.get(pk=validated_data['offer_detail_id'])
         offer = offer_details.offer
         current_user = User.objects.get(pk=self.context['request'].user.pk)
@@ -95,6 +133,13 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         return order
     
 class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for CustomerReview model with custom fields and methods for handling reviews.
+
+    Attributes:
+        reviewer (SerializerMethodField): Returns the reviewer's user ID.
+        business_user (IntegerField): ID of the business user associated with the review.
+    """
     reviewer = serializers.SerializerMethodField()
     business_user = serializers.IntegerField(required=False)
     
@@ -103,6 +148,9 @@ class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'reviewer', 'business_user', 'rating', 'description', 'created_at', 'updated_at']
         
     def to_representation(self, instance):
+        """
+        Modifies the representation to include the business user's ID.
+        """
         representation = super().to_representation(instance)
         representation['business_user'] = instance.business_profile.user.pk if instance.business_profile else None
         return representation
@@ -111,6 +159,9 @@ class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):
         return obj.reviewer_profile.user.pk
     
     def validate(self, attrs):
+        """
+        Validates required fields based on request method (POST or PATCH).
+        """
         request = self.context.get('request')     
         if request and request.method == 'POST':
             validate_attrs_has_and_has_only_selected_fields(['business_user', 'rating', 'description'], attrs)
@@ -119,6 +170,9 @@ class CustomerReviewSerializer(serializers.HyperlinkedModelSerializer):
         return attrs
     
     def create(self, validated_data):
+        """
+        Creates a new CustomerReview based on validated data.
+        """
         current_user = User.objects.get(pk=self.context['request'].user.pk)
         business_user = validated_data.pop('business_user')
         review = CustomerReview.objects.create(

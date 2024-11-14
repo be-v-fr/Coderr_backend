@@ -13,6 +13,9 @@ from .pagination import OfferPagination
 from .permissions import IsAdmin, IsCreator, PatchAsCreator, IsReviewer
 
 class OfferViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for handling CRUD operations on the Offer model.
+    """
     queryset = Offer.objects.all().annotate(min_price=Min('details__price_cents'))
     serializer_class = OfferSerializer
     permission_classes = [PostAsBusinessUser|IsCreator|ReadOnly]
@@ -23,6 +26,12 @@ class OfferViewSet(viewsets.ModelViewSet):
     ordering_fields = ['updated_at', 'min_price']
 
     def create(self, request, *args, **kwargs):
+        """
+        Handle Offer creation requests with validation and unique constraint handling.
+
+        Returns:
+            Response: HTTP 201 with Offer data if successful, or HTTP 409/500 on error.
+        """
         serializer = self.get_serializer(data=request.data)
         try:
             serializer.is_valid(raise_exception=True)
@@ -32,6 +41,12 @@ class OfferViewSet(viewsets.ModelViewSet):
             return get_integrity_error_response(e)
             
     def update(self, request, *args, **kwargs):
+        """
+        Handle updates to Offer instances, including file handling and partial updates.
+
+        Returns:
+            Response: HTTP 200 with updated Offer data, or HTTP 400/500 on error.
+        """
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         upload_error = handle_file_update(obj=instance, data_dict=request.data, file_key='image')
@@ -41,15 +56,26 @@ class OfferViewSet(viewsets.ModelViewSet):
         return update_offer(offer_view=self, offer_serializer=offer_serializer)
     
 class OfferDetailsViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for handling CRUD operations on the OfferDetails model.
+    Permissions are set to 'ReadOnly' because OfferDetails are written
+    via OfferViewSet PATCH requests. 
+    """
     queryset = OfferDetails.objects.all()
     serializer_class = OfferDetailsSerializer
-    permission_classes = [ReadOnly] # OfferDetails are written via OfferViewSet PATCH requests
+    permission_classes = [ReadOnly]
     
 class OrderViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for handling CRUD operations on the Order model.
+    """
     serializer_class = OrderSerializer
     permission_classes = [PostAsCustomerUser|PatchAsCreator|IsAdmin|ReadOnly]
     
     def get_queryset(self):
+        """
+        Filter queryset to return orders featuring the authenticated user only.
+        """
         user = self.request.user
         if not user.is_authenticated:
             return Order.objects.none()
@@ -58,6 +84,9 @@ class OrderViewSet(viewsets.ModelViewSet):
         )
     
 class CustomerReviewViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for handling CRUD operations on the CustomerReview model.
+    """
     queryset = CustomerReview.objects.all()
     serializer_class = CustomerReviewSerializer
     permission_classes = [PostAsCustomerUser|IsReviewer|IsAdmin|ReadOnly]
