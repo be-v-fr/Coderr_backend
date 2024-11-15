@@ -12,8 +12,8 @@ from content_app.utils.general import get_order_create_dict
 
 def fill_database():
     users = [
-        User.objects.create_user(username='Max_Mueller', password='passwort123', email='max.mueller@beispiel.de', first_name='Max', last_name='Mueller'),
-        User.objects.create_user(username='Andreas_Bauer', password='passwort123', email='andreas.bauer@beispiel.de', first_name='Andreas', last_name='Bauer'),
+        User.objects.create_user(username='andrey', password='asdasd', email='andrey.romanov@beispiel.de', first_name='Andrey', last_name='Romanov'),
+        User.objects.create_user(username='kevin', password='asdasd', email='andreas.bauer@beispiel.de', first_name='Kevin', last_name='Schmidt'),
         User.objects.create_user(username='Lucia_Schmidt', password='passwort456', email='lucia.schmidt@beispiel.de', first_name='Lucia', last_name='Schmidt'),
         User.objects.create_user(username='Anna_Krause', password='passwort456', email='anna.krause@beispiel.de', first_name='Anna', last_name='Krause'),
         User.objects.create_user(username='Tim_Jansen', password='passwort789', email='tim.jansen@beispiel.de', first_name='Tim', last_name='Jansen'),
