@@ -1,40 +1,189 @@
+
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="./">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>users_app package &mdash; Coderr 0.9 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
-    <title>users_app package &#8212; Coderr 0.9 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
-    <script src="_static/documentation_options.js?v=049aceee"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=049aceee"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
+    <link rel="next" title="users_app.migrations package" href="users_app.migrations.html" />
+    <link rel="prev" title="uploads_app.migrations package" href="uploads_app.migrations.html" /> 
+</head>
 
-  
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="index.html" class="icon icon-home">
+            Coderr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="coderr_backend.html">coderr_backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_app.html">content_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill_db.html">fill_db module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics_app.html">statistics_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploads_app.html">uploads_app package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">users_app package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="users_app.migrations.html">users_app.migrations package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-users_app.admin">users_app.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-users_app.apps">users_app.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.apps.UsersAppConfig"><code class="docutils literal notranslate"><span class="pre">UsersAppConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.apps.UsersAppConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">UsersAppConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.apps.UsersAppConfig.name"><code class="docutils literal notranslate"><span class="pre">UsersAppConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-users_app.models">users_app.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.models.AbstractUserProfile"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.Meta"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.TYPE"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.TYPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.created_at"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.file"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.file_id"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.file_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.user"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.user_id"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.models.BusinessProfile"><code class="docutils literal notranslate"><span class="pre">BusinessProfile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.TYPE"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.TYPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.created_at"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.description"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.file"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.file_id"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.file_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.id"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.location"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.objects"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.offers"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.offers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.order_set"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.order_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.reviews"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.reviews</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.tel"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.tel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.user"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.user_id"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.working_hours"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.working_hours</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.models.CustomerProfile"><code class="docutils literal notranslate"><span class="pre">CustomerProfile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.TYPE"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.TYPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.created_at"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.file"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.file_id"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.file_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.id"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.objects"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.orders"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.orders</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.reviews"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.reviews</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.user"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.user_id"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.user_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-users_app.tests">users_app.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.tests.AuthTests"><code class="docutils literal notranslate"><span class="pre">AuthTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.AUTH_DATA"><code class="docutils literal notranslate"><span class="pre">AuthTests.AUTH_DATA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.setUp"><code class="docutils literal notranslate"><span class="pre">AuthTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_login_false_password_bad_request"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_login_false_password_bad_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_login_ok"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_login_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_registration_email_missing_bad_request"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_registration_email_missing_bad_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_registration_email_taken_bad_request"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_registration_email_taken_bad_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_registration_ok"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_registration_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_registration_passwords_not_matching_bad_request"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_registration_passwords_not_matching_bad_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_registration_username_taken_bad_request"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_registration_username_taken_bad_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.test_registration_weak_password_bad_request"><code class="docutils literal notranslate"><span class="pre">AuthTests.test_registration_weak_password_bad_request()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.tests.General"><code class="docutils literal notranslate"><span class="pre">General</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.General.setUp"><code class="docutils literal notranslate"><span class="pre">General.setUp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.tests.ProfileTests"><code class="docutils literal notranslate"><span class="pre">ProfileTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.setUp"><code class="docutils literal notranslate"><span class="pre">ProfileTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_get_business_profile_list_ok"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_get_business_profile_list_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_get_customer_profile_list_ok"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_get_customer_profile_list_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_get_profile_detail_business_ok"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_get_profile_detail_business_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_get_profile_detail_customer_ok"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_get_profile_detail_customer_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_get_profile_detail_user_not_found"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_get_profile_detail_user_not_found()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_get_profile_detail_user_profile_not_found"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_get_profile_detail_user_profile_not_found()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_patch_business_profile_detail_ok"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_patch_business_profile_detail_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.ProfileTests.test_patch_customer_profile_detail_ok"><code class="docutils literal notranslate"><span class="pre">ProfileTests.test_patch_customer_profile_detail_ok()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-users_app">Module contents</a></li>
+</ul>
+</li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Coderr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">users_app package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/users_app.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="users-app-package">
-<h1>users_app package<a class="headerlink" href="#users-app-package" title="Link to this heading">¶</a></h1>
+<h1>users_app package<a class="headerlink" href="#users-app-package" title="Link to this heading"></a></h1>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="users_app.migrations.html">users_app.migrations package</a><ul>
@@ -71,35 +220,35 @@
 </div>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
 <section id="module-users_app.admin">
-<span id="users-app-admin-module"></span><h2>users_app.admin module<a class="headerlink" href="#module-users_app.admin" title="Link to this heading">¶</a></h2>
+<span id="users-app-admin-module"></span><h2>users_app.admin module<a class="headerlink" href="#module-users_app.admin" title="Link to this heading"></a></h2>
 </section>
 <section id="module-users_app.apps">
-<span id="users-app-apps-module"></span><h2>users_app.apps module<a class="headerlink" href="#module-users_app.apps" title="Link to this heading">¶</a></h2>
+<span id="users-app-apps-module"></span><h2>users_app.apps module<a class="headerlink" href="#module-users_app.apps" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.apps.UsersAppConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.apps.</span></span><span class="sig-name descname"><span class="pre">UsersAppConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.apps.UsersAppConfig" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.apps.</span></span><span class="sig-name descname"><span class="pre">UsersAppConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.apps.UsersAppConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.apps.UsersAppConfig.default_auto_field">
-<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#users_app.apps.UsersAppConfig.default_auto_field" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#users_app.apps.UsersAppConfig.default_auto_field" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.apps.UsersAppConfig.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'users_app'</span></em><a class="headerlink" href="#users_app.apps.UsersAppConfig.name" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'users_app'</span></em><a class="headerlink" href="#users_app.apps.UsersAppConfig.name" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-users_app.models">
-<span id="users-app-models-module"></span><h2>users_app.models module<a class="headerlink" href="#module-users_app.models" title="Link to this heading">¶</a></h2>
+<span id="users-app-models-module"></span><h2>users_app.models module<a class="headerlink" href="#module-users_app.models" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">AbstractUserProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AbstractUserProfile" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">AbstractUserProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AbstractUserProfile" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <p>An abstract base model for user profiles with common attributes.</p>
 <dl class="simple">
@@ -111,30 +260,30 @@ file: A file associated with the profile, stored in FileUpload.</p>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.Meta">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.Meta" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.Meta" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.Meta.abstract">
-<span class="sig-name descname"><span class="pre">abstract</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#users_app.models.AbstractUserProfile.Meta.abstract" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">abstract</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#users_app.models.AbstractUserProfile.Meta.abstract" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.TYPE">
-<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#users_app.models.AbstractUserProfile.TYPE" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#users_app.models.AbstractUserProfile.TYPE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.created_at">
-<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.created_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.file">
-<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.file" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.file" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
 <p>In the example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -146,22 +295,22 @@ object the first time, the query is executed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.file_id">
-<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.file_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.file_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.get_next_by_created_at">
-<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AbstractUserProfile.get_next_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AbstractUserProfile.get_next_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.get_previous_by_created_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AbstractUserProfile.get_previous_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AbstractUserProfile.get_previous_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.user">
-<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.user" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.user" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
 <p>In the example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -173,14 +322,14 @@ object the first time, the query is executed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.AbstractUserProfile.user_id">
-<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.user_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.user_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">BusinessProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.BusinessProfile" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">BusinessProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.BusinessProfile" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#users_app.models.AbstractUserProfile" title="users_app.models.AbstractUserProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractUserProfile</span></code></a></p>
 <p>A profile model for businesses, extending AbstractUserProfile, with additional business-specific fields.</p>
 <dl class="simple">
@@ -194,38 +343,38 @@ tel: The business’s contact phone number.</p>
 </dl>
 <dl class="py exception">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.DoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.DoesNotExist" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.DoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.MultipleObjectsReturned">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.MultipleObjectsReturned" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.TYPE">
-<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'business'</span></em><a class="headerlink" href="#users_app.models.BusinessProfile.TYPE" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'business'</span></em><a class="headerlink" href="#users_app.models.BusinessProfile.TYPE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.created_at">
-<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.created_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.description">
-<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.description" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.description" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.file">
-<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.file" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.file" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
 <p>In the example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -237,41 +386,41 @@ object the first time, the query is executed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.file_id">
-<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.file_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.file_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.get_next_by_created_at">
-<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.BusinessProfile.get_next_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.BusinessProfile.get_next_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.get_previous_by_created_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.BusinessProfile.get_previous_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.BusinessProfile.get_previous_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.id">
-<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.id" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.location">
-<span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.location" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.location" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.objects">
-<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#users_app.models.BusinessProfile.objects" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#users_app.models.BusinessProfile.objects" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.offers">
-<span class="sig-name descname"><span class="pre">offers</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.offers" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">offers</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.offers" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -286,7 +435,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.order_set">
-<span class="sig-name descname"><span class="pre">order_set</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.order_set" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">order_set</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.order_set" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -301,7 +450,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.reviews">
-<span class="sig-name descname"><span class="pre">reviews</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.reviews" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reviews</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.reviews" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -316,14 +465,14 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.tel">
-<span class="sig-name descname"><span class="pre">tel</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.tel" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">tel</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.tel" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.user">
-<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.user" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.user" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
 <p>In the example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -335,12 +484,12 @@ object the first time, the query is executed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.user_id">
-<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.user_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.user_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.BusinessProfile.working_hours">
-<span class="sig-name descname"><span class="pre">working_hours</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.working_hours" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">working_hours</span></span><a class="headerlink" href="#users_app.models.BusinessProfile.working_hours" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -349,7 +498,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">CustomerProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.CustomerProfile" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">CustomerProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.CustomerProfile" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#users_app.models.AbstractUserProfile" title="users_app.models.AbstractUserProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractUserProfile</span></code></a></p>
 <p>A profile model for customers, extending AbstractUserProfile.</p>
 <dl class="simple">
@@ -359,31 +508,31 @@ user: The user associated with this customer profile.</p>
 </dl>
 <dl class="py exception">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.DoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.DoesNotExist" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.DoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.MultipleObjectsReturned">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.MultipleObjectsReturned" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.TYPE">
-<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'customer'</span></em><a class="headerlink" href="#users_app.models.CustomerProfile.TYPE" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'customer'</span></em><a class="headerlink" href="#users_app.models.CustomerProfile.TYPE" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.created_at">
-<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.created_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.file">
-<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.file" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.file" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
 <p>In the example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -395,34 +544,34 @@ object the first time, the query is executed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.file_id">
-<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.file_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.file_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.get_next_by_created_at">
-<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.CustomerProfile.get_next_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.CustomerProfile.get_next_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.get_previous_by_created_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.CustomerProfile.get_previous_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.CustomerProfile.get_previous_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.id">
-<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.id" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.objects">
-<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#users_app.models.CustomerProfile.objects" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#users_app.models.CustomerProfile.objects" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.orders">
-<span class="sig-name descname"><span class="pre">orders</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.orders" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">orders</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.orders" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -437,7 +586,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.reviews">
-<span class="sig-name descname"><span class="pre">reviews</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.reviews" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reviews</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.reviews" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -452,7 +601,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.user">
-<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.user" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.user" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
 <p>In the example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -464,17 +613,17 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.models.CustomerProfile.user_id">
-<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.user_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.CustomerProfile.user_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-users_app.tests">
-<span id="users-app-tests-module"></span><h2>users_app.tests module<a class="headerlink" href="#module-users_app.tests" title="Link to this heading">¶</a></h2>
+<span id="users-app-tests-module"></span><h2>users_app.tests module<a class="headerlink" href="#module-users_app.tests" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">AuthTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">AuthTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
 <p>Tests for user authentication endpoints, including login and registration.</p>
 <dl class="simple">
@@ -483,18 +632,18 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.AUTH_DATA">
-<span class="sig-name descname"><span class="pre">AUTH_DATA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'email':</span> <span class="pre">'new&#64;email.com',</span> <span class="pre">'password':</span> <span class="pre">'newPassw0rd',</span> <span class="pre">'repeated_password':</span> <span class="pre">'newPassw0rd',</span> <span class="pre">'type':</span> <span class="pre">'customer',</span> <span class="pre">'username':</span> <span class="pre">'newuser'}</span></em><a class="headerlink" href="#users_app.tests.AuthTests.AUTH_DATA" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">AUTH_DATA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'email':</span> <span class="pre">'new&#64;email.com',</span> <span class="pre">'password':</span> <span class="pre">'newPassw0rd',</span> <span class="pre">'repeated_password':</span> <span class="pre">'newPassw0rd',</span> <span class="pre">'type':</span> <span class="pre">'customer',</span> <span class="pre">'username':</span> <span class="pre">'newuser'}</span></em><a class="headerlink" href="#users_app.tests.AuthTests.AUTH_DATA" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.setUp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.setUp" title="Link to this definition"></a></dt>
 <dd><p>Calls the general setup for shared test data.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_login_false_password_bad_request">
-<span class="sig-name descname"><span class="pre">test_login_false_password_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_login_false_password_bad_request" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_login_false_password_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_login_false_password_bad_request" title="Link to this definition"></a></dt>
 <dd><p>Tests login with incorrect password.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>400 Bad Request status.</p>
@@ -504,7 +653,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_login_ok">
-<span class="sig-name descname"><span class="pre">test_login_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_login_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_login_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_login_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests successful login with correct credentials.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>200 OK status.
@@ -515,7 +664,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_registration_email_missing_bad_request">
-<span class="sig-name descname"><span class="pre">test_registration_email_missing_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_email_missing_bad_request" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_registration_email_missing_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_email_missing_bad_request" title="Link to this definition"></a></dt>
 <dd><p>Tests registration with missing email field.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>400 Bad Request status.</p>
@@ -525,7 +674,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_registration_email_taken_bad_request">
-<span class="sig-name descname"><span class="pre">test_registration_email_taken_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_email_taken_bad_request" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_registration_email_taken_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_email_taken_bad_request" title="Link to this definition"></a></dt>
 <dd><p>Tests registration when email is already taken.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>400 Bad Request status.</p>
@@ -535,7 +684,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_registration_ok">
-<span class="sig-name descname"><span class="pre">test_registration_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_registration_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests successful user registration.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>201 Created status.
@@ -547,7 +696,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_registration_passwords_not_matching_bad_request">
-<span class="sig-name descname"><span class="pre">test_registration_passwords_not_matching_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_passwords_not_matching_bad_request" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_registration_passwords_not_matching_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_passwords_not_matching_bad_request" title="Link to this definition"></a></dt>
 <dd><p>Tests registration when passwords do not match.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>400 Bad Request status.</p>
@@ -557,7 +706,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_registration_username_taken_bad_request">
-<span class="sig-name descname"><span class="pre">test_registration_username_taken_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_username_taken_bad_request" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_registration_username_taken_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_username_taken_bad_request" title="Link to this definition"></a></dt>
 <dd><p>Tests registration when username is already taken.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>400 Bad Request status.</p>
@@ -567,7 +716,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests.test_registration_weak_password_bad_request">
-<span class="sig-name descname"><span class="pre">test_registration_weak_password_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_weak_password_bad_request" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_registration_weak_password_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests.test_registration_weak_password_bad_request" title="Link to this definition"></a></dt>
 <dd><p>Tests registration with a weak password.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>400 Bad Request status.</p>
@@ -579,12 +728,12 @@ Presence of required fields in response data.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.tests.General">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">General</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.General" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">General</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.General" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
 <p>Base test setup class for creating test users, profiles, and tokens.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.General.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.General.setUp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.General.setUp" title="Link to this definition"></a></dt>
 <dd><p>Creates a customer and business user, with associated profiles and authentication tokens.</p>
 </dd></dl>
 
@@ -592,18 +741,18 @@ Presence of required fields in response data.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">ProfileTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">ProfileTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
 <p>Tests for profile-related endpoints, including retrieval and updates.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.setUp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.setUp" title="Link to this definition"></a></dt>
 <dd><p>Calls the general setup for shared test data.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_get_business_profile_list_ok">
-<span class="sig-name descname"><span class="pre">test_get_business_profile_list_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_business_profile_list_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_get_business_profile_list_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_business_profile_list_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests retrieval of business profile list.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>200 OK status.</p>
@@ -613,7 +762,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_get_customer_profile_list_ok">
-<span class="sig-name descname"><span class="pre">test_get_customer_profile_list_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_customer_profile_list_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_get_customer_profile_list_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_customer_profile_list_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests retrieval of customer profile list.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>200 OK status.</p>
@@ -623,7 +772,7 @@ Presence of required fields in response data.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_get_profile_detail_business_ok">
-<span class="sig-name descname"><span class="pre">test_get_profile_detail_business_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_business_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_get_profile_detail_business_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_business_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests retrieval of business profile details.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>200 OK status.
@@ -634,7 +783,7 @@ Expected profile data matches response.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_get_profile_detail_customer_ok">
-<span class="sig-name descname"><span class="pre">test_get_profile_detail_customer_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_customer_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_get_profile_detail_customer_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_customer_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests retrieval of customer profile details.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>200 OK status.
@@ -645,7 +794,7 @@ Expected profile data matches response.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_get_profile_detail_user_not_found">
-<span class="sig-name descname"><span class="pre">test_get_profile_detail_user_not_found</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_user_not_found" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_get_profile_detail_user_not_found</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_user_not_found" title="Link to this definition"></a></dt>
 <dd><p>Tests profile retrieval for non-existent user.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>404 Not Found status.</p>
@@ -655,7 +804,7 @@ Expected profile data matches response.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_get_profile_detail_user_profile_not_found">
-<span class="sig-name descname"><span class="pre">test_get_profile_detail_user_profile_not_found</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_user_profile_not_found" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_get_profile_detail_user_profile_not_found</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_get_profile_detail_user_profile_not_found" title="Link to this definition"></a></dt>
 <dd><p>Tests profile retrieval for user without a profile.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>404 Not Found status.</p>
@@ -665,7 +814,7 @@ Expected profile data matches response.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_patch_business_profile_detail_ok">
-<span class="sig-name descname"><span class="pre">test_patch_business_profile_detail_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_patch_business_profile_detail_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_patch_business_profile_detail_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_patch_business_profile_detail_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests updating a business profile.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>200 OK status.
@@ -676,7 +825,7 @@ Expected updated profile data matches response.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="users_app.tests.ProfileTests.test_patch_customer_profile_detail_ok">
-<span class="sig-name descname"><span class="pre">test_patch_customer_profile_detail_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_patch_customer_profile_detail_ok" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_patch_customer_profile_detail_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.ProfileTests.test_patch_customer_profile_detail_ok" title="Link to this definition"></a></dt>
 <dd><p>Tests updating a customer profile.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>200 OK status.
@@ -689,70 +838,39 @@ Expected updated profile data matches response.</p>
 
 </section>
 <section id="module-users_app">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-users_app" title="Link to this heading">¶</a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-users_app" title="Link to this heading"></a></h2>
 </section>
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="uploads_app.migrations.html" class="btn btn-neutral float-left" title="uploads_app.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="users_app.migrations.html" class="btn btn-neutral float-right" title="users_app.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bengt Früchtenicht.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Coderr</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-
-<search id="searchbox" style="display: none" role="search">
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2024, Bengt Früchtenicht.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
-      
-      |
-      <a href="_sources/users_app.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

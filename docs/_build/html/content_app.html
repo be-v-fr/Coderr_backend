@@ -1,40 +1,203 @@
+
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="./">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>content_app package &mdash; Coderr 0.9 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
-    <title>content_app package &#8212; Coderr 0.9 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
-    <script src="_static/documentation_options.js?v=049aceee"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=049aceee"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
+    <link rel="next" title="content_app.migrations package" href="content_app.migrations.html" />
+    <link rel="prev" title="coderr_backend package" href="coderr_backend.html" /> 
+</head>
 
-  
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="index.html" class="icon icon-home">
+            Coderr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="coderr_backend.html">coderr_backend package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">content_app package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="content_app.migrations.html">content_app.migrations package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="content_app.tests.html">content_app.tests package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-content_app.admin">content_app.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-content_app.apps">content_app.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#content_app.apps.ContentAppConfig"><code class="docutils literal notranslate"><span class="pre">ContentAppConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.apps.ContentAppConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ContentAppConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.apps.ContentAppConfig.name"><code class="docutils literal notranslate"><span class="pre">ContentAppConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-content_app.models">content_app.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#content_app.models.CustomerReview"><code class="docutils literal notranslate"><span class="pre">CustomerReview</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">CustomerReview.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">CustomerReview.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.business_profile"><code class="docutils literal notranslate"><span class="pre">CustomerReview.business_profile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.business_profile_id"><code class="docutils literal notranslate"><span class="pre">CustomerReview.business_profile_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.clean"><code class="docutils literal notranslate"><span class="pre">CustomerReview.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.created_at"><code class="docutils literal notranslate"><span class="pre">CustomerReview.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.description"><code class="docutils literal notranslate"><span class="pre">CustomerReview.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">CustomerReview.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.get_next_by_updated_at"><code class="docutils literal notranslate"><span class="pre">CustomerReview.get_next_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">CustomerReview.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.get_previous_by_updated_at"><code class="docutils literal notranslate"><span class="pre">CustomerReview.get_previous_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.id"><code class="docutils literal notranslate"><span class="pre">CustomerReview.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.objects"><code class="docutils literal notranslate"><span class="pre">CustomerReview.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.rating"><code class="docutils literal notranslate"><span class="pre">CustomerReview.rating</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.reviewer_profile"><code class="docutils literal notranslate"><span class="pre">CustomerReview.reviewer_profile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.reviewer_profile_id"><code class="docutils literal notranslate"><span class="pre">CustomerReview.reviewer_profile_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.save"><code class="docutils literal notranslate"><span class="pre">CustomerReview.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.CustomerReview.updated_at"><code class="docutils literal notranslate"><span class="pre">CustomerReview.updated_at</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content_app.models.Offer"><code class="docutils literal notranslate"><span class="pre">Offer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Offer.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Offer.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.business_profile"><code class="docutils literal notranslate"><span class="pre">Offer.business_profile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.business_profile_id"><code class="docutils literal notranslate"><span class="pre">Offer.business_profile_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.created_at"><code class="docutils literal notranslate"><span class="pre">Offer.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.description"><code class="docutils literal notranslate"><span class="pre">Offer.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.details"><code class="docutils literal notranslate"><span class="pre">Offer.details</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.file"><code class="docutils literal notranslate"><span class="pre">Offer.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.file_id"><code class="docutils literal notranslate"><span class="pre">Offer.file_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Offer.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.get_next_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Offer.get_next_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Offer.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.get_previous_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Offer.get_previous_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.id"><code class="docutils literal notranslate"><span class="pre">Offer.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.objects"><code class="docutils literal notranslate"><span class="pre">Offer.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.title"><code class="docutils literal notranslate"><span class="pre">Offer.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Offer.updated_at"><code class="docutils literal notranslate"><span class="pre">Offer.updated_at</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content_app.models.OfferDetails"><code class="docutils literal notranslate"><span class="pre">OfferDetails</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.BASIC"><code class="docutils literal notranslate"><span class="pre">OfferDetails.BASIC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">OfferDetails.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">OfferDetails.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.OFFER_TYPES"><code class="docutils literal notranslate"><span class="pre">OfferDetails.OFFER_TYPES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.PREMIUM"><code class="docutils literal notranslate"><span class="pre">OfferDetails.PREMIUM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.STANDARD"><code class="docutils literal notranslate"><span class="pre">OfferDetails.STANDARD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.delivery_time_in_days"><code class="docutils literal notranslate"><span class="pre">OfferDetails.delivery_time_in_days</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.features"><code class="docutils literal notranslate"><span class="pre">OfferDetails.features</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.get_features_list"><code class="docutils literal notranslate"><span class="pre">OfferDetails.get_features_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.get_offer_type_display"><code class="docutils literal notranslate"><span class="pre">OfferDetails.get_offer_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.id"><code class="docutils literal notranslate"><span class="pre">OfferDetails.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.objects"><code class="docutils literal notranslate"><span class="pre">OfferDetails.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.offer"><code class="docutils literal notranslate"><span class="pre">OfferDetails.offer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.offer_id"><code class="docutils literal notranslate"><span class="pre">OfferDetails.offer_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.offer_type"><code class="docutils literal notranslate"><span class="pre">OfferDetails.offer_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.orders"><code class="docutils literal notranslate"><span class="pre">OfferDetails.orders</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.price"><code class="docutils literal notranslate"><span class="pre">OfferDetails.price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.price_cents"><code class="docutils literal notranslate"><span class="pre">OfferDetails.price_cents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.revisions"><code class="docutils literal notranslate"><span class="pre">OfferDetails.revisions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.set_features_str"><code class="docutils literal notranslate"><span class="pre">OfferDetails.set_features_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.OfferDetails.title"><code class="docutils literal notranslate"><span class="pre">OfferDetails.title</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content_app.models.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.CANCELLED"><code class="docutils literal notranslate"><span class="pre">Order.CANCELLED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.COMPLETED"><code class="docutils literal notranslate"><span class="pre">Order.COMPLETED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Order.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.IN_PROGRESS"><code class="docutils literal notranslate"><span class="pre">Order.IN_PROGRESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Order.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">Order.STATUS_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.business_profile"><code class="docutils literal notranslate"><span class="pre">Order.business_profile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.business_profile_id"><code class="docutils literal notranslate"><span class="pre">Order.business_profile_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.created_at"><code class="docutils literal notranslate"><span class="pre">Order.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.delivery_time_in_days"><code class="docutils literal notranslate"><span class="pre">Order.delivery_time_in_days</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.features"><code class="docutils literal notranslate"><span class="pre">Order.features</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.get_features_list"><code class="docutils literal notranslate"><span class="pre">Order.get_features_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Order.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.get_next_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Order.get_next_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Order.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.get_previous_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Order.get_previous_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.get_status_display"><code class="docutils literal notranslate"><span class="pre">Order.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.id"><code class="docutils literal notranslate"><span class="pre">Order.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.objects"><code class="docutils literal notranslate"><span class="pre">Order.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.offer_details"><code class="docutils literal notranslate"><span class="pre">Order.offer_details</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.offer_details_id"><code class="docutils literal notranslate"><span class="pre">Order.offer_details_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.orderer_profile"><code class="docutils literal notranslate"><span class="pre">Order.orderer_profile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.orderer_profile_id"><code class="docutils literal notranslate"><span class="pre">Order.orderer_profile_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.price"><code class="docutils literal notranslate"><span class="pre">Order.price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.revisions"><code class="docutils literal notranslate"><span class="pre">Order.revisions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.status"><code class="docutils literal notranslate"><span class="pre">Order.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.title"><code class="docutils literal notranslate"><span class="pre">Order.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content_app.models.Order.updated_at"><code class="docutils literal notranslate"><span class="pre">Order.updated_at</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-content_app">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fill_db.html">fill_db module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics_app.html">statistics_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploads_app.html">uploads_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users_app.html">users_app package</a></li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Coderr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">content_app package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/content_app.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="content-app-package">
-<h1>content_app package<a class="headerlink" href="#content-app-package" title="Link to this heading">¶</a></h1>
+<h1>content_app package<a class="headerlink" href="#content-app-package" title="Link to this heading"></a></h1>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="content_app.migrations.html">content_app.migrations package</a><ul>
@@ -161,35 +324,35 @@
 </div>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
 <section id="module-content_app.admin">
-<span id="content-app-admin-module"></span><h2>content_app.admin module<a class="headerlink" href="#module-content_app.admin" title="Link to this heading">¶</a></h2>
+<span id="content-app-admin-module"></span><h2>content_app.admin module<a class="headerlink" href="#module-content_app.admin" title="Link to this heading"></a></h2>
 </section>
 <section id="module-content_app.apps">
-<span id="content-app-apps-module"></span><h2>content_app.apps module<a class="headerlink" href="#module-content_app.apps" title="Link to this heading">¶</a></h2>
+<span id="content-app-apps-module"></span><h2>content_app.apps module<a class="headerlink" href="#module-content_app.apps" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="content_app.apps.ContentAppConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.apps.</span></span><span class="sig-name descname"><span class="pre">ContentAppConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.apps.ContentAppConfig" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.apps.</span></span><span class="sig-name descname"><span class="pre">ContentAppConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.apps.ContentAppConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.apps.ContentAppConfig.default_auto_field">
-<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#content_app.apps.ContentAppConfig.default_auto_field" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#content_app.apps.ContentAppConfig.default_auto_field" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.apps.ContentAppConfig.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'content_app'</span></em><a class="headerlink" href="#content_app.apps.ContentAppConfig.name" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'content_app'</span></em><a class="headerlink" href="#content_app.apps.ContentAppConfig.name" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-content_app.models">
-<span id="content-app-models-module"></span><h2>content_app.models module<a class="headerlink" href="#module-content_app.models" title="Link to this heading">¶</a></h2>
+<span id="content-app-models-module"></span><h2>content_app.models module<a class="headerlink" href="#module-content_app.models" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">CustomerReview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">CustomerReview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <p>Model representing a customer review of a business.</p>
 <dl class="simple">
@@ -203,19 +366,19 @@ updated_at (DateTimeField): Timestamp of last review update.</p>
 </dl>
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.DoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.CustomerReview.DoesNotExist" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.CustomerReview.DoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.MultipleObjectsReturned">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.CustomerReview.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.CustomerReview.MultipleObjectsReturned" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.business_profile">
-<span class="sig-name descname"><span class="pre">business_profile</span></span><a class="headerlink" href="#content_app.models.CustomerReview.business_profile" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">business_profile</span></span><a class="headerlink" href="#content_app.models.CustomerReview.business_profile" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -228,12 +391,12 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.business_profile_id">
-<span class="sig-name descname"><span class="pre">business_profile_id</span></span><a class="headerlink" href="#content_app.models.CustomerReview.business_profile_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">business_profile_id</span></span><a class="headerlink" href="#content_app.models.CustomerReview.business_profile_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.clean">
-<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.clean" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.clean" title="Link to this definition"></a></dt>
 <dd><p>Validates that a review can only be created if a corresponding order exists.</p>
 <dl class="simple">
 <dt>Raises:</dt><dd><p>ValidationError: If no matching order exists.</p>
@@ -243,60 +406,60 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.created_at">
-<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#content_app.models.CustomerReview.created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#content_app.models.CustomerReview.created_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.description">
-<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#content_app.models.CustomerReview.description" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#content_app.models.CustomerReview.description" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.get_next_by_created_at">
-<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_next_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_next_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.get_next_by_updated_at">
-<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_next_by_updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_next_by_updated_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.get_previous_by_created_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_previous_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_previous_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.get_previous_by_updated_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_previous_by_updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.get_previous_by_updated_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.id">
-<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.CustomerReview.id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.CustomerReview.id" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.objects">
-<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.CustomerReview.objects" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.CustomerReview.objects" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.rating">
-<span class="sig-name descname"><span class="pre">rating</span></span><a class="headerlink" href="#content_app.models.CustomerReview.rating" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">rating</span></span><a class="headerlink" href="#content_app.models.CustomerReview.rating" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.reviewer_profile">
-<span class="sig-name descname"><span class="pre">reviewer_profile</span></span><a class="headerlink" href="#content_app.models.CustomerReview.reviewer_profile" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reviewer_profile</span></span><a class="headerlink" href="#content_app.models.CustomerReview.reviewer_profile" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -309,12 +472,12 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.reviewer_profile_id">
-<span class="sig-name descname"><span class="pre">reviewer_profile_id</span></span><a class="headerlink" href="#content_app.models.CustomerReview.reviewer_profile_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reviewer_profile_id</span></span><a class="headerlink" href="#content_app.models.CustomerReview.reviewer_profile_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.save" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.CustomerReview.save" title="Link to this definition"></a></dt>
 <dd><p>Overrides save to include custom validation.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p><a href="#id1"><span class="problematic" id="id2">*</span></a>args: Variable length argument list.
@@ -325,7 +488,7 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.CustomerReview.updated_at">
-<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#content_app.models.CustomerReview.updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#content_app.models.CustomerReview.updated_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -334,7 +497,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="content_app.models.Offer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">Offer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">Offer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <p>Model representing an offer made by a business.</p>
 <dl class="simple">
@@ -349,19 +512,19 @@ delivery_time_in_days (PositiveIntegerField): Delivery time for the offer in day
 </dl>
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.Offer.DoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.Offer.DoesNotExist" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.Offer.DoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.Offer.MultipleObjectsReturned">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.Offer.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.Offer.MultipleObjectsReturned" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.business_profile">
-<span class="sig-name descname"><span class="pre">business_profile</span></span><a class="headerlink" href="#content_app.models.Offer.business_profile" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">business_profile</span></span><a class="headerlink" href="#content_app.models.Offer.business_profile" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -374,26 +537,26 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.business_profile_id">
-<span class="sig-name descname"><span class="pre">business_profile_id</span></span><a class="headerlink" href="#content_app.models.Offer.business_profile_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">business_profile_id</span></span><a class="headerlink" href="#content_app.models.Offer.business_profile_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.created_at">
-<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#content_app.models.Offer.created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#content_app.models.Offer.created_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.description">
-<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#content_app.models.Offer.description" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#content_app.models.Offer.description" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.details">
-<span class="sig-name descname"><span class="pre">details</span></span><a class="headerlink" href="#content_app.models.Offer.details" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">details</span></span><a class="headerlink" href="#content_app.models.Offer.details" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -408,7 +571,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.file">
-<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#content_app.models.Offer.file" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#content_app.models.Offer.file" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
 <p>In the example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
@@ -420,51 +583,51 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.file_id">
-<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#content_app.models.Offer.file_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">file_id</span></span><a class="headerlink" href="#content_app.models.Offer.file_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Offer.get_next_by_created_at">
-<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_next_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_next_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Offer.get_next_by_updated_at">
-<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_next_by_updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_next_by_updated_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Offer.get_previous_by_created_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_previous_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_previous_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Offer.get_previous_by_updated_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_previous_by_updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Offer.get_previous_by_updated_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.id">
-<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.Offer.id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.Offer.id" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.objects">
-<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.Offer.objects" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.Offer.objects" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.title">
-<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#content_app.models.Offer.title" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#content_app.models.Offer.title" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Offer.updated_at">
-<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#content_app.models.Offer.updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#content_app.models.Offer.updated_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -473,7 +636,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">OfferDetails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">OfferDetails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <p>Model for details of an offer.</p>
 <dl class="simple">
@@ -488,53 +651,53 @@ delivery_time_in_days (PositiveIntegerField): Delivery time for the offer in day
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.BASIC">
-<span class="sig-name descname"><span class="pre">BASIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'basic'</span></em><a class="headerlink" href="#content_app.models.OfferDetails.BASIC" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">BASIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'basic'</span></em><a class="headerlink" href="#content_app.models.OfferDetails.BASIC" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.DoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.OfferDetails.DoesNotExist" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.OfferDetails.DoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.MultipleObjectsReturned">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.OfferDetails.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.OfferDetails.MultipleObjectsReturned" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.OFFER_TYPES">
-<span class="sig-name descname"><span class="pre">OFFER_TYPES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(('basic',</span> <span class="pre">'basic'),</span> <span class="pre">('standard',</span> <span class="pre">'standard'),</span> <span class="pre">('premium',</span> <span class="pre">'premium'))</span></em><a class="headerlink" href="#content_app.models.OfferDetails.OFFER_TYPES" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">OFFER_TYPES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(('basic',</span> <span class="pre">'basic'),</span> <span class="pre">('standard',</span> <span class="pre">'standard'),</span> <span class="pre">('premium',</span> <span class="pre">'premium'))</span></em><a class="headerlink" href="#content_app.models.OfferDetails.OFFER_TYPES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.PREMIUM">
-<span class="sig-name descname"><span class="pre">PREMIUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'premium'</span></em><a class="headerlink" href="#content_app.models.OfferDetails.PREMIUM" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">PREMIUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'premium'</span></em><a class="headerlink" href="#content_app.models.OfferDetails.PREMIUM" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.STANDARD">
-<span class="sig-name descname"><span class="pre">STANDARD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'standard'</span></em><a class="headerlink" href="#content_app.models.OfferDetails.STANDARD" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">STANDARD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'standard'</span></em><a class="headerlink" href="#content_app.models.OfferDetails.STANDARD" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.delivery_time_in_days">
-<span class="sig-name descname"><span class="pre">delivery_time_in_days</span></span><a class="headerlink" href="#content_app.models.OfferDetails.delivery_time_in_days" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">delivery_time_in_days</span></span><a class="headerlink" href="#content_app.models.OfferDetails.delivery_time_in_days" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.features">
-<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#content_app.models.OfferDetails.features" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#content_app.models.OfferDetails.features" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.get_features_list">
-<span class="sig-name descname"><span class="pre">get_features_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails.get_features_list" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_features_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails.get_features_list" title="Link to this definition"></a></dt>
 <dd><p>Converts the features string to a list format.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>list: List of features.</p>
@@ -544,24 +707,24 @@ object the first time, the query is executed.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.get_offer_type_display">
-<span class="sig-name descname"><span class="pre">get_offer_type_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">offer_type&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails.get_offer_type_display" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_offer_type_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">offer_type&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails.get_offer_type_display" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.id">
-<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.OfferDetails.id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.OfferDetails.id" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.objects">
-<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.OfferDetails.objects" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.OfferDetails.objects" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.offer">
-<span class="sig-name descname"><span class="pre">offer</span></span><a class="headerlink" href="#content_app.models.OfferDetails.offer" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">offer</span></span><a class="headerlink" href="#content_app.models.OfferDetails.offer" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -574,19 +737,19 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.offer_id">
-<span class="sig-name descname"><span class="pre">offer_id</span></span><a class="headerlink" href="#content_app.models.OfferDetails.offer_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">offer_id</span></span><a class="headerlink" href="#content_app.models.OfferDetails.offer_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.offer_type">
-<span class="sig-name descname"><span class="pre">offer_type</span></span><a class="headerlink" href="#content_app.models.OfferDetails.offer_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">offer_type</span></span><a class="headerlink" href="#content_app.models.OfferDetails.offer_type" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.orders">
-<span class="sig-name descname"><span class="pre">orders</span></span><a class="headerlink" href="#content_app.models.OfferDetails.orders" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">orders</span></span><a class="headerlink" href="#content_app.models.OfferDetails.orders" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related objects manager on the reverse side of a
 many-to-one relation.</p>
 <p>In the example:</p>
@@ -601,27 +764,27 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 <dl class="py property">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.price">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">price</span></span><a class="headerlink" href="#content_app.models.OfferDetails.price" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">price</span></span><a class="headerlink" href="#content_app.models.OfferDetails.price" title="Link to this definition"></a></dt>
 <dd><p>Returns the price with two decimals in a dollar/euro format.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.price_cents">
-<span class="sig-name descname"><span class="pre">price_cents</span></span><a class="headerlink" href="#content_app.models.OfferDetails.price_cents" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">price_cents</span></span><a class="headerlink" href="#content_app.models.OfferDetails.price_cents" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.revisions">
-<span class="sig-name descname"><span class="pre">revisions</span></span><a class="headerlink" href="#content_app.models.OfferDetails.revisions" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">revisions</span></span><a class="headerlink" href="#content_app.models.OfferDetails.revisions" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.set_features_str">
-<span class="sig-name descname"><span class="pre">set_features_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails.set_features_str" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_features_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.OfferDetails.set_features_str" title="Link to this definition"></a></dt>
 <dd><p>Converts a list of features to a double-comma-separated string.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>features_list (list): List of features.</p>
@@ -631,7 +794,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.OfferDetails.title">
-<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#content_app.models.OfferDetails.title" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#content_app.models.OfferDetails.title" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -640,7 +803,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="content_app.models.Order">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">content_app.models.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <p>Model representing a customer order for an offer.</p>
 <dl class="simple">
@@ -659,39 +822,39 @@ delivery_time_in_days (PositiveIntegerField): Delivery time in days.</p>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.CANCELLED">
-<span class="sig-name descname"><span class="pre">CANCELLED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cancelled'</span></em><a class="headerlink" href="#content_app.models.Order.CANCELLED" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CANCELLED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cancelled'</span></em><a class="headerlink" href="#content_app.models.Order.CANCELLED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.COMPLETED">
-<span class="sig-name descname"><span class="pre">COMPLETED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'completed'</span></em><a class="headerlink" href="#content_app.models.Order.COMPLETED" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">COMPLETED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'completed'</span></em><a class="headerlink" href="#content_app.models.Order.COMPLETED" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.Order.DoesNotExist">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.Order.DoesNotExist" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#content_app.models.Order.DoesNotExist" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.IN_PROGRESS">
-<span class="sig-name descname"><span class="pre">IN_PROGRESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'in_progress'</span></em><a class="headerlink" href="#content_app.models.Order.IN_PROGRESS" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">IN_PROGRESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'in_progress'</span></em><a class="headerlink" href="#content_app.models.Order.IN_PROGRESS" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="content_app.models.Order.MultipleObjectsReturned">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.Order.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#content_app.models.Order.MultipleObjectsReturned" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.STATUS_CHOICES">
-<span class="sig-name descname"><span class="pre">STATUS_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(('in_progress',</span> <span class="pre">'in_progress'),</span> <span class="pre">('completed',</span> <span class="pre">'completed'),</span> <span class="pre">('cancelled',</span> <span class="pre">'cancelled'))</span></em><a class="headerlink" href="#content_app.models.Order.STATUS_CHOICES" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">STATUS_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(('in_progress',</span> <span class="pre">'in_progress'),</span> <span class="pre">('completed',</span> <span class="pre">'completed'),</span> <span class="pre">('cancelled',</span> <span class="pre">'cancelled'))</span></em><a class="headerlink" href="#content_app.models.Order.STATUS_CHOICES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.business_profile">
-<span class="sig-name descname"><span class="pre">business_profile</span></span><a class="headerlink" href="#content_app.models.Order.business_profile" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">business_profile</span></span><a class="headerlink" href="#content_app.models.Order.business_profile" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -704,33 +867,33 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.business_profile_id">
-<span class="sig-name descname"><span class="pre">business_profile_id</span></span><a class="headerlink" href="#content_app.models.Order.business_profile_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">business_profile_id</span></span><a class="headerlink" href="#content_app.models.Order.business_profile_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.created_at">
-<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#content_app.models.Order.created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#content_app.models.Order.created_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.delivery_time_in_days">
-<span class="sig-name descname"><span class="pre">delivery_time_in_days</span></span><a class="headerlink" href="#content_app.models.Order.delivery_time_in_days" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">delivery_time_in_days</span></span><a class="headerlink" href="#content_app.models.Order.delivery_time_in_days" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.features">
-<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#content_app.models.Order.features" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#content_app.models.Order.features" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Order.get_features_list">
-<span class="sig-name descname"><span class="pre">get_features_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_features_list" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_features_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_features_list" title="Link to this definition"></a></dt>
 <dd><p>Converts the features string to a list.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>list: List of features.</p>
@@ -740,44 +903,44 @@ object the first time, the query is executed.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Order.get_next_by_created_at">
-<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_next_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_next_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Order.get_next_by_updated_at">
-<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_next_by_updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_next_by_updated_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Order.get_previous_by_created_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_previous_by_created_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_previous_by_created_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Order.get_previous_by_updated_at">
-<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_previous_by_updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_previous_by_updated_at" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="content_app.models.Order.get_status_display">
-<span class="sig-name descname"><span class="pre">get_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_status_display" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#content_app.models.Order.get_status_display" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.id">
-<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.Order.id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#content_app.models.Order.id" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.objects">
-<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.Order.objects" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#content_app.models.Order.objects" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.offer_details">
-<span class="sig-name descname"><span class="pre">offer_details</span></span><a class="headerlink" href="#content_app.models.Order.offer_details" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">offer_details</span></span><a class="headerlink" href="#content_app.models.Order.offer_details" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -790,12 +953,12 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.offer_details_id">
-<span class="sig-name descname"><span class="pre">offer_details_id</span></span><a class="headerlink" href="#content_app.models.Order.offer_details_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">offer_details_id</span></span><a class="headerlink" href="#content_app.models.Order.offer_details_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.orderer_profile">
-<span class="sig-name descname"><span class="pre">orderer_profile</span></span><a class="headerlink" href="#content_app.models.Order.orderer_profile" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">orderer_profile</span></span><a class="headerlink" href="#content_app.models.Order.orderer_profile" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
 one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <p>In the example:</p>
@@ -808,40 +971,40 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.orderer_profile_id">
-<span class="sig-name descname"><span class="pre">orderer_profile_id</span></span><a class="headerlink" href="#content_app.models.Order.orderer_profile_id" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">orderer_profile_id</span></span><a class="headerlink" href="#content_app.models.Order.orderer_profile_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.price">
-<span class="sig-name descname"><span class="pre">price</span></span><a class="headerlink" href="#content_app.models.Order.price" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">price</span></span><a class="headerlink" href="#content_app.models.Order.price" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.revisions">
-<span class="sig-name descname"><span class="pre">revisions</span></span><a class="headerlink" href="#content_app.models.Order.revisions" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">revisions</span></span><a class="headerlink" href="#content_app.models.Order.revisions" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.status">
-<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#content_app.models.Order.status" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#content_app.models.Order.status" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.title">
-<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#content_app.models.Order.title" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#content_app.models.Order.title" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="content_app.models.Order.updated_at">
-<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#content_app.models.Order.updated_at" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#content_app.models.Order.updated_at" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -850,70 +1013,39 @@ object the first time, the query is executed.</p>
 
 </section>
 <section id="module-content_app">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-content_app" title="Link to this heading">¶</a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-content_app" title="Link to this heading"></a></h2>
 </section>
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coderr_backend.html" class="btn btn-neutral float-left" title="coderr_backend package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="content_app.migrations.html" class="btn btn-neutral float-right" title="content_app.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bengt Früchtenicht.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Coderr</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-
-<search id="searchbox" style="display: none" role="search">
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2024, Bengt Früchtenicht.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
-      
-      |
-      <a href="_sources/content_app.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
