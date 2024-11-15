@@ -2,7 +2,6 @@ Coderr backend is a Django backend providing a marketplace for coding services a
 
 (c) 2024 Bengt Früchtenicht
 
-======================
 GENERAL FUNCTIONALITY:
 ======================
 
@@ -10,7 +9,6 @@ Users can register as business users or customers.
 Business users can create offers and update the offer state.
 Customers can create offer orders and customer reviews for the related business.
 
-============
 LOCAL SETUP:
 ============
 
@@ -18,7 +16,6 @@ LOCAL SETUP:
 - Run "python manage.py makemigrations" in the shell
 - Run "python manage.py migrate"
 
-=====================
 FILLING THE DATABASE:
 =====================
 
@@ -26,7 +23,6 @@ After the initial migration, the database will be empty. You can either fill it 
 or execute the "fill_db.py" script, which contains example data in the German language:
 - Run "python fill_db.py"
 
-==============
 LOCAL HOSTING:
 ==============
 
@@ -43,14 +39,12 @@ The "api/" sub-URL features the API URLs as listed in the "urls.py" files preval
 "api" folder of the sub-app packages ("users_app/api", "content_app/api", "statistics_app/api").
 When accessing the URLs via browser, the default Django REST Framework interface will show.
 
-==============
 DOCUMENTATION:
 ==============
 
 To access the documentation, load "docs/_build/index.html" in your browser.
 The documentation has been auto-generated from comments inside the Python files.
 
-===============
 DATA STRUCTURE:
 ===============
 
@@ -64,7 +58,6 @@ To gain an insight into the data structure required for writing, study
 - The serializers in the respective "serializers.py" file or "serializers" folder.
 - The documentation.
 
-=====================
 FRONTEND INFORMATION:
 =====================
 
