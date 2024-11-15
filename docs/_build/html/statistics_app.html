@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>statistics_app package &#8212; Coderr 0.9 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=049aceee"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="statistics-app-package">
+<h1>statistics_app package<a class="headerlink" href="#statistics-app-package" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics_app.migrations.html">statistics_app.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statistics_app.migrations.html#module-statistics_app.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-statistics_app.admin">
+<span id="statistics-app-admin-module"></span><h2>statistics_app.admin module<a class="headerlink" href="#module-statistics_app.admin" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-statistics_app.apps">
+<span id="statistics-app-apps-module"></span><h2>statistics_app.apps module<a class="headerlink" href="#module-statistics_app.apps" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="statistics_app.apps.StatisticsAppConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">statistics_app.apps.</span></span><span class="sig-name descname"><span class="pre">StatisticsAppConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.apps.StatisticsAppConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="statistics_app.apps.StatisticsAppConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#statistics_app.apps.StatisticsAppConfig.default_auto_field" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="statistics_app.apps.StatisticsAppConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'statistics_app'</span></em><a class="headerlink" href="#statistics_app.apps.StatisticsAppConfig.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-statistics_app.tests">
+<span id="statistics-app-tests-module"></span><h2>statistics_app.tests module<a class="headerlink" href="#module-statistics_app.tests" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="statistics_app.tests.BaseInfoTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">statistics_app.tests.</span></span><span class="sig-name descname"><span class="pre">BaseInfoTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.BaseInfoTests" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<p>Tests for retrieving basic information about reviews, including the average rating.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.BaseInfoTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.BaseInfoTests.setUp" title="Link to this definition">¶</a></dt>
+<dd><p>Extends the setup from <cite>General</cite>, creating an additional customer review instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.BaseInfoTests.test_get_review_list_ok">
+<span class="sig-name descname"><span class="pre">test_get_review_list_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.BaseInfoTests.test_get_review_list_ok" title="Link to this definition">¶</a></dt>
+<dd><p>Tests successful retrieval of review list with calculated average rating.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>200 OK status.</p></li>
+<li><p>The calculated average rating matches the expected value, formatted to 1 decimal place.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="statistics_app.tests.CompletedOrderCountTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">statistics_app.tests.</span></span><span class="sig-name descname"><span class="pre">CompletedOrderCountTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.CompletedOrderCountTests" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<p>Tests for retrieving the count of completed orders for a specific business user.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.CompletedOrderCountTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.CompletedOrderCountTests.setUp" title="Link to this definition">¶</a></dt>
+<dd><p>Extends the setup from <cite>General</cite> to prepare completed order count testing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.CompletedOrderCountTests.test_get_order_count_detail_ok">
+<span class="sig-name descname"><span class="pre">test_get_order_count_detail_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.CompletedOrderCountTests.test_get_order_count_detail_ok" title="Link to this definition">¶</a></dt>
+<dd><p>Tests successful retrieval of the completed order count for a business user.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>200 OK status.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.CompletedOrderCountTests.test_get_order_count_detail_user_not_found">
+<span class="sig-name descname"><span class="pre">test_get_order_count_detail_user_not_found</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.CompletedOrderCountTests.test_get_order_count_detail_user_not_found" title="Link to this definition">¶</a></dt>
+<dd><p>Tests response when requesting completed order count for a non-existent user.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>404 Not Found status.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="statistics_app.tests.General">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">statistics_app.tests.</span></span><span class="sig-name descname"><span class="pre">General</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.General" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<p>General setup class to prepare necessary data across different test classes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.General.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.General.setUp" title="Link to this definition">¶</a></dt>
+<dd><p>Inherits offers tests general setup.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="statistics_app.tests.OrderCountTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">statistics_app.tests.</span></span><span class="sig-name descname"><span class="pre">OrderCountTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.OrderCountTests" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<p>Tests for retrieving the total count of active orders associated with a business user.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.OrderCountTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.OrderCountTests.setUp" title="Link to this definition">¶</a></dt>
+<dd><p>Sets up the test environment by extending setup from the <cite>General</cite> class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.OrderCountTests.test_get_order_count_detail_ok">
+<span class="sig-name descname"><span class="pre">test_get_order_count_detail_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.OrderCountTests.test_get_order_count_detail_ok" title="Link to this definition">¶</a></dt>
+<dd><p>Tests successful retrieval of the order count for a specific business user.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>200 OK status.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="statistics_app.tests.OrderCountTests.test_get_order_count_detail_user_not_found">
+<span class="sig-name descname"><span class="pre">test_get_order_count_detail_user_not_found</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.tests.OrderCountTests.test_get_order_count_detail_user_not_found" title="Link to this definition">¶</a></dt>
+<dd><p>Tests response when requesting order count for a non-existent user.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>404 Not Found status.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-statistics_app.utils">
+<span id="statistics-app-utils-module"></span><h2>statistics_app.utils module<a class="headerlink" href="#module-statistics_app.utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="statistics_app.utils.get_business_user_orders">
+<span class="sig-prename descclassname"><span class="pre">statistics_app.utils.</span></span><span class="sig-name descname"><span class="pre">get_business_user_orders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#statistics_app.utils.get_business_user_orders" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves all orders associated with a business profile for a given user.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>user_id (int): The ID of the user whose business orders are being retrieved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-statistics_app">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-statistics_app" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Coderr</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Bengt Früchtenicht.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/statistics_app.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
