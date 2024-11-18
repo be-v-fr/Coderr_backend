@@ -38,23 +38,21 @@ class PostAsBusinessUser(permissions.BasePermission):
         has_permission(request, view): Checks if the request user has a BusinessProfile and is making a POST request.
     """
     def has_permission(self, request, view):
-        if request.method == 'POST':
-            try:
-                profile = BusinessProfile.objects.get(user=request.user.pk)
-                return True
-            except BusinessProfile.DoesNotExist:
-                return False
-        else:
-            return False
+        if (
+            request.method == 'POST'
+            and request.user.is_authenticated
+            and BusinessProfile.objects.filter(user=request.user.pk).exists()
+        ):
+            return True
+        return False
 
 class PostAsCustomerUser(permissions.BasePermission):
     
     def has_permission(self, request, view):
-        if request.method == 'POST':
-            try:
-                profile = CustomerProfile.objects.get(user=request.user.pk)
-                return True
-            except BusinessProfile.DoesNotExist:
-                return False
-        else:
-            return False
+        if (
+            request.method == 'POST'
+            and request.user.is_authenticated
+            and CustomerProfile.objects.filter(user=request.user.pk).exists()
+        ):
+            return True
+        return False
