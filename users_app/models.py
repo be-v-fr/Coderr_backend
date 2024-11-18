@@ -51,7 +51,7 @@ class BusinessProfile(AbstractUserProfile):
     """
     TYPE = 'business'
     user = get_user_field(related_name='business_profile')
-    location = models.CharField(max_length=32, default=None, blank=True, null=True)
-    description = models.CharField(max_length=1024, default=None, blank=True, null=True)
-    working_hours = models.CharField(max_length=32, default=None, blank=True, null=True)
-    tel = models.CharField(max_length=32, default=None, blank=True, null=True)
+    location = models.CharField(max_length=32, default='', blank=True, null=True)
+    description = models.CharField(max_length=1024, default='', blank=True, null=True)
+    working_hours = models.CharField(max_length=32, default='', blank=True, null=True)
+    tel = models.CharField(max_length=32, default='', blank=True, null=True)
