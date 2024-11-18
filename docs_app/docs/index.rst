@@ -16,10 +16,10 @@ documentation for details.
    :caption: Contents:
 
    coderr_backend
-   content_app
-   fill_db
-   manage
-   statistics_app
    uploads_app
    users_app
+   content_app
+   statistics_app
    docs_app
+   fill_db
+   manage
