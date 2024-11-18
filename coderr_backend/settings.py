@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'users_app',
     'content_app',
     'statistics_app',
+    'docs_app',
 ]
 
 MIDDLEWARE = [

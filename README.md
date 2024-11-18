@@ -42,7 +42,8 @@ When accessing the URLs via browser, the default Django REST Framework interface
 DOCUMENTATION:
 ==============
 
-To access the documentation, load "docs/_build/index.html" in your browser.
+To access the documentation, load the "docs" route in your browser.
+You can also use your IDE to host "docs_app/docs/_build/index.html" via a non-Django live server.
 The documentation has been auto-generated from comments inside the Python files.
 
 DATA STRUCTURE:
