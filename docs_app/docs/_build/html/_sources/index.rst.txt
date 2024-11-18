@@ -22,3 +22,4 @@ documentation for details.
    statistics_app
    uploads_app
    users_app
+   docs_app
