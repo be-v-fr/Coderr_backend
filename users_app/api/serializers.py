@@ -8,7 +8,7 @@ from users_app.utils.auth import split_username, get_auth_response_data
 
 USER_NAME_FIELDS = ['username', 'first_name', 'last_name']
 USER_FIELDS = USER_NAME_FIELDS + ['email']
-PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file']
+PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file', 'uploaded_at']
 BUSINESS_EXTRA_FIELDS = ['location', 'description', 'working_hours', 'tel']
 
 class LoginSerializer(serializers.Serializer):
@@ -164,6 +164,7 @@ class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer()
     type = serializers.CharField(source='TYPE', read_only=True)
     file = serializers.SerializerMethodField()
+    uploaded_at = serializers.SerializerMethodField()
     
     class Meta:
         """
@@ -174,6 +175,9 @@ class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
     
     def get_file(self, obj):
         return obj.file.file if obj.file else None
+
+    def get_uploaded_at(self, obj):
+        return obj.file.uploaded_at if obj.file else None
 
 class CustomerProfileListSerializer(BaseProfileListSerializer):
     """
