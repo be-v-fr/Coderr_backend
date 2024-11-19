@@ -20,8 +20,12 @@ class ProfilePermission(permissions.BasePermission):
     Allows safe method access, and permits PATCH if the user is the owner or has staff status.
 
     Methods:
+        has_permission(request, view): Always returns True to handle permission through the 'has_object_permission' method.
         has_object_permission(request, view, obj): Checks object-level permissions based on the request method.
     """
+    def has_permission(self, request, view):
+        return True
+    
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True

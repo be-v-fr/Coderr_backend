@@ -246,15 +246,26 @@ class ProfileTests(APITestCase):
         """
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.customer_token.key)
         new_username = 'customerpatch'
-        data = {
-            'username': new_username,
-        }
+        data = { 'username': new_username }
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
         response = self.client.patch(url, data, format="json")
         expected_data = CustomerProfileDetailSerializer(self.customer_profile).data
         expected_data['username'] = new_username
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
+        
+    def test_patch_foreign_profile_detail_forbidden(self):
+        """
+        Tests updating a foreign user profile.
+
+        Asserts:
+            403 Forbidden status.
+        """
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.customer_token.key)
+        data = { 'username': 'patch' }
+        url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
+        response = self.client.patch(url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         
     def test_patch_business_profile_detail_ok(self):
         """

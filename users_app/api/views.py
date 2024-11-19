@@ -71,6 +71,7 @@ class ProfileView(APIView):
         Updates the user's profile and handles file uploads.
         """
         profile = get_profile(user_pk=pk)
+        self.check_object_permissions(request, profile)
         upload_error = handle_file_update(obj=profile, data_dict=request.data, file_key='file')
         if upload_error:
             return Response(upload_error, status=status.HTTP_400_BAD_REQUEST)
