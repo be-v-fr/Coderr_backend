@@ -21,7 +21,7 @@ class OfferDetailsSerializer(serializers.HyperlinkedModelSerializer):
     )
     offer_id = serializers.IntegerField(write_only=True, required=False)
     offer_type = serializers.CharField(max_length=16, required=True)
-    price = serializers.FloatField(required=True)
+    price = serializers.CharField(max_length=8, required=True)
 
     class Meta:
         model = OfferDetails

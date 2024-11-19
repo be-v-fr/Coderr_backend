@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
-from coderr_backend.utils import format_number
 from users_app.models import BusinessProfile, CustomerProfile
 from uploads_app.models import FileUpload
 from content_app.utils.general import features_list_to_str, get_features_list_from_str
@@ -68,7 +67,7 @@ class OfferDetails(models.Model):
         """
         Returns the price with two decimals in a dollar/euro format.
         """
-        return format_number(self.price_cents / 100, 2)
+        return f"{self.price_cents / 100:.2f}"
 
     @price.setter
     def price(self, value):
@@ -134,7 +133,7 @@ class Order(models.Model):
     offer_details = models.ForeignKey(OfferDetails, on_delete=models.SET_NULL, related_name='orders', default=None, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    price = models.CharField(max_length=8, default=None, blank=True, null=True)
+    price = models.FloatField(default=None, blank=True, null=True)
     features = models.CharField(max_length=255, blank=True, default='')
     revisions = models.IntegerField(validators=[MinValueValidator(-1)], default=None, blank=True, null=True)
     delivery_time_in_days = models.PositiveIntegerField(default=None, blank=True, null=True)

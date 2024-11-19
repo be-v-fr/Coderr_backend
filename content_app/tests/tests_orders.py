@@ -90,6 +90,7 @@ class OrderTests(APITestCase):
             - Response data matches serialized order data.
             - 'offer_type' field is present in response.
             - 'offer_detail_id' and 'offer_details' fields are absent in response.
+            - 'price' is in float format
         """
         url = reverse('order-detail', kwargs={'pk': self.order.pk})
         response = self.client.get(url)
@@ -99,6 +100,7 @@ class OrderTests(APITestCase):
         self.assertIn('offer_type', response.data)
         self.assertNotIn('offer_detail_id', response.data)
         self.assertNotIn('offer_details', response.data)
+        self.assertIsInstance(response.data['price'], float)
         
     def test_patch_order_detail_ok(self):
         """

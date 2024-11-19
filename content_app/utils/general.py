@@ -142,7 +142,7 @@ def get_order_create_dict(current_user, offer_details):
         'business_profile': offer_details.offer.business_profile,
         'title': offer_details.offer.title,
         'offer_details': offer_details,
-        'price': offer_details.price,
+        'price': float(offer_details.price),
         'features': offer_details.features,
         'revisions': offer_details.revisions,
         'delivery_time_in_days': offer_details.delivery_time_in_days,

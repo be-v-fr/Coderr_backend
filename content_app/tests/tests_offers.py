@@ -70,12 +70,14 @@ class OfferDetailsTests(APITestCase):
         Asserts:
             - 200 OK status.
             - 'url' key not present in response data.
+            - 'price' is in string format
         """
         url = reverse('offerdetails-detail', kwargs={'pk': self.details_standard.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertNotIn('url', response.data)
+        self.assertIsInstance(response.data['price'], str)
         
 class OfferTests(APITestCase):
     """

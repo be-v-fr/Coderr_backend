@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from coderr_backend.utils import format_number
 from users_app.models import BusinessProfile, CustomerProfile
 from users_app.api.serializers import UserDetailsSerializer
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
