@@ -40,7 +40,7 @@ class OfferDetailsTests(APITestCase):
     """
     CREATE_DATA = {
         'title': 'detailstest',
-        'price': '100.00',
+        'price': 100.00,
         'features': ['feature1', 'feature2'],
         'revisions': 4,
         'delivery_time_in_days': 6,                

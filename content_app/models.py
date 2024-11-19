@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
+from coderr_backend.utils import format_number
 from users_app.models import BusinessProfile, CustomerProfile
 from uploads_app.models import FileUpload
 from content_app.utils.general import features_list_to_str, get_features_list_from_str
@@ -67,15 +68,12 @@ class OfferDetails(models.Model):
         """
         Returns the price with two decimals in a dollar/euro format.
         """
-        return f"{self.price_cents / 100:.2f}"
+        return format_number(self.price_cents / 100, 2)
 
     @price.setter
     def price(self, value):
         """
         Sets the price in cents from a dollar/euro format.
-
-        Args:
-            value (float): Price in dollars.
         """
         self.price_cents = int(float(value) * 100)
     

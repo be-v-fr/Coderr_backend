@@ -1,5 +1,6 @@
 from django.db.models import Avg
 from rest_framework import serializers
+from coderr_backend.utils import format_number
 from users_app.models import BusinessProfile
 from content_app.models import Offer, CustomerReview
 
@@ -24,7 +25,7 @@ class BaseInfoSerializer(serializers.Serializer):
 
     def get_average_rating(self, obj):
         average = CustomerReview.objects.aggregate(Avg('rating'))['rating__avg']
-        return f"{average:.1f}" if average is not None else '-'
+        return format_number(average, 1) if average is not None else '-'
 
     def get_business_profile_count(self, obj):
         return BusinessProfile.objects.count()

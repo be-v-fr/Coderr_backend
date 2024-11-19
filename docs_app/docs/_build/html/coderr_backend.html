@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="content_app package" href="content_app.html" />
+    <link rel="next" title="uploads_app package" href="uploads_app.html" />
     <link rel="prev" title="Coderr documentation" href="index.html" /> 
 </head>
 
@@ -50,6 +50,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-coderr_backend.settings">coderr_backend.settings module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-coderr_backend.urls">coderr_backend.urls module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-coderr_backend.utils">coderr_backend.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#coderr_backend.utils.format_number"><code class="docutils literal notranslate"><span class="pre">format_number()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#coderr_backend.utils.reverse_with_queryparams"><code class="docutils literal notranslate"><span class="pre">reverse_with_queryparams()</span></code></a></li>
 </ul>
 </li>
@@ -57,12 +58,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-coderr_backend">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="content_app.html">content_app package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fill_db.html">fill_db module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics_app.html">statistics_app package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uploads_app.html">uploads_app package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="users_app.html">users_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_app.html">content_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics_app.html">statistics_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs_app.html">docs_app package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fill_db.html">fill_db module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a></li>
 </ul>
 
         </div>
@@ -116,9 +118,18 @@
 <section id="module-coderr_backend.utils">
 <span id="coderr-backend-utils-module"></span><h2>coderr_backend.utils module<a class="headerlink" href="#module-coderr_backend.utils" title="Link to this heading"></a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="coderr_backend.utils.format_number">
+<span class="sig-prename descclassname"><span class="pre">coderr_backend.utils.</span></span><span class="sig-name descname"><span class="pre">format_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal_places</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coderr_backend.utils.format_number" title="Link to this definition"></a></dt>
+<dd><p>Formats number using a given number of decimal places.
+If the number itself has less decimal places, only one decimal place will show
+(e.g. ‘format_number(7, 2)’ returns ‘7.0’ rather than ‘7.00’).</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="coderr_backend.utils.reverse_with_queryparams">
-<span class="sig-prename descclassname"><span class="pre">coderr_backend.utils.</span></span><span class="sig-name descname"><span class="pre">reverse_with_queryparams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coderr_backend.utils.reverse_with_queryparams" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">coderr_backend.utils.</span></span><span class="sig-name descname"><span class="pre">reverse_with_queryparams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coderr_backend.utils.reverse_with_queryparams" title="Link to this definition"></a></dt>
+<dd><p>Retrieves an API view URL combined with query parameters.</p>
+</dd></dl>
 
 </section>
 <section id="module-coderr_backend.wsgi">
@@ -138,7 +149,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Coderr documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="content_app.html" class="btn btn-neutral float-right" title="content_app package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="uploads_app.html" class="btn btn-neutral float-right" title="uploads_app package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

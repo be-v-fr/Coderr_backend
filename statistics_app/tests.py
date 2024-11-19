@@ -43,7 +43,7 @@ class BaseInfoTests(APITestCase):
         response = self.client.get(url)
         average_rating = (self.review.rating + self.scnd_review.rating) / 2
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['average_rating'], f"{average_rating:.1f}")
+        self.assertEqual(response.data['average_rating'], average_rating)
         
 class OrderCountTests(APITestCase):
     """
