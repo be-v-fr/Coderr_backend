@@ -195,6 +195,7 @@ class ProfileTests(APITestCase):
         url = reverse('profile-detail', kwargs={"pk": self.customer_user.id})
         response = self.client.get(url)
         expected_data = CustomerProfileDetailSerializer(self.customer_profile).data
+        expected_data.update(file=None, uploaded_at=None)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
@@ -209,6 +210,7 @@ class ProfileTests(APITestCase):
         url = reverse('profile-detail', kwargs={"pk": self.business_user.id})
         response = self.client.get(url)
         expected_data = BusinessProfileDetailSerializer(self.business_profile).data
+        expected_data.update(file=None, uploaded_at=None)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_data)
         
@@ -295,10 +297,15 @@ class ProfileTests(APITestCase):
 
         Asserts:
             200 OK status.
+            'file' key is in each list item.
+            'uploaded_at' key is in no list item.
         """
         url = reverse('customer-list')
         response = self.client.get(url)    
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        for profile in response.data:
+            self.assertIn('file', profile)
+            self.assertNotIn('uploaded_at', profile)
         
     def test_get_business_profile_list_ok(self):
         """
@@ -306,7 +313,12 @@ class ProfileTests(APITestCase):
 
         Asserts:
             200 OK status.
+            'file' key is in each list item.
+            'uploaded_at' key is in no list item.
         """
         url = reverse('business-list')
         response = self.client.get(url)    
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        for profile in response.data:
+            self.assertIn('file', profile)
+            self.assertNotIn('uploaded_at', profile)

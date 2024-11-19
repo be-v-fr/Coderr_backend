@@ -129,12 +129,15 @@ class OfferTests(APITestCase):
         Asserts:
             - 200 OK status.
             - Presence of pagination keys in response data.
+            - Image key exists in results but is None.
         """
         url = reverse('offer-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        for key in ('count', 'next', 'previous'):
+        for key in ('count', 'next', 'previous', 'results'):
             self.assertIn(key, response.data)
+        for result in response.data['results']:
+            self.assertEqual(result['image'], None)
         
     def test_get_offer_list_filter_ok(self):
         """
@@ -158,11 +161,13 @@ class OfferTests(APITestCase):
         Asserts:
             - 201 Created status.
             - Three details are included in the created offer.
+            - Image key exists in results but is None.
         """
         url = reverse('offer-list')
         response = self.client.post(url, self.CREATE_DATA, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(len(response.data['details']), 3)
+        self.assertEqual(response.data['image'], None)
         
     def test_post_offer_list_double_title_unique_constraint(self):
         """

@@ -7,7 +7,7 @@ from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfi
 from users_app.utils.auth import split_username, get_auth_response_data
 
 USER_FIELDS = ['username', 'first_name', 'last_name', 'email']
-PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file', 'uploaded_at']
+PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file']
 BUSINESS_EXTRA_FIELDS = ['location', 'description', 'working_hours', 'tel']
 
 class LoginSerializer(serializers.Serializer):
@@ -103,15 +103,18 @@ class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
     last_name = serializers.CharField(source='user.last_name', read_only=True)
     email = serializers.EmailField(source='user.email', read_only=True)
     type = serializers.CharField(source='TYPE', read_only=True)
-    file = serializers.FileField(source='file.file', read_only=True)
+    file = serializers.SerializerMethodField()
     uploaded_at = serializers.SerializerMethodField()
     
     class Meta:
         """
-        fields: The primary key (named "user"), the user fields and the additional fields from the user profile model.
+        fields: The primary key (named 'user'), the user fields and the additional fields from the user profile model.
         """
         model = AbstractUserProfile
-        fields = ['user'] + USER_FIELDS + PROFILE_EXTRA_FIELDS
+        fields = ['user'] + USER_FIELDS + PROFILE_EXTRA_FIELDS + ['uploaded_at']
+        
+    def get_file(self, obj):
+        return obj.file.file if obj.file else None
     
     def get_uploaded_at(self, obj):
         return obj.file.uploaded_at if obj.file else None
@@ -148,8 +151,7 @@ class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
     """
     user = UserSerializer()
     type = serializers.CharField(source='TYPE', read_only=True)
-    file = serializers.FileField(source='file.file', read_only=True)
-    uploaded_at = serializers.SerializerMethodField()
+    file = serializers.SerializerMethodField()
     
     class Meta:
         """
@@ -158,8 +160,8 @@ class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
         model = AbstractUserProfile
         fields = ['user'] + PROFILE_EXTRA_FIELDS
     
-    def get_uploaded_at(self, obj):
-        return obj.file.uploaded_at if obj.file else None
+    def get_file(self, obj):
+        return obj.file.file if obj.file else None
 
 class CustomerProfileListSerializer(BaseProfileListSerializer):
     """

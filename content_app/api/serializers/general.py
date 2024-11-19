@@ -22,7 +22,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     details = OfferDetailsSerializer(many=True)
     min_price = serializers.SerializerMethodField()
     min_delivery_time = serializers.SerializerMethodField()
-    image = serializers.FileField(source='file.file', read_only=True)
+    image = serializers.SerializerMethodField()
         
     class Meta:
         model = Offer
@@ -43,6 +43,9 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     
     def get_min_delivery_time(self, obj):
         return obj.details.order_by('delivery_time_in_days').first().delivery_time_in_days if obj.details.exists() else None
+    
+    def get_image(self, obj):
+        return obj.file.file if obj.file else None
     
     def validate_details(self, value):
         """
