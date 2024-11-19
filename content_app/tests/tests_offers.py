@@ -129,7 +129,8 @@ class OfferTests(APITestCase):
         Asserts:
             - 200 OK status.
             - Presence of pagination keys in response data.
-            - Image key exists in results but is None.
+            - 'image' key exists in results but is None.
+            - 'user_details' fields exist nested in results.
         """
         url = reverse('offer-list')
         response = self.client.get(url)
@@ -138,6 +139,8 @@ class OfferTests(APITestCase):
             self.assertIn(key, response.data)
         for result in response.data['results']:
             self.assertEqual(result['image'], None)
+            for key in ('username', 'first_name', 'last_name'):
+                self.assertIn(key, result['user_details'])
         
     def test_get_offer_list_filter_ok(self):
         """
@@ -162,12 +165,14 @@ class OfferTests(APITestCase):
             - 201 Created status.
             - Three details are included in the created offer.
             - Image key exists in results but is None.
+            - 'user_details' key is not in response data.
         """
         url = reverse('offer-list')
         response = self.client.post(url, self.CREATE_DATA, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(len(response.data['details']), 3)
         self.assertEqual(response.data['image'], None)
+        self.assertNotIn('user_details', response.data)
         
     def test_post_offer_list_double_title_unique_constraint(self):
         """
@@ -202,10 +207,13 @@ class OfferTests(APITestCase):
         
         Asserts:
             - 200 OK status.
+            - 'user_details' fields exist nested in response data.
         """
         url = reverse('offer-detail', kwargs={'pk': self.offer.pk})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        for key in ('username', 'first_name', 'last_name'):
+            self.assertIn(key, response.data['user_details'])
         
     def test_patch_offer_detail_ok(self):
         """
@@ -214,6 +222,7 @@ class OfferTests(APITestCase):
         Asserts:
             - 200 OK status.
             - Title and features are updated in the database.
+            - 'user_details' fields exist nested in response data.
         """
         url = reverse('offer-detail', kwargs={'pk': self.offer.pk})
         response = self.client.patch(url, self.PATCH_DATA, format='json')
@@ -223,6 +232,8 @@ class OfferTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(self.offer.title, self.PATCH_DATA['title'])
         self.assertEqual(updated_features, expected_features)
+        for key in ('username', 'first_name', 'last_name'):
+            self.assertIn(key, response.data['user_details'])
         
     def test_patch_offer_detail_double_title_unique_constraint(self):
         """

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from users_app.models import BusinessProfile, CustomerProfile
+from users_app.api.serializers import UserDetailsSerializer
 from content_app.models import Offer, OfferDetails, Order, CustomerReview
 from content_app.api.serializers.offer_details import OfferDetailsSerializer
 from content_app.utils.general import get_order_create_dict
@@ -23,15 +24,20 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
     min_price = serializers.SerializerMethodField()
     min_delivery_time = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
+    user_details = UserDetailsSerializer(source='business_profile.user', read_only=True)
         
     class Meta:
         model = Offer
-        fields = ['id', 'user', 'title', 'description', 'image', 'created_at', 'updated_at', 'details', 'min_price', 'min_delivery_time']
+        fields = ['id', 'user', 'title', 'description', 'image', 'created_at', 'updated_at', 'details', 'min_price', 'min_delivery_time', 'user_details']
         
     def to_representation(self, instance):
         """
+        Removes 'user_details' field from POST response.
         Updates context for details serializer with the current context.
         """
+        request = self.context.get('request', None)
+        if request and request.method == 'POST':
+            self.fields.pop('user_details')
         self.fields['details'].context.update(self.context)
         return super().to_representation(instance)
         

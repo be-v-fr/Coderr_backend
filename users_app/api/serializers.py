@@ -6,7 +6,8 @@ from rest_framework.authtoken.models import Token
 from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
 from users_app.utils.auth import split_username, get_auth_response_data
 
-USER_FIELDS = ['username', 'first_name', 'last_name', 'email']
+USER_NAME_FIELDS = ['username', 'first_name', 'last_name']
+USER_FIELDS = USER_NAME_FIELDS + ['email']
 PROFILE_EXTRA_FIELDS = ['type', 'created_at', 'file']
 BUSINESS_EXTRA_FIELDS = ['location', 'description', 'working_hours', 'tel']
 
@@ -74,6 +75,17 @@ class RegistrationSerializer(LoginSerializer):
             BusinessProfile.objects.create(user=created_user)
         token = Token.objects.create(user=created_user)
         return get_auth_response_data(user=created_user, token=token)
+    
+class UserDetailsSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for user names.
+    """  
+    class Meta:
+        """
+        fields: User name fields including 'username', 'first_name' and 'last_name'.
+        """
+        model = User
+        fields = USER_NAME_FIELDS    
     
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     """
