@@ -17,18 +17,25 @@ class LoginSerializer(serializers.Serializer):
     Fields:
         username: The user's username.
         password: The user's password, write-only.
+        
+    Methods:
+        validate(attrs): Validates user data using the Django 'authenticate' method.
+        create(validated_data): Creates a new user and associated profile based on type.
     """
     username = serializers.CharField(max_length=63)
     password = serializers.CharField(max_length=63, write_only=True)
     
+    def validate(self, attrs):
+        user = authenticate(**attrs)
+        if not user:
+            raise serializers.ValidationError('Invalid credentials.')            
+        return attrs
+    
     def create(self, validated_data):
         validated_data['username'] = validated_data['username'].replace(" ", "_")
-        user = authenticate(**validated_data)
-        if user:
-            token, created = Token.objects.get_or_create(user=user)
-            return get_auth_response_data(user=user, token=token)              
-        else:
-            raise serializers.ValidationError('Invalid credentials.')
+        user = User.objects.get(username=validated_data['username'])
+        token, created = Token.objects.get_or_create(user=user)
+        return get_auth_response_data(user=user, token=token)              
 
 class RegistrationSerializer(LoginSerializer):
     """
