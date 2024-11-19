@@ -147,6 +147,7 @@ Configures the client with an authorization token for the business user.</p>
 <dt>Asserts:</dt><dd><ul class="simple">
 <li><p>200 OK status.</p></li>
 <li><p>‘url’ key not present in response data.</p></li>
+<li><p>‘price’ is in string format</p></li>
 </ul>
 </dd>
 </dl>
@@ -217,6 +218,7 @@ PATCH_DATA (dict): Data for updating offer fields.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><ul class="simple">
 <li><p>200 OK status.</p></li>
+<li><p>‘user_details’ fields exist nested in response data.</p></li>
 </ul>
 </dd>
 </dl>
@@ -243,7 +245,8 @@ PATCH_DATA (dict): Data for updating offer fields.</p>
 <dt>Asserts:</dt><dd><ul class="simple">
 <li><p>200 OK status.</p></li>
 <li><p>Presence of pagination keys in response data.</p></li>
-<li><p>Image key exists in results but is None.</p></li>
+<li><p>‘image’ key exists in results but is None.</p></li>
+<li><p>‘user_details’ fields exist nested in results.</p></li>
 </ul>
 </dd>
 </dl>
@@ -294,6 +297,7 @@ PATCH_DATA (dict): Data for updating offer fields.</p>
 <dt>Asserts:</dt><dd><ul class="simple">
 <li><p>200 OK status.</p></li>
 <li><p>Title and features are updated in the database.</p></li>
+<li><p>‘user_details’ fields exist nested in response data.</p></li>
 </ul>
 </dd>
 </dl>
@@ -333,6 +337,7 @@ PATCH_DATA (dict): Data for updating offer fields.</p>
 <li><p>201 Created status.</p></li>
 <li><p>Three details are included in the created offer.</p></li>
 <li><p>Image key exists in results but is None.</p></li>
+<li><p>‘user_details’ key is not in response data.</p></li>
 </ul>
 </dd>
 </dl>
@@ -402,6 +407,7 @@ Also configures the client with an authorization token for the customer user.</p
 <li><p>Response data matches serialized order data.</p></li>
 <li><p>‘offer_type’ field is present in response.</p></li>
 <li><p>‘offer_detail_id’ and ‘offer_details’ fields are absent in response.</p></li>
+<li><p>‘price’ is in float format</p></li>
 </ul>
 </dd>
 </dl>
