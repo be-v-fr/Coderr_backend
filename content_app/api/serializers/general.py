@@ -46,7 +46,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         return obj.business_profile.user.pk
     
     def get_min_price(self, obj):
-        return obj.details.order_by('price_cents').first().price if obj.details.exists() else None
+        return float(obj.details.order_by('price_cents').first().price) if obj.details.exists() else None
     
     def get_min_delivery_time(self, obj):
         return obj.details.order_by('delivery_time_in_days').first().delivery_time_in_days if obj.details.exists() else None
