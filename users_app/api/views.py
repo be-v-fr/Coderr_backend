@@ -110,10 +110,8 @@ class ActivateAccount(APIView):
         """
         Executes the password reset logic.
         """
-        global users_changed
         serializer = AccountActivationSerializer(data=request.data)
         if serializer.is_valid():
             response_data = serializer.save()
-            users_changed = True
             return Response(response_data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
