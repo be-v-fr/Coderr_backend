@@ -3,9 +3,13 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.authtoken.models import Token
-from .models import CustomerProfile, BusinessProfile
+from .models import CustomerProfile, BusinessProfile, AccountActivation, AccountActivationTokenGenerator
 from .api.serializers import CustomerProfileDetailSerializer, BusinessProfileDetailSerializer
 import copy
+from datetime import timedelta
+import os
+
+os.environ.setdefault('FRONTEND_BASE_URL', 'http://localhost:5500/')
 
 CUSTOMER_USER_DATA = {
     'username': 'customer_user',
@@ -97,15 +101,13 @@ class AuthTests(APITestCase):
         
         Asserts:
             201 Created status.
-            Valid customer profile association.
-            Presence of required fields in response data.
+            No user information in response data.
         """
         url = reverse('registration')
         response = self.client.post(url, self.AUTH_DATA, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data['user_id'], CustomerProfile.objects.get(user=response.data['user_id']).user.pk)
         for key in ('token', 'username', 'email'):
-            self.assertIn(key, response.data)
+            self.assertNotIn(key, response.data)
         
     def test_registration_weak_password_bad_request(self):
         """
@@ -173,6 +175,89 @@ class AuthTests(APITestCase):
         url = reverse('registration')
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+class AccountActivationTests(APITestCase):
+    """
+    Account activation test class testing account activation after user signup.
+    """
+    def setUp(self):
+        """
+        Setup method extending authentication setup by setting user activity and generating activation objects.
+        """
+        General.setUp(self)
+        self.customer_user.is_active = False
+        self.customer_user.save()
+        self.activation_token = AccountActivationTokenGenerator().make_token(self.customer_user)
+        self.activation_obj = AccountActivation.objects.create(user=self.customer_user, token=self.activation_token)
+        
+    def test_activate_ok(self):
+        """
+        Tests successful account activation, using an existing token.
+        
+        Asserts:
+            - 200 OK status.
+            - AccountActivation instance (containing the token) was deleted.
+        """
+        data = {
+            'token': self.activation_token,
+        }
+        url = reverse('activate-account')
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertFalse(AccountActivation.objects.filter(user=self.customer_user).exists())
+    
+    def test_activate_double_token_ok(self):
+        """
+        Tests successful account activation, using a double existing token.
+        
+        Asserts:
+            - 200 OK status.
+            - AccountActivation instance (containing the token) was deleted.
+        """
+        self.scnd_activation_obj = AccountActivation.objects.create(user=self.customer_user, token=self.activation_token + 'a')        
+        data = {
+            'token': self.activation_token,
+        }
+        url = reverse('activate-account')
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertFalse(AccountActivation.objects.filter(user=self.customer_user).exists())
+        
+    def test_activate_invalid_token_bad_request(self):
+        """
+        Tests failing account activation, using an invalid token.
+        
+        Asserts:
+            - 400 Bad request status.
+            - "token" key is in response.
+        """
+        data = {
+            'token': '123456789abcdefg',
+        }
+        url = reverse('activate-account')
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('token', response.data)
+        
+    def test_activate_expired_token_bad_request(self):
+        """
+        Tests failing account activation, using an expired token.
+        
+        Asserts:
+            - 400 Bad request status.
+            - "token" key is in response.
+            - Token was deleted.
+        """
+        self.activation_obj.created_at -= timedelta(hours=25)
+        self.activation_obj.save()
+        data = {
+            'token': self.activation_token,
+        }
+        url = reverse('activate-account')
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('token', response.data)
+        self.assertFalse(AccountActivation.objects.filter(user=self.customer_user).exists())
 
 class ProfileTests(APITestCase):
     """

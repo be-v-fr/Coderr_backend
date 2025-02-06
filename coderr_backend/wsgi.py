@@ -12,5 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coderr_backend.settings')
+# os.environ.setdefault('FRONTEND_BASE_URL', 'https://coderr.bengt-fruechtenicht.de')
+os.environ.setdefault('FRONTEND_BASE_URL', 'http://localhost:5500/')
 
 application = get_wsgi_application()

@@ -5,7 +5,7 @@ from uploads_app.utils import handle_file_update
 from users_app.utils.views import update_profile_w_user
 from users_app.utils.profiles import get_profile, get_profile_serializer
 from users_app.models import CustomerProfile, BusinessProfile
-from .serializers import LoginSerializer, RegistrationSerializer, CustomerProfileListSerializer, BusinessProfileListSerializer
+from .serializers import LoginSerializer, RegistrationSerializer, CustomerProfileListSerializer, BusinessProfileListSerializer, AccountActivationSerializer
 from .permissions import ProfilePermission, ReadOnly
 
 class LoginView(APIView):
@@ -98,3 +98,22 @@ class BusinessProfileViewSet(generics.ListAPIView):
     queryset = BusinessProfile.objects.all()
     serializer_class = BusinessProfileListSerializer
     permission_classes = [ReadOnly]
+
+class ActivateAccount(APIView):
+    """
+    Performs account activation and deletes the corresponding account activation object.
+    """
+    authentication_classes = []
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        """
+        Executes the password reset logic.
+        """
+        global users_changed
+        serializer = AccountActivationSerializer(data=request.data)
+        if serializer.is_valid():
+            response_data = serializer.save()
+            users_changed = True
+            return Response(response_data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

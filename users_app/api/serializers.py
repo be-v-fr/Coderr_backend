@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile
+from users_app.models import AbstractUserProfile, CustomerProfile, BusinessProfile, AccountActivation
 from users_app.utils.auth import split_username, get_auth_response_data
 
 USER_NAME_FIELDS = ['username', 'first_name', 'last_name']
@@ -69,12 +69,15 @@ class RegistrationSerializer(LoginSerializer):
         validated_data['username'] = validated_data['username'].replace(" ", "_")
         first_name, last_name = split_username(validated_data['username'])
         created_user = User.objects.create_user(first_name=first_name, last_name=last_name, **validated_data)
+        created_user.is_active = False
+        created_user.save()
         if type == CustomerProfile.TYPE:
             CustomerProfile.objects.create(user=created_user)
         elif type == BusinessProfile.TYPE:
             BusinessProfile.objects.create(user=created_user)
         token = Token.objects.create(user=created_user)
-        return get_auth_response_data(user=created_user, token=token)
+        AccountActivation.create_with_email(user=created_user)
+        return {'success': 'We have sent you a link to activate your account.'}
     
 class UserDetailsSerializer(serializers.HyperlinkedModelSerializer):
     """
@@ -197,3 +200,26 @@ class BusinessProfileListSerializer(BaseProfileListSerializer):
         """
         model = BusinessProfile
         fields = BaseProfileListSerializer.Meta.fields + BUSINESS_EXTRA_FIELDS
+
+class AccountActivationSerializer(serializers.Serializer):
+    """
+    Serializer for performing account activation.
+    """
+    token = serializers.CharField(write_only=True, required=True)
+    
+    def validate_token(self, value):
+        try:
+            activation_obj = AccountActivation.objects.get(token=value)
+        except AccountActivation.DoesNotExist:
+            raise serializers.ValidationError('Invalid token.')
+        if activation_obj.is_token_expired():
+            activation_obj.user.delete()
+            raise serializers.ValidationError('Your token is expired. Please sign up again.')            
+        return value
+        
+    def create(self, validated_data):
+        activation_obj = AccountActivation.objects.get(token=validated_data['token'])
+        activation_obj.user.is_active = True
+        activation_obj.user.save()
+        AccountActivation.delete_all_for_user(user=activation_obj.user)
+        return {'success':'Account activated.'}
