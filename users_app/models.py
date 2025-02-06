@@ -122,6 +122,6 @@ class AccountActivation(UserAction):
         Creates class instance and sends corresponding email to the respective user.
         """
         instance = cls.create_with_token(user, AccountActivationTokenGenerator)
-        activation_url = os.environ['FRONTEND_BASE_URL'] + 'activate/' + instance.token
+        activation_url = os.environ['FRONTEND_BASE_URL'] + '?activate=' + instance.token
         send_account_activation_email(recipient=instance.user.email, activation_url=activation_url)
         return instance

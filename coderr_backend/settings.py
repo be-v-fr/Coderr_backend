@@ -32,6 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'bevifru.pythonanywhere.com'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -39,6 +40,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5500',
     'http://127.0.0.1:4200',
     'http://127.0.0.1:5500',
+    'https://coderr.bengt-fruechtenicht.de'
 ]
 
 
