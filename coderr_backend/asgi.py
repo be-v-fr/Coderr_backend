@@ -12,7 +12,6 @@ import os
 from django.core.asgi import get_asgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coderr_backend.settings')
-# os.environ.setdefault('FRONTEND_BASE_URL', 'https://coderr.bengt-fruechtenicht.de')
-os.environ.setdefault('FRONTEND_BASE_URL', 'http://localhost:5500/')
+os.environ.setdefault('FRONTEND_BASE_URL', 'https://coderr.bengt-fruechtenicht.de')
 
 application = get_asgi_application()
