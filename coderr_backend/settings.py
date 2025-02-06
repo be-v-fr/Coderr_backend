@@ -43,7 +43,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5500',
     'https://coderr.bengt-fruechtenicht.de'
 ]
-
+CORS_ALLOW_METHODS = ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["*"]
 
 # Application definition
 
