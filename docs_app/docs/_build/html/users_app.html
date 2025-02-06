@@ -74,6 +74,21 @@
 <li class="toctree-l4"><a class="reference internal" href="#users_app.models.AbstractUserProfile.user_id"><code class="docutils literal notranslate"><span class="pre">AbstractUserProfile.user_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.models.AccountActivation"><code class="docutils literal notranslate"><span class="pre">AccountActivation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">AccountActivation.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">AccountActivation.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.create_with_email"><code class="docutils literal notranslate"><span class="pre">AccountActivation.create_with_email()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.created_at"><code class="docutils literal notranslate"><span class="pre">AccountActivation.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">AccountActivation.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">AccountActivation.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.id"><code class="docutils literal notranslate"><span class="pre">AccountActivation.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.objects"><code class="docutils literal notranslate"><span class="pre">AccountActivation.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.token"><code class="docutils literal notranslate"><span class="pre">AccountActivation.token</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.user"><code class="docutils literal notranslate"><span class="pre">AccountActivation.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.AccountActivation.user_id"><code class="docutils literal notranslate"><span class="pre">AccountActivation.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.models.AccountActivationTokenGenerator"><code class="docutils literal notranslate"><span class="pre">AccountActivationTokenGenerator</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#users_app.models.BusinessProfile"><code class="docutils literal notranslate"><span class="pre">BusinessProfile</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.DoesNotExist</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#users_app.models.BusinessProfile.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">BusinessProfile.MultipleObjectsReturned</span></code></a></li>
@@ -113,9 +128,30 @@
 <li class="toctree-l4"><a class="reference internal" href="#users_app.models.CustomerProfile.user_id"><code class="docutils literal notranslate"><span class="pre">CustomerProfile.user_id</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.models.UserAction"><code class="docutils literal notranslate"><span class="pre">UserAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.Meta"><code class="docutils literal notranslate"><span class="pre">UserAction.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.create_with_token"><code class="docutils literal notranslate"><span class="pre">UserAction.create_with_token()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.created_at"><code class="docutils literal notranslate"><span class="pre">UserAction.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.delete_all_for_user"><code class="docutils literal notranslate"><span class="pre">UserAction.delete_all_for_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">UserAction.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">UserAction.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.is_token_expired"><code class="docutils literal notranslate"><span class="pre">UserAction.is_token_expired()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.token"><code class="docutils literal notranslate"><span class="pre">UserAction.token</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.user"><code class="docutils literal notranslate"><span class="pre">UserAction.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.models.UserAction.user_id"><code class="docutils literal notranslate"><span class="pre">UserAction.user_id</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-users_app.tests">users_app.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#users_app.tests.AccountActivationTests"><code class="docutils literal notranslate"><span class="pre">AccountActivationTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AccountActivationTests.setUp"><code class="docutils literal notranslate"><span class="pre">AccountActivationTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AccountActivationTests.test_activate_double_token_ok"><code class="docutils literal notranslate"><span class="pre">AccountActivationTests.test_activate_double_token_ok()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AccountActivationTests.test_activate_expired_token_bad_request"><code class="docutils literal notranslate"><span class="pre">AccountActivationTests.test_activate_expired_token_bad_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AccountActivationTests.test_activate_invalid_token_bad_request"><code class="docutils literal notranslate"><span class="pre">AccountActivationTests.test_activate_invalid_token_bad_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AccountActivationTests.test_activate_ok"><code class="docutils literal notranslate"><span class="pre">AccountActivationTests.test_activate_ok()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#users_app.tests.AuthTests"><code class="docutils literal notranslate"><span class="pre">AuthTests</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.AUTH_DATA"><code class="docutils literal notranslate"><span class="pre">AuthTests.AUTH_DATA</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#users_app.tests.AuthTests.setUp"><code class="docutils literal notranslate"><span class="pre">AuthTests.setUp()</span></code></a></li>
@@ -199,22 +235,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="users_app.migrations.html#module-users_app.migrations.0002_alter_businessprofile_file_and_more">users_app.migrations.0002_alter_businessprofile_file_and_more module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="users_app.migrations.html#users_app.migrations.0002_alter_businessprofile_file_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="users_app.migrations.html#users_app.migrations.0002_alter_businessprofile_file_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="users_app.migrations.html#users_app.migrations.0002_alter_businessprofile_file_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="users_app.migrations.html#module-users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more">users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="users_app.migrations.html#users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="users_app.migrations.html#users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="users_app.migrations.html#users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="users_app.migrations.html#users-app-migrations-0002-alter-businessprofile-file-and-more-module">users_app.migrations.0002_alter_businessprofile_file_and_more module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users_app.migrations.html#users-app-migrations-0003-remove-businessprofile-uploaded-at-and-more-module">users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users_app.migrations.html#module-users_app.migrations">Module contents</a></li>
 </ul>
 </li>
@@ -327,6 +349,92 @@ object the first time, the query is executed.</p>
 <span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.AbstractUserProfile.user_id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">AccountActivation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AccountActivation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#users_app.models.UserAction" title="users_app.models.UserAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserAction</span></code></a></p>
+<p>Account activation model including user email and token.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#users_app.models.AccountActivation.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#users_app.models.AccountActivation.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.create_with_email">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_with_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AccountActivation.create_with_email" title="Link to this definition"></a></dt>
+<dd><p>Creates class instance and sends corresponding email to the respective user.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.AccountActivation.created_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.get_next_by_created_at">
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AccountActivation.get_next_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.get_previous_by_created_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.AccountActivation.get_previous_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#users_app.models.AccountActivation.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#users_app.models.AccountActivation.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.token">
+<span class="sig-name descname"><span class="pre">token</span></span><a class="headerlink" href="#users_app.models.AccountActivation.token" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.AccountActivation.user" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.AccountActivation.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.AccountActivation.user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="users_app.models.AccountActivationTokenGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">AccountActivationTokenGenerator</span></span><a class="headerlink" href="#users_app.models.AccountActivationTokenGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PasswordResetTokenGenerator</span></code></p>
+<p>Custom token generator for account activation for better stability and code readability.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -620,9 +728,158 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="users_app.models.UserAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.models.</span></span><span class="sig-name descname"><span class="pre">UserAction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.UserAction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Abstract model connecting a user to a token.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="users_app.models.UserAction.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#users_app.models.UserAction.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.UserAction.Meta.abstract">
+<span class="sig-name descname"><span class="pre">abstract</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#users_app.models.UserAction.Meta.abstract" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.UserAction.Meta.unique_together">
+<span class="sig-name descname"><span class="pre">unique_together</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('token',</span> <span class="pre">'user')</span></em><a class="headerlink" href="#users_app.models.UserAction.Meta.unique_together" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.UserAction.create_with_token">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_with_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token_generator_class</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.UserAction.create_with_token" title="Link to this definition"></a></dt>
+<dd><p>Creates class instance from respective user by using a token generator.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.UserAction.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#users_app.models.UserAction.created_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.UserAction.delete_all_for_user">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_all_for_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.UserAction.delete_all_for_user" title="Link to this definition"></a></dt>
+<dd><p>Deletes all class instances for the respective user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.UserAction.get_next_by_created_at">
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.UserAction.get_next_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.UserAction.get_previous_by_created_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.UserAction.get_previous_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.models.UserAction.is_token_expired">
+<span class="sig-name descname"><span class="pre">is_token_expired</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.models.UserAction.is_token_expired" title="Link to this definition"></a></dt>
+<dd><p>Checks token expiration date.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.UserAction.token">
+<span class="sig-name descname"><span class="pre">token</span></span><a class="headerlink" href="#users_app.models.UserAction.token" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.UserAction.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#users_app.models.UserAction.user" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="users_app.models.UserAction.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#users_app.models.UserAction.user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-users_app.tests">
 <span id="users-app-tests-module"></span><h2>users_app.tests module<a class="headerlink" href="#module-users_app.tests" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="users_app.tests.AccountActivationTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">AccountActivationTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AccountActivationTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<p>Account activation test class testing account activation after user signup.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.tests.AccountActivationTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AccountActivationTests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Setup method extending authentication setup by setting user activity and generating activation objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.tests.AccountActivationTests.test_activate_double_token_ok">
+<span class="sig-name descname"><span class="pre">test_activate_double_token_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AccountActivationTests.test_activate_double_token_ok" title="Link to this definition"></a></dt>
+<dd><p>Tests successful account activation, using a double existing token.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>200 OK status.</p></li>
+<li><p>AccountActivation instance (containing the token) was deleted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.tests.AccountActivationTests.test_activate_expired_token_bad_request">
+<span class="sig-name descname"><span class="pre">test_activate_expired_token_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AccountActivationTests.test_activate_expired_token_bad_request" title="Link to this definition"></a></dt>
+<dd><p>Tests failing account activation, using an expired token.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>400 Bad request status.</p></li>
+<li><p>“token” key is in response.</p></li>
+<li><p>Token was deleted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.tests.AccountActivationTests.test_activate_invalid_token_bad_request">
+<span class="sig-name descname"><span class="pre">test_activate_invalid_token_bad_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AccountActivationTests.test_activate_invalid_token_bad_request" title="Link to this definition"></a></dt>
+<dd><p>Tests failing account activation, using an invalid token.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>400 Bad request status.</p></li>
+<li><p>“token” key is in response.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="users_app.tests.AccountActivationTests.test_activate_ok">
+<span class="sig-name descname"><span class="pre">test_activate_ok</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AccountActivationTests.test_activate_ok" title="Link to this definition"></a></dt>
+<dd><p>Tests successful account activation, using an existing token.</p>
+<dl class="simple">
+<dt>Asserts:</dt><dd><ul class="simple">
+<li><p>200 OK status.</p></li>
+<li><p>AccountActivation instance (containing the token) was deleted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="users_app.tests.AuthTests">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">users_app.tests.</span></span><span class="sig-name descname"><span class="pre">AuthTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#users_app.tests.AuthTests" title="Link to this definition"></a></dt>
@@ -690,8 +947,7 @@ Presence of required fields in response data.</p>
 <dd><p>Tests successful user registration.</p>
 <dl class="simple">
 <dt>Asserts:</dt><dd><p>201 Created status.
-Valid customer profile association.
-Presence of required fields in response data.</p>
+No user information in response data.</p>
 </dd>
 </dl>
 </dd></dl>

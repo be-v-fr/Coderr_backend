@@ -103,13 +103,27 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="users_app.html#users_app.models.AbstractUserProfile.Meta.abstract">abstract (users_app.models.AbstractUserProfile.Meta attribute)</a>
+
+      <ul>
+        <li><a href="users_app.html#users_app.models.UserAction.Meta.abstract">(users_app.models.UserAction.Meta attribute)</a>
 </li>
+      </ul></li>
       <li><a href="users_app.html#users_app.models.AbstractUserProfile">AbstractUserProfile (class in users_app.models)</a>
 </li>
       <li><a href="users_app.html#users_app.models.AbstractUserProfile.Meta">AbstractUserProfile.Meta (class in users_app.models)</a>
 </li>
+      <li><a href="users_app.html#users_app.models.AccountActivation">AccountActivation (class in users_app.models)</a>
+</li>
+      <li><a href="users_app.html#users_app.models.AccountActivation.DoesNotExist">AccountActivation.DoesNotExist</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="users_app.html#users_app.models.AccountActivation.MultipleObjectsReturned">AccountActivation.MultipleObjectsReturned</a>
+</li>
+      <li><a href="users_app.html#users_app.tests.AccountActivationTests">AccountActivationTests (class in users_app.tests)</a>
+</li>
+      <li><a href="users_app.html#users_app.models.AccountActivationTokenGenerator">AccountActivationTokenGenerator (class in users_app.models)</a>
+</li>
       <li><a href="uploads_app.html#uploads_app.utils.attach_file_to_obj">attach_file_to_obj() (in module uploads_app.utils)</a>
 </li>
       <li><a href="users_app.html#users_app.tests.AuthTests.AUTH_DATA">AUTH_DATA (users_app.tests.AuthTests attribute)</a>
@@ -244,42 +258,14 @@
 </li>
       </ul></li>
       <li>
-    content_app.migrations.0002_alter_order_revisions
-
-      <ul>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0002_alter_order_revisions">module</a>
-</li>
-      </ul></li>
-      <li>
-    content_app.migrations.0003_alter_offer_image
-
-      <ul>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0003_alter_offer_image">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    content_app.migrations.0004_alter_offer_business_profile_alter_offer_image
-
-      <ul>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0004_alter_offer_business_profile_alter_offer_image">module</a>
-</li>
-      </ul></li>
-      <li>
-    content_app.migrations.0005_remove_offer_image_offer_file
-
-      <ul>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0005_remove_offer_image_offer_file">module</a>
-</li>
-      </ul></li>
-      <li>
     content_app.models
 
       <ul>
         <li><a href="content_app.html#module-content_app.models">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     content_app.tests
 
@@ -316,6 +302,10 @@
         <li><a href="content_app.tests.html#content_app.tests.tests_offers.OfferTests.CREATE_DATA">(content_app.tests.tests_offers.OfferTests attribute)</a>
 </li>
       </ul></li>
+      <li><a href="users_app.html#users_app.models.AccountActivation.create_with_email">create_with_email() (users_app.models.AccountActivation class method)</a>
+</li>
+      <li><a href="users_app.html#users_app.models.UserAction.create_with_token">create_with_token() (users_app.models.UserAction class method)</a>
+</li>
       <li><a href="content_app.html#content_app.models.CustomerReview.created_at">created_at (content_app.models.CustomerReview attribute)</a>
 
       <ul>
@@ -325,9 +315,13 @@
 </li>
         <li><a href="users_app.html#users_app.models.AbstractUserProfile.created_at">(users_app.models.AbstractUserProfile attribute)</a>
 </li>
+        <li><a href="users_app.html#users_app.models.AccountActivation.created_at">(users_app.models.AccountActivation attribute)</a>
+</li>
         <li><a href="users_app.html#users_app.models.BusinessProfile.created_at">(users_app.models.BusinessProfile attribute)</a>
 </li>
         <li><a href="users_app.html#users_app.models.CustomerProfile.created_at">(users_app.models.CustomerProfile attribute)</a>
+</li>
+        <li><a href="users_app.html#users_app.models.UserAction.created_at">(users_app.models.UserAction attribute)</a>
 </li>
       </ul></li>
       <li><a href="users_app.html#users_app.models.CustomerProfile">CustomerProfile (class in users_app.models)</a>
@@ -362,6 +356,8 @@
         <li><a href="users_app.html#users_app.apps.UsersAppConfig.default_auto_field">(users_app.apps.UsersAppConfig attribute)</a>
 </li>
       </ul></li>
+      <li><a href="users_app.html#users_app.models.UserAction.delete_all_for_user">delete_all_for_user() (users_app.models.UserAction class method)</a>
+</li>
       <li><a href="content_app.html#content_app.models.OfferDetails.delivery_time_in_days">delivery_time_in_days (content_app.models.OfferDetails attribute)</a>
 
       <ul>
@@ -371,25 +367,11 @@
       <li><a href="content_app.migrations.html#content_app.migrations.0001_initial.Migration.dependencies">dependencies (content_app.migrations.0001_initial.Migration attribute)</a>
 
       <ul>
-        <li><a href="content_app.migrations.html#content_app.migrations.0002_alter_order_revisions.Migration.dependencies">(content_app.migrations.0002_alter_order_revisions.Migration attribute)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0003_alter_offer_image.Migration.dependencies">(content_app.migrations.0003_alter_offer_image.Migration attribute)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0004_alter_offer_business_profile_alter_offer_image.Migration.dependencies">(content_app.migrations.0004_alter_offer_business_profile_alter_offer_image.Migration attribute)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0005_remove_offer_image_offer_file.Migration.dependencies">(content_app.migrations.0005_remove_offer_image_offer_file.Migration attribute)</a>
-</li>
         <li><a href="uploads_app.migrations.html#uploads_app.migrations.0001_initial.Migration.dependencies">(uploads_app.migrations.0001_initial.Migration attribute)</a>
 </li>
         <li><a href="users_app.migrations.html#users_app.migrations.0001_initial.Migration.dependencies">(users_app.migrations.0001_initial.Migration attribute)</a>
 </li>
-        <li><a href="users_app.migrations.html#users_app.migrations.0002_alter_businessprofile_file_and_more.Migration.dependencies">(users_app.migrations.0002_alter_businessprofile_file_and_more.Migration attribute)</a>
-</li>
-        <li><a href="users_app.migrations.html#users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration.dependencies">(users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration attribute)</a>
-</li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="content_app.html#content_app.models.CustomerReview.description">description (content_app.models.CustomerReview attribute)</a>
 
       <ul>
@@ -398,6 +380,8 @@
         <li><a href="users_app.html#users_app.models.BusinessProfile.description">(users_app.models.BusinessProfile attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="content_app.html#content_app.models.Offer.details">details (content_app.models.Offer attribute)</a>
 </li>
       <li>
@@ -531,9 +515,13 @@
 </li>
         <li><a href="users_app.html#users_app.models.AbstractUserProfile.get_next_by_created_at">(users_app.models.AbstractUserProfile method)</a>
 </li>
+        <li><a href="users_app.html#users_app.models.AccountActivation.get_next_by_created_at">(users_app.models.AccountActivation method)</a>
+</li>
         <li><a href="users_app.html#users_app.models.BusinessProfile.get_next_by_created_at">(users_app.models.BusinessProfile method)</a>
 </li>
         <li><a href="users_app.html#users_app.models.CustomerProfile.get_next_by_created_at">(users_app.models.CustomerProfile method)</a>
+</li>
+        <li><a href="users_app.html#users_app.models.UserAction.get_next_by_created_at">(users_app.models.UserAction method)</a>
 </li>
       </ul></li>
       <li><a href="content_app.html#content_app.models.CustomerReview.get_next_by_updated_at">get_next_by_updated_at() (content_app.models.CustomerReview method)</a>
@@ -559,9 +547,13 @@
 </li>
         <li><a href="users_app.html#users_app.models.AbstractUserProfile.get_previous_by_created_at">(users_app.models.AbstractUserProfile method)</a>
 </li>
+        <li><a href="users_app.html#users_app.models.AccountActivation.get_previous_by_created_at">(users_app.models.AccountActivation method)</a>
+</li>
         <li><a href="users_app.html#users_app.models.BusinessProfile.get_previous_by_created_at">(users_app.models.BusinessProfile method)</a>
 </li>
         <li><a href="users_app.html#users_app.models.CustomerProfile.get_previous_by_created_at">(users_app.models.CustomerProfile method)</a>
+</li>
+        <li><a href="users_app.html#users_app.models.UserAction.get_previous_by_created_at">(users_app.models.UserAction method)</a>
 </li>
       </ul></li>
       <li><a href="content_app.html#content_app.models.CustomerReview.get_previous_by_updated_at">get_previous_by_updated_at() (content_app.models.CustomerReview method)</a>
@@ -601,6 +593,8 @@
 </li>
         <li><a href="uploads_app.html#uploads_app.models.FileUpload.id">(uploads_app.models.FileUpload attribute)</a>
 </li>
+        <li><a href="users_app.html#users_app.models.AccountActivation.id">(users_app.models.AccountActivation attribute)</a>
+</li>
         <li><a href="users_app.html#users_app.models.BusinessProfile.id">(users_app.models.BusinessProfile attribute)</a>
 </li>
         <li><a href="users_app.html#users_app.models.CustomerProfile.id">(users_app.models.CustomerProfile attribute)</a>
@@ -618,6 +612,8 @@
         <li><a href="users_app.migrations.html#users_app.migrations.0001_initial.Migration.initial">(users_app.migrations.0001_initial.Migration attribute)</a>
 </li>
       </ul></li>
+      <li><a href="users_app.html#users_app.models.UserAction.is_token_expired">is_token_expired() (users_app.models.UserAction method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -644,21 +640,9 @@
       <li><a href="content_app.migrations.html#content_app.migrations.0001_initial.Migration">Migration (class in content_app.migrations.0001_initial)</a>
 
       <ul>
-        <li><a href="content_app.migrations.html#content_app.migrations.0002_alter_order_revisions.Migration">(class in content_app.migrations.0002_alter_order_revisions)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0003_alter_offer_image.Migration">(class in content_app.migrations.0003_alter_offer_image)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0004_alter_offer_business_profile_alter_offer_image.Migration">(class in content_app.migrations.0004_alter_offer_business_profile_alter_offer_image)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0005_remove_offer_image_offer_file.Migration">(class in content_app.migrations.0005_remove_offer_image_offer_file)</a>
-</li>
         <li><a href="uploads_app.migrations.html#uploads_app.migrations.0001_initial.Migration">(class in uploads_app.migrations.0001_initial)</a>
 </li>
         <li><a href="users_app.migrations.html#users_app.migrations.0001_initial.Migration">(class in users_app.migrations.0001_initial)</a>
-</li>
-        <li><a href="users_app.migrations.html#users_app.migrations.0002_alter_businessprofile_file_and_more.Migration">(class in users_app.migrations.0002_alter_businessprofile_file_and_more)</a>
-</li>
-        <li><a href="users_app.migrations.html#users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration">(class in users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more)</a>
 </li>
       </ul></li>
       <li><a href="uploads_app.html#uploads_app.serializers.FileUploadSerializer.Meta.model">model (uploads_app.serializers.FileUploadSerializer.Meta attribute)</a>
@@ -688,14 +672,6 @@
         <li><a href="content_app.migrations.html#module-content_app.migrations">content_app.migrations</a>
 </li>
         <li><a href="content_app.migrations.html#module-content_app.migrations.0001_initial">content_app.migrations.0001_initial</a>
-</li>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0002_alter_order_revisions">content_app.migrations.0002_alter_order_revisions</a>
-</li>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0003_alter_offer_image">content_app.migrations.0003_alter_offer_image</a>
-</li>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0004_alter_offer_business_profile_alter_offer_image">content_app.migrations.0004_alter_offer_business_profile_alter_offer_image</a>
-</li>
-        <li><a href="content_app.migrations.html#module-content_app.migrations.0005_remove_offer_image_offer_file">content_app.migrations.0005_remove_offer_image_offer_file</a>
 </li>
         <li><a href="content_app.html#module-content_app.models">content_app.models</a>
 </li>
@@ -759,10 +735,6 @@
 </li>
         <li><a href="users_app.migrations.html#module-users_app.migrations.0001_initial">users_app.migrations.0001_initial</a>
 </li>
-        <li><a href="users_app.migrations.html#module-users_app.migrations.0002_alter_businessprofile_file_and_more">users_app.migrations.0002_alter_businessprofile_file_and_more</a>
-</li>
-        <li><a href="users_app.migrations.html#module-users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more">users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more</a>
-</li>
         <li><a href="users_app.html#module-users_app.models">users_app.models</a>
 </li>
         <li><a href="users_app.html#module-users_app.tests">users_app.tests</a>
@@ -803,6 +775,8 @@
 </li>
         <li><a href="uploads_app.html#uploads_app.models.FileUpload.objects">(uploads_app.models.FileUpload attribute)</a>
 </li>
+        <li><a href="users_app.html#users_app.models.AccountActivation.objects">(users_app.models.AccountActivation attribute)</a>
+</li>
         <li><a href="users_app.html#users_app.models.BusinessProfile.objects">(users_app.models.BusinessProfile attribute)</a>
 </li>
         <li><a href="users_app.html#users_app.models.CustomerProfile.objects">(users_app.models.CustomerProfile attribute)</a>
@@ -830,6 +804,8 @@
 </li>
       <li><a href="content_app.html#content_app.models.OfferDetails.OFFER_TYPES">OFFER_TYPES (content_app.models.OfferDetails attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="content_app.html#content_app.models.OfferDetails">OfferDetails (class in content_app.models)</a>
 </li>
       <li><a href="content_app.html#content_app.models.OfferDetails.DoesNotExist">OfferDetails.DoesNotExist</a>
@@ -838,8 +814,6 @@
 </li>
       <li><a href="content_app.tests.html#content_app.tests.tests_offers.OfferDetailsTests">OfferDetailsTests (class in content_app.tests.tests_offers)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="users_app.html#users_app.models.BusinessProfile.offers">offers (users_app.models.BusinessProfile attribute)</a>
 </li>
       <li><a href="content_app.tests.html#content_app.tests.tests_offers.OfferTests">OfferTests (class in content_app.tests.tests_offers)</a>
@@ -847,21 +821,9 @@
       <li><a href="content_app.migrations.html#content_app.migrations.0001_initial.Migration.operations">operations (content_app.migrations.0001_initial.Migration attribute)</a>
 
       <ul>
-        <li><a href="content_app.migrations.html#content_app.migrations.0002_alter_order_revisions.Migration.operations">(content_app.migrations.0002_alter_order_revisions.Migration attribute)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0003_alter_offer_image.Migration.operations">(content_app.migrations.0003_alter_offer_image.Migration attribute)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0004_alter_offer_business_profile_alter_offer_image.Migration.operations">(content_app.migrations.0004_alter_offer_business_profile_alter_offer_image.Migration attribute)</a>
-</li>
-        <li><a href="content_app.migrations.html#content_app.migrations.0005_remove_offer_image_offer_file.Migration.operations">(content_app.migrations.0005_remove_offer_image_offer_file.Migration attribute)</a>
-</li>
         <li><a href="uploads_app.migrations.html#uploads_app.migrations.0001_initial.Migration.operations">(uploads_app.migrations.0001_initial.Migration attribute)</a>
 </li>
         <li><a href="users_app.migrations.html#users_app.migrations.0001_initial.Migration.operations">(users_app.migrations.0001_initial.Migration attribute)</a>
-</li>
-        <li><a href="users_app.migrations.html#users_app.migrations.0002_alter_businessprofile_file_and_more.Migration.operations">(users_app.migrations.0002_alter_businessprofile_file_and_more.Migration attribute)</a>
-</li>
-        <li><a href="users_app.migrations.html#users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration.operations">(users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more.Migration attribute)</a>
 </li>
       </ul></li>
       <li><a href="content_app.html#content_app.models.Order">Order (class in content_app.models)</a>
@@ -981,6 +943,8 @@
 </li>
         <li><a href="statistics_app.html#statistics_app.tests.OrderCountTests.setUp">(statistics_app.tests.OrderCountTests method)</a>
 </li>
+        <li><a href="users_app.html#users_app.tests.AccountActivationTests.setUp">(users_app.tests.AccountActivationTests method)</a>
+</li>
         <li><a href="users_app.html#users_app.tests.AuthTests.setUp">(users_app.tests.AuthTests method)</a>
 </li>
         <li><a href="users_app.html#users_app.tests.General.setUp">(users_app.tests.General method)</a>
@@ -1048,6 +1012,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="users_app.html#users_app.models.BusinessProfile.tel">tel (users_app.models.BusinessProfile attribute)</a>
 </li>
+      <li><a href="users_app.html#users_app.tests.AccountActivationTests.test_activate_double_token_ok">test_activate_double_token_ok() (users_app.tests.AccountActivationTests method)</a>
+</li>
+      <li><a href="users_app.html#users_app.tests.AccountActivationTests.test_activate_expired_token_bad_request">test_activate_expired_token_bad_request() (users_app.tests.AccountActivationTests method)</a>
+</li>
+      <li><a href="users_app.html#users_app.tests.AccountActivationTests.test_activate_invalid_token_bad_request">test_activate_invalid_token_bad_request() (users_app.tests.AccountActivationTests method)</a>
+</li>
+      <li><a href="users_app.html#users_app.tests.AccountActivationTests.test_activate_ok">test_activate_ok() (users_app.tests.AccountActivationTests method)</a>
+</li>
       <li><a href="content_app.tests.html#content_app.tests.tests_offers.OfferTests.test_delete_offer_detail_no_content">test_delete_offer_detail_no_content() (content_app.tests.tests_offers.OfferTests method)</a>
 </li>
       <li><a href="content_app.tests.html#content_app.tests.tests_orders.OrderTests.test_delete_order_detail_as_creator_forbidden">test_delete_order_detail_as_creator_forbidden() (content_app.tests.tests_orders.OrderTests method)</a>
@@ -1106,10 +1078,10 @@
       </ul></li>
       <li><a href="users_app.html#users_app.tests.AuthTests.test_login_false_password_bad_request">test_login_false_password_bad_request() (users_app.tests.AuthTests method)</a>
 </li>
-      <li><a href="users_app.html#users_app.tests.AuthTests.test_login_ok">test_login_ok() (users_app.tests.AuthTests method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="users_app.html#users_app.tests.AuthTests.test_login_ok">test_login_ok() (users_app.tests.AuthTests method)</a>
+</li>
       <li><a href="users_app.html#users_app.tests.ProfileTests.test_patch_business_profile_detail_ok">test_patch_business_profile_detail_ok() (users_app.tests.ProfileTests method)</a>
 </li>
       <li><a href="users_app.html#users_app.tests.ProfileTests.test_patch_customer_profile_detail_ok">test_patch_customer_profile_detail_ok() (users_app.tests.ProfileTests method)</a>
@@ -1164,6 +1136,12 @@
         <li><a href="content_app.html#content_app.models.Order.title">(content_app.models.Order attribute)</a>
 </li>
       </ul></li>
+      <li><a href="users_app.html#users_app.models.AccountActivation.token">token (users_app.models.AccountActivation attribute)</a>
+
+      <ul>
+        <li><a href="users_app.html#users_app.models.UserAction.token">(users_app.models.UserAction attribute)</a>
+</li>
+      </ul></li>
       <li><a href="users_app.html#users_app.models.AbstractUserProfile.TYPE">TYPE (users_app.models.AbstractUserProfile attribute)</a>
 
       <ul>
@@ -1178,6 +1156,8 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="users_app.html#users_app.models.UserAction.Meta.unique_together">unique_together (users_app.models.UserAction.Meta attribute)</a>
+</li>
       <li><a href="content_app.html#content_app.models.CustomerReview.updated_at">updated_at (content_app.models.CustomerReview attribute)</a>
 
       <ul>
@@ -1249,9 +1229,13 @@
       <li><a href="users_app.html#users_app.models.AbstractUserProfile.user">user (users_app.models.AbstractUserProfile attribute)</a>
 
       <ul>
+        <li><a href="users_app.html#users_app.models.AccountActivation.user">(users_app.models.AccountActivation attribute)</a>
+</li>
         <li><a href="users_app.html#users_app.models.BusinessProfile.user">(users_app.models.BusinessProfile attribute)</a>
 </li>
         <li><a href="users_app.html#users_app.models.CustomerProfile.user">(users_app.models.CustomerProfile attribute)</a>
+</li>
+        <li><a href="users_app.html#users_app.models.UserAction.user">(users_app.models.UserAction attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1259,11 +1243,19 @@
       <li><a href="users_app.html#users_app.models.AbstractUserProfile.user_id">user_id (users_app.models.AbstractUserProfile attribute)</a>
 
       <ul>
+        <li><a href="users_app.html#users_app.models.AccountActivation.user_id">(users_app.models.AccountActivation attribute)</a>
+</li>
         <li><a href="users_app.html#users_app.models.BusinessProfile.user_id">(users_app.models.BusinessProfile attribute)</a>
 </li>
         <li><a href="users_app.html#users_app.models.CustomerProfile.user_id">(users_app.models.CustomerProfile attribute)</a>
 </li>
+        <li><a href="users_app.html#users_app.models.UserAction.user_id">(users_app.models.UserAction attribute)</a>
+</li>
       </ul></li>
+      <li><a href="users_app.html#users_app.models.UserAction">UserAction (class in users_app.models)</a>
+</li>
+      <li><a href="users_app.html#users_app.models.UserAction.Meta">UserAction.Meta (class in users_app.models)</a>
+</li>
       <li>
     users_app
 
@@ -1297,20 +1289,6 @@
 
       <ul>
         <li><a href="users_app.migrations.html#module-users_app.migrations.0001_initial">module</a>
-</li>
-      </ul></li>
-      <li>
-    users_app.migrations.0002_alter_businessprofile_file_and_more
-
-      <ul>
-        <li><a href="users_app.migrations.html#module-users_app.migrations.0002_alter_businessprofile_file_and_more">module</a>
-</li>
-      </ul></li>
-      <li>
-    users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more
-
-      <ul>
-        <li><a href="users_app.migrations.html#module-users_app.migrations.0003_remove_businessprofile_uploaded_at_and_more">module</a>
 </li>
       </ul></li>
       <li>
