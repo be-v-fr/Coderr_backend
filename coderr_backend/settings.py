@@ -44,7 +44,15 @@ CORS_ALLOWED_ORIGINS = [
     'https://coderr.bengt-fruechtenicht.de'
 ]
 CORS_ALLOW_METHODS = ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
-CORS_ALLOW_HEADERS = ["*"]
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
+    "x-csrftoken",
+    "accept",
+    "origin",
+    "user-agent",
+    "x-requested-with",
+]
 
 # Application definition
 
