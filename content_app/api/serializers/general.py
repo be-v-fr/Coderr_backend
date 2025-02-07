@@ -51,7 +51,7 @@ class OfferSerializer(serializers.HyperlinkedModelSerializer):
         return obj.details.order_by('delivery_time_in_days').first().delivery_time_in_days if obj.details.exists() else None
     
     def get_image(self, obj):
-        return obj.file.file if obj.file else None
+        return obj.file.file.url if obj.file else None
     
     def validate_details(self, value):
         """

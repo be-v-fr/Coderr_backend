@@ -129,7 +129,7 @@ class AbstractProfileDetailSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['user'] + USER_FIELDS + PROFILE_EXTRA_FIELDS + ['uploaded_at']
         
     def get_file(self, obj):
-        return obj.file.file if obj.file else None
+        return obj.file.file.url if obj.file else None
     
     def get_uploaded_at(self, obj):
         return obj.file.uploaded_at if obj.file else None
@@ -177,7 +177,7 @@ class BaseProfileListSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['user'] + PROFILE_EXTRA_FIELDS
     
     def get_file(self, obj):
-        return obj.file.file if obj.file else None
+        return obj.file.file.url if obj.file else None
 
     def get_uploaded_at(self, obj):
         return obj.file.uploaded_at if obj.file else None
